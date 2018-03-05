@@ -266,9 +266,9 @@ int main(int, char **)
 dnl }}}
 
 dnl {{{ check for compiler requirements
-dnl {{{ check for -std=c++0x
-AC_MSG_CHECKING([for C++0x support])
-CHECK_CXXFLAG([-std=c++0x])
+dnl {{{ check for -std=c++14
+AC_MSG_CHECKING([for C++14 support])
+CHECK_CXXFLAG([-std=c++14])
 dnl }}}
 dnl {{{ check for braced initializers
 AC_MSG_CHECKING([for braced initializers])

@@ -15,7 +15,7 @@ CLEANFILES = \
 	proposal-functions_TEST-block-decomposition.hdf5
 MAINTAINERCLEANFILES = Makefile.in
 
-AM_CXXFLAGS = -I$(top_srcdir) -std=c++0x -Wall -Wextra -pedantic
+AM_CXXFLAGS = -I$(top_srcdir) -std=c++14 -Wall -Wextra -pedantic
 
 lib_LTLIBRARIES = libeosstatistics.la
 libeosstatistics_la_SOURCES = \
