@@ -25,6 +25,12 @@ eosdatadir = $(pkgpythondir)/data
 eosdata_SCRIPTS = \
 	eos/data/__init__.py
 
+eosplotdir = $(pkgpythondir)/plot
+eosplot_SCRIPTS = \
+	eos/plot/__init__.py \
+	eos/plot/config.py \
+	eos/plot/plotter.py
+
 _eos_la_SOURCES = _eos.cc
 _eos_la_CXXFLAGS = $(PYTHON_CXXFLAGS) -I$(top_srcdir) -std=c++0x
 _eos_la_LDFLAGS = -module -avoid-version -export-symbols-regex initeos
