@@ -44,6 +44,7 @@ namespace eos
         constexpr const char * BToRho::V;
         constexpr const char * BToRho::m_V;
         constexpr const char * BToRho::f_V;
+        constexpr const char   BToRho::q_s;
     }
 
     template class AnalyticFormFactorBToVLCSR<lcsr::BToRho>;

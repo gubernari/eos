@@ -44,6 +44,7 @@ namespace eos
         constexpr const char * BToDstar::V;
         constexpr const char * BToDstar::m_V;
         constexpr const char * BToDstar::f_V;
+        constexpr const char   BToDstar::q_s;
     }
 
     template class AnalyticFormFactorBToVLCSR<lcsr::BToDstar>;
