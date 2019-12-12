@@ -23,6 +23,9 @@ namespace eos
         // model
         SwitchOption opt_model;
 
+        // spectator quark type
+        SwitchOption opt_q;
+
         // meson masses
         UsedParameter m_B, m_Dstar;
 
@@ -33,13 +36,34 @@ namespace eos
         // form factors
         std::shared_ptr<FormFactors<PToV>> ff;
 
+        inline std::string _process() const
+        {
+            switch (opt_q.value()[0])
+            {
+                case 'd':
+                case 'u':
+                    return std::string("B->D^*");
+                    break;
+
+                case 's':
+                    return std::string("B_s->D_s^*");
+                    break;
+
+                default:
+                    throw InternalError("Should never reach this part, either!");
+            }
+
+            return "";
+        }
+
         Implementation(const Parameters & p, const Options & o, ParameterUser & u) :
             opt_model(o, "model", { "SM", "CKMScan" }, "SM"),
-            m_B(p["mass::B_d"], u),
-            m_Dstar(p["mass::D_d^*"], u),
+            opt_q(o, "q", { "u", "d", "s" }, "d"),
+            m_B(p["mass::B_" + opt_q.value()], u),
+            m_Dstar(p["mass::D_" + opt_q.value() + "^*"], u),
             opt_l(o, "l", { "e", "mu", "tau" }, "mu"),
             m_l(p["mass::" + opt_l.value()], u),
-            ff(FormFactorFactory<PToV>::create("B->D^*::" + o.get("form-factors", "HQET"), p, o))
+            ff(FormFactorFactory<PToV>::create(_process() + "::" + o.get("form-factors", "HQET"), p, o))
         {
             if (! ff.get())
                 throw InternalError("Form factors not found!");
