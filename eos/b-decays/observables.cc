@@ -224,6 +224,14 @@ namespace eos
                         std::make_tuple("q2_mu_min", "q2_mu_max"),
                         Options{ { "U", "c" }, {"q", "s"}, { "l", "mu"} }),
 
+                make_observable_ratio("B(_s)->D(_s)lnu::R(s/d)", R"(\mathcal{R}_{s/d})",
+                        &BToPseudoscalarLeptonNeutrino::integrated_branching_ratio,
+                        std::make_tuple("q2_s_min", "q2_s_max"),
+                        Options{ { "U", "c" }, {"q", "s"} },
+                        &BToPseudoscalarLeptonNeutrino::integrated_branching_ratio,
+                        std::make_tuple("q2_d_min", "q2_d_max"),
+                        Options{ { "U", "c" }, {"q", "d"} }),
+
                 make_observable("B_s->D_slnu::A_FB(q2)", R"(A_{\text{FB}}(B_s\to \bar{D}_s\ell^-\bar\nu)(q^2))",
                         &BToPseudoscalarLeptonNeutrino::differential_a_fb_leptonic,
                         std::make_tuple("q2"),
@@ -601,6 +609,14 @@ namespace eos
                                 &BToDstarLeptonNeutrino::integrated_branching_ratio,
                                 std::make_tuple("q2_mu_min", "q2_mu_max"),
                                 Options{ { "l", "mu" }, { "U", "c" }, {"q", "s"} }),
+
+                make_observable_ratio("B(_s)->D(_s)^*lnu::R^*(s/d)", R"(\mathcal{R}_{s/d}^*)",
+                                &BToDstarLeptonNeutrino::integrated_branching_ratio,
+                                std::make_tuple("q2_s_min", "q2_s_max"),
+                                Options{ { "U", "c" }, {"q", "s"} },
+                                &BToDstarLeptonNeutrino::integrated_branching_ratio,
+                                std::make_tuple("q2_d_min", "q2_d_max"),
+                                Options{ { "U", "c" }, {"q", "d"} }),
 
                 make_observable("B_s->D_s^*lnu::A_FB", R"(A_{\text{FB}}(B_s\to \bar{D}_s^*\ell^-\bar\nu))",
                                 &BToDstarLeptonNeutrino::integrated_a_fb_leptonic,
