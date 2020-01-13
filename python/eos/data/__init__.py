@@ -194,6 +194,9 @@ class UncertaintyDataFile(DataFile):
 
         return data
 
+    def weights(self):
+        return None
+
 
 """ open HDF5 data file regardless of file type """
 def load_data_file(name):
