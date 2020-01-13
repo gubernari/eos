@@ -41,6 +41,9 @@ yaml.add_representer(OrderedDict, represent_ordereddict)
 
 def kinstr_to_dict(s):
     result = {}
+    if len(s) == 0:
+        return result
+
     for kv in s.split(', '):
         kvarray = kv.split('=')
         if len(kvarray) != 2:
