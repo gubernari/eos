@@ -111,12 +111,12 @@ namespace eos
     }
 
     /* ratios of regular observables */
-    template <typename Decay_, typename ... Args_>
+    template <typename DecayNumerator_, typename DecayDenominator_, typename ... Args_>
     std::pair<QualifiedName, ObservableEntryPtr> make_observable_ratio(const char * name,
             const char * latex,
-            double (Decay_::* numerator)(const Args_ & ...) const,
+            double (DecayNumerator_::* numerator)(const Args_ & ...) const,
             const Options & forced_options_numerator,
-            double (Decay_::* denominator)(const Args_ & ...) const,
+            double (DecayDenominator_::* denominator)(const Args_ & ...) const,
             const Options & forced_options_denominator
             )
     {
@@ -132,13 +132,13 @@ namespace eos
                 );
     }
 
-    template <typename Decay_, typename Tuple_, typename ... Args_>
+    template <typename DecayNumerator_, typename DecayDenominator_, typename Tuple_, typename ... Args_>
     std::pair<QualifiedName, ObservableEntryPtr> make_observable_ratio(const char * name,
             const char * latex,
-            double (Decay_::* numerator)(const Args_ & ...) const,
+            double (DecayNumerator_::* numerator)(const Args_ & ...) const,
             const Tuple_ & kinematics_names_numerator,
             const Options & forced_options_numerator,
-            double (Decay_::* denominator)(const Args_ & ...) const,
+            double (DecayDenominator_::* denominator)(const Args_ & ...) const,
             const Tuple_ & kinematics_names_denominator,
             const Options & forced_options_denominator
             )
