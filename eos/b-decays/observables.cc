@@ -620,10 +620,10 @@ namespace eos
 
                 make_observable_ratio("B_s->D_s^(*)lnu::R(D/D^*)", R"(\mathcal{R}_{D/D^*})",
                                 &BToPseudoscalarLeptonNeutrino::integrated_branching_ratio,
-                                std::make_tuple("q2_s_min", "q2_s_max"),
+                                std::make_tuple("q2_Ds_min", "q2_Ds_max"),
                                 Options{ { "U", "c" }, {"q", "s"} },
                                 &BToDstarLeptonNeutrino::integrated_branching_ratio,
-                                std::make_tuple("q2_s_min", "q2_s_max"),
+                                std::make_tuple("q2_Dsstar_min", "q2_Dsstar_max"),
                                 Options{ { "U", "c" }, {"q", "s"} }),
 
                 make_observable("B_s->D_s^*lnu::A_FB", R"(A_{\text{FB}}(B_s\to \bar{D}_s^*\ell^-\bar\nu))",
