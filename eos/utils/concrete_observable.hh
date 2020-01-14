@@ -198,7 +198,7 @@ namespace eos
                 kinematics_names, forced_options);
     }
 
-    template <typename Decay_, typename ... Args_>
+    template <typename DecayNumerator_, typename DecayDenominator_, typename ... Args_>
     class ConcreteObservableRatio :
         public Observable
     {
@@ -213,23 +213,28 @@ namespace eos
 
             Options _options, _forced_options_numerator, _forced_options_denominator;
 
-            Decay_ _decay_numerator, _decay_denominator;
+            DecayNumerator_ _decay_numerator;
 
-            std::function<double (const Decay_ *, const Args_ & ...)> _numerator, _denominator;
+            DecayDenominator_ _decay_denominator;
+
+            std::function<double (const DecayNumerator_ *, const Args_ & ...)> _numerator;
+
+            std::function<double (const DecayDenominator_ *, const Args_ & ...)> _denominator;
 
             std::tuple<typename impl::ConvertTo<Args_, const char *>::Type ...> _kinematics_names_numerator, _kinematics_names_denominator;
 
-            std::tuple<const Decay_ *, typename impl::ConvertTo<Args_, KinematicVariable>::Type ...> _argument_tuple_numerator, _argument_tuple_denominator;
+            std::tuple<const DecayNumerator_ *, typename impl::ConvertTo<Args_, KinematicVariable>::Type ...> _argument_tuple_numerator;
+            std::tuple<const DecayDenominator_ *, typename impl::ConvertTo<Args_, KinematicVariable>::Type ...> _argument_tuple_denominator;
 
         public:
             ConcreteObservableRatio(const QualifiedName & name,
                     const Parameters & parameters,
                     const Kinematics & kinematics,
                     const Options & options,
-                    const std::function<double (const Decay_ *, const Args_ & ...)> & numerator,
+                    const std::function<double (const DecayNumerator_ *, const Args_ & ...)> & numerator,
                     const std::tuple<typename impl::ConvertTo<Args_, const char *>::Type ...> & kinematics_names_numerator,
                     const Options & forced_options_numerator,
-                    const std::function<double (const Decay_ *, const Args_ & ...)> & denominator,
+                    const std::function<double (const DecayDenominator_ *, const Args_ & ...)> & denominator,
                     const std::tuple<typename impl::ConvertTo<Args_, const char *>::Type ...> & kinematics_names_denominator,
                     const Options & forced_options_denominator) :
                 _name(name),
@@ -260,8 +265,8 @@ namespace eos
 
             virtual double evaluate() const
             {
-                std::tuple<const Decay_ *, typename impl::ConvertTo<Args_, double>::Type ...> values_numerator   = _argument_tuple_numerator;
-                std::tuple<const Decay_ *, typename impl::ConvertTo<Args_, double>::Type ...> values_denominator = _argument_tuple_denominator;
+                std::tuple<const DecayNumerator_ *,   typename impl::ConvertTo<Args_, double>::Type ...> values_numerator   = _argument_tuple_numerator;
+                std::tuple<const DecayDenominator_ *, typename impl::ConvertTo<Args_, double>::Type ...> values_denominator = _argument_tuple_denominator;
 
                 return apply(_numerator, values_numerator) / apply(_denominator, values_denominator);
             };
@@ -296,7 +301,7 @@ namespace eos
             }
     };
 
-    template <typename Decay_, typename ... Args_>
+    template <typename DecayNumerator_, typename DecayDenominator_, typename ... Args_>
     class ConcreteObservableRatioEntry :
         public ObservableEntry
     {
@@ -305,7 +310,9 @@ namespace eos
 
             std::string _latex;
 
-            std::function<double (const Decay_ *, const Args_ & ...)> _numerator, _denominator;
+            std::function<double (const DecayNumerator_ *, const Args_ & ...)> _numerator;
+
+            std::function<double (const DecayDenominator_ *, const Args_ & ...)> _denominator;
 
             Options _forced_options_numerator, _forced_options_denominator;
 
@@ -315,10 +322,10 @@ namespace eos
 
         public:
             ConcreteObservableRatioEntry(const QualifiedName & name, const std::string & latex,
-                    const std::function<double (const Decay_ *, const Args_ & ...)> & numerator,
+                    const std::function<double (const DecayNumerator_ *, const Args_ & ...)> & numerator,
                     const std::tuple<typename impl::ConvertTo<Args_, const char *>::Type ...> & kinematics_names_numerator,
                     const Options & forced_options_numerator,
-                    const std::function<double (const Decay_ *, const Args_ & ...)> & denominator,
+                    const std::function<double (const DecayDenominator_ *, const Args_ & ...)> & denominator,
                     const std::tuple<typename impl::ConvertTo<Args_, const char *>::Type ...> & kinematics_names_denominator,
                     const Options & forced_options_denominator) :
                 _name(name),
@@ -358,7 +365,7 @@ namespace eos
 
             virtual ObservablePtr make(const Parameters & parameters, const Kinematics & kinematics, const Options & options) const
             {
-                return ObservablePtr(new ConcreteObservableRatio<Decay_, Args_ ...>(_name, parameters, kinematics, options,
+                return ObservablePtr(new ConcreteObservableRatio<DecayNumerator_, DecayDenominator_, Args_ ...>(_name, parameters, kinematics, options,
                         _numerator,   _kinematics_names_numerator,   _forced_options_numerator,
                         _denominator, _kinematics_names_denominator, _forced_options_denominator));
             }
@@ -377,22 +384,22 @@ namespace eos
             }
     };
 
-    template <typename Decay_, typename Tuple_, typename ... Args_>
+    template <typename DecayNumerator_, typename DecayDenominator_, typename Tuple_, typename ... Args_>
     ObservableEntryPtr make_concrete_observable_ratio_entry(const QualifiedName & name, const std::string & latex,
-            double (Decay_::* numerator)(const Args_ & ...) const,
+            double (DecayNumerator_::* numerator)(const Args_ & ...) const,
             const Tuple_ & kinematics_names_numerator,
             const Options & forced_options_numerator,
-            double (Decay_::* denominator)(const Args_ & ...) const,
+            double (DecayDenominator_::* denominator)(const Args_ & ...) const,
             const Tuple_ & kinematics_names_denominator,
             const Options & forced_options_denominator)
     {
         static_assert(sizeof...(Args_) == impl::TupleSize<Tuple_>::size, "Need as many function arguments as kinematics names!");
 
-        return std::make_shared<ConcreteObservableRatioEntry<Decay_, Args_ ...>>(name, latex,
-                std::function<double (const Decay_ *, const Args_ & ...)>(std::mem_fn(numerator)),
+        return std::make_shared<ConcreteObservableRatioEntry<DecayNumerator_, DecayDenominator_, Args_ ...>>(name, latex,
+                std::function<double (const DecayNumerator_ *, const Args_ & ...)>(std::mem_fn(numerator)),
                 kinematics_names_numerator,
                 forced_options_numerator,
-                std::function<double (const Decay_ *, const Args_ & ...)>(std::mem_fn(denominator)),
+                std::function<double (const DecayDenominator_ *, const Args_ & ...)>(std::mem_fn(denominator)),
                 kinematics_names_denominator,
                 forced_options_denominator
                 );
