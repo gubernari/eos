@@ -24,6 +24,7 @@
 #include <eos/form-factors/analytic-b-to-p-lcsr.hh>
 #include <eos/form-factors/b-lcdas.hh>
 #include <eos/form-factors/baryonic-impl.hh>
+#include <eos/form-factors/baryonic-hqet.hh>
 #include <eos/form-factors/mesonic-impl.hh>
 #include <eos/form-factors/mesonic-hqet.hh>
 #include <eos/form-factors/observables.hh>

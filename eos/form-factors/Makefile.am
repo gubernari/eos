@@ -14,6 +14,7 @@ libeosformfactors_la_SOURCES = \
 	analytic-bs-to-kstar-lcsr.cc analytic-bs-to-dsstar-lcsr.cc analytic-bs-to-phi-lcsr.cc \
 	analytic-b-to-rho-lcsr.cc analytic-b-to-kstar-lcsr.cc analytic-b-to-dstar-lcsr.cc \
 	baryonic.cc baryonic.hh baryonic-impl.hh \
+	baryonic-hqet.hh \
 	b-lcdas.cc b-lcdas.hh \
 	form-factor-adapter.hh \
 	form-factors.cc form-factors.hh form-factors-fwd.hh \
@@ -51,6 +52,7 @@ TESTS = \
 	analytic-b-to-p-lcsr_TEST \
 	analytic-b-to-v-lcsr_TEST \
 	baryonic_TEST \
+	baryonic-hqet_TEST \
 	b-lcdas_TEST \
 	hqet-b-to-c_TEST \
 	kstar-lcdas_TEST \
@@ -76,6 +78,8 @@ analytic_b_to_p_lcsr_TEST_SOURCES = analytic-b-to-p-lcsr_TEST.cc
 analytic_b_to_v_lcsr_TEST_SOURCES = analytic-b-to-v-lcsr_TEST.cc
 
 baryonic_TEST_SOURCES = baryonic_TEST.cc
+
+baryonic_hqet_TEST_SOURCES = baryonic-hqet_TEST.cc
 
 b_lcdas_TEST_SOURCES = b-lcdas_TEST.cc
 
