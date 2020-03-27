@@ -2968,6 +2968,32 @@ groups:
           central: 0
           min: 0
           max: 0
+      # Initial parameters for Lambda_b->Lambda_c transitions in HQET parametrisation from [BBGORvD2018]
+      "Lambda_b->Lambda_c::zeta'(1)@HQET" :
+          central: 0.00
+          min:  0.00
+          max:  0.00
+          latex: '$\zeta^{(1)}(1)$'
+      "Lambda_b->Lambda_c::zeta''(1)@HQET" :
+          central: 0.00
+          min: 0.00
+          max: 0.00
+          latex: '$\zeta^{(2)}(1)$'
+      "Lambda_b->Lambda_c::zeta'''(1)@HQET" :
+          central: 0.00
+          min: 0.00
+          max: 0.00
+          latex: '$\zeta^{(3)}(1)$'
+      "Lambda_b->Lambda_c::zeta''''(1)@HQET" :
+          central: 0.0
+          min: -72.0
+          max: +72.0
+          latex: '$\zeta^{(4)}(1)$'
+      "Lambda_b->Lambda_c::zeta'''''(1)@HQET" :
+          central: 0.0
+          min: 0.00
+          max: 0.00
+          latex: '$\zeta^{(5)}(1)$'
       # Initial parameters for Lambda_b->Lambda_c(2595, 2625) transitions in HQET parametrisation from [BBGORvD2018]
       "Lambda_b->Lambda_c^*::zeta(q^2_max)@HQET" :
           central: 0.013054

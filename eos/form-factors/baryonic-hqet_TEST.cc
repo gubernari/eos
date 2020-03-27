@@ -45,18 +45,23 @@ class LbToLcHQETFormFactorsTest :
                 Parameters p = Parameters::Defaults();
                 p["Lambda_b->Lambda_c::zeta'(1)@HQET"]     = -0.849472;
                 p["Lambda_b->Lambda_c::zeta''(1)@HQET"]    =  2.0 * 0.583711;
-                p["Lambda_b->Lambda_c::a@HQET"]            =  1.0;
                 p["mass::Lambda_b"]                        =  5.27942;
                 p["mass::Lambda_c"]                        =  1.86723;
 
+                auto oo = Options{
+                    { "z-order-lp",   "2" },
+                    { "z-order-slp",  "2" },
+                    { "z-order-sslp", "1" }
+                };
 
-                HQETFormFactors<BToD, PToP> ff(p, oo);//what should I put here?
+                HQETVariables ff(p, oo);//what should I put here?
                 Diagnostics diag = ff.diagnostics();
 
                 static const std::vector<std::pair<double, double>> ref
                 {
                     /* Inputs */
                     std::make_pair(+0.288815, eps), // q2(w = 1.0)
+                    std::make_pair(+0.288815, eps), // zeta_power_series(q2(w = 1.0))
                 };
 
                 TEST_CHECK_DIAGNOSTICS(diag, ref);
