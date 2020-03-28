@@ -38,17 +38,14 @@ namespace eos
 {
     using std::sqrt;
 
-    /* HQET Form Factors, based on [BLPR2017] and [JS2018] */
-    template <typename Process_, typename Transition_> class HQETFormFactors;
-
     class HQETVariables :
         public virtual ParameterUser
     {
         protected:
             std::shared_ptr<Model> _model;
 
-            // spin avaraged baryon masses
-            UsedParameter _m_Lb, _m_Lc;
+            // masses
+            UsedParameter _m_B, _m_D, _m_Lb, _m_Lc;
 
             // option to determine if we use z^3 terms in the leading-power IW function
             SwitchOption _opt_lp_zorder;
@@ -77,6 +74,8 @@ namespace eos
         public:
             HQETVariables(const Parameters & p, const Options & o) :
                 _model(Model::make("SM", p, o)),
+                _m_B(p["mass::B_d"], *this),
+                _m_D(p["mass::D_d"], *this),
                 _m_Lb(p["mass::Lambda_b"], *this),
                 _m_Lc(p["mass::Lambda_c"], *this),
                 _opt_lp_zorder(o, "z-order-lp", { "2", "3", "4", "5" }, "3"),
@@ -98,6 +97,15 @@ namespace eos
 
             ~HQETVariables() = default;
 
+            const double _sp() const
+            {
+                  return pow(this->_m_B() + this->_m_D(), 2);
+            }
+
+            const double _s0() const
+            {
+                  return pow(this->_m_Lb() - this->_m_Lc(), 2);
+            }
 
             double _w(const double & q2) const
             {
@@ -109,22 +117,15 @@ namespace eos
 
             double _q2(const double & w) const
             {
-                return _m_Lb * _m_Lb + _m_Lc * _m_Lc -2.0 * _m_Lb * _m_Lc * w;
+                return _m_Lb * _m_Lb + _m_Lc * _m_Lc - 2.0 * _m_Lb * _m_Lc * w;
             }
 
-            double _z(const double & w) const
+            double _z(const double & q2) const
             {
-                return 0.0;
-            }
+                const double sp = this->_sp();
+                const double s0 = this->_s0();
 
-            const double _sp() const
-            {
-                  return pow(this->_m_Lb() + this->_m_Lb(), 2);
-            }
-
-            const double _s0() const
-            {
-                  return pow(this->_m_Lb() - this->_m_Lb(), 2);
+                return (sqrt(sp - q2) - sqrt(sp - s0)) / (sqrt(sp - q2) + sqrt(sp - s0));
             }
 
             double _zeta_power_series(const double & q2) const
@@ -144,11 +145,16 @@ namespace eos
                 const double z5   = z3 * z2 * _enable_lp_z5;
 
 
-                const double wm11z1 = -(pow(m_Lb,-1)*pow(m_Lc,-1)*pow(-s0 + sp,-0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)*
-                                      pow(-s0 + pow(m_Lb - m_Lc,2),2)*
-                                      pow(s0 - 2*sp + pow(m_Lb - m_Lc,2) +
-                                      2*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5),-1))/2.0;
+                const double wm11z1 = (pow(m_Lb,-1)*pow(m_Lc,-1)*pow(s0 - sp,-1)*
+                                      (2*s0*sp - 2*pow(sp,2) + s0*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*sp*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*m_Lb*m_Lc*(-2*s0 + 2*sp + pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lb,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lc,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))))/2.;
 
                 const double wm11z2 = (pow(m_Lb,-1)*pow(m_Lc,-1)*pow(s0 - sp,-1)*
                                       (14*s0*sp + 12*m_Lc*pow(m_Lb,3) - 3*pow(m_Lb,4) -
@@ -281,91 +287,76 @@ namespace eos
                                       5*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5))))/8.0;
 
                 const double wm12z4 = (pow(m_Lb,-2)*pow(m_Lc,-2)*pow(s0 - sp,-2)*
-                                      (-200*m_Lc*pow(m_Lb,7) + 25*pow(m_Lb,8) + 25*pow(m_Lc,8) -
-                                      128*sp*pow(s0,3) + pow(s0,4) +
-                                      1048*pow(s0,2)*pow(sp,2) - 2176*s0*pow(sp,3) +
-                                      1280*pow(sp,4) + 440*sp*pow(s0,2)*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5) -
+                                      (-200*m_Lc*pow(m_Lb,7) + 25*pow(m_Lb,8) + 25*pow(m_Lc,8) - 128*sp*pow(s0,3) +
+                                      pow(s0,4) + 1048*pow(s0,2)*pow(sp,2) - 2176*s0*pow(sp,3) + 1280*pow(sp,4) +
+                                      440*sp*pow(s0,2)*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
                                       20*pow(s0,3)*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5) -
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
                                       1536*s0*pow(sp,2)*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5) +
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) +
                                       1280*pow(sp,3)*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5) +
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) +
                                       pow(m_Lb,6)*(460*s0 - 560*sp + 700*pow(m_Lc,2) -
-                                      164*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5))\
-                                      - 4*pow(m_Lc,6)*(-115*s0 + 140*sp +
-                                      41*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5))\
-                                      + 8*m_Lc*pow(m_Lb,5)*
-                                      (-345*s0 + 420*sp - 175*pow(m_Lc,2) +
-                                      123*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5))\
-                                      - 4*pow(m_Lc,2)*(-31*pow(s0,3) +
-                                      32*pow(sp,2)*(23*sp +
-                                      18*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + pow(s0,2)*
-                                      (428*sp + 95*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
-                                      4*s0*sp*(277*sp +
-                                      137*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5))) +
+                                      164*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*pow(m_Lc,6)*(-115*s0 + 140*sp +
+                                      41*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      8*m_Lc*pow(m_Lb,5)*(-345*s0 + 420*sp - 175*pow(m_Lc,2) +
+                                      123*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*pow(m_Lc,2)*(-31*pow(s0,3) +
+                                      32*pow(sp,2)*(23*sp + 18*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(s0,2)*(428*sp + 95*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*s0*sp*(277*sp + 137*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))) +
+                                      pow(m_Lb,4)*(1750*pow(m_Lc,4) + 670*pow(s0,2) -
+                                      60*pow(m_Lc,2)*(-115*s0 + 140*sp +
+                                      41*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))\
+                                      + 8*sp*(275*sp + 151*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))) +
                                       2*pow(m_Lc,4)*(335*pow(s0,2) +
                                       4*sp*(275*sp + 151*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
                                       2*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5))) +
-                                      2*pow(m_Lb,4)*(875*pow(m_Lc,4) + 335*pow(s0,2) -
-                                      30*pow(m_Lc,2)*(-115*s0 + 140*sp +
-                                      41*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)) + 4*sp*(275*sp +
-                                      151*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
-                                      2*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5))) -
-                                      8*m_Lc*pow(m_Lb,3)*(175*pow(m_Lc,4) + 335*pow(s0,2) -
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))) +
+                                      8*m_Lc*pow(m_Lb,3)*(-175*pow(m_Lc,4) - 335*pow(s0,2) +
                                       10*pow(m_Lc,2)*(-115*s0 + 140*sp +
-                                      41*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + 4*sp*(275*sp +
-                                      51*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
+                                      41*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))\
+                                      - 4*sp*(275*sp + 151*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
                                       2*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5))) -
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))) -
                                       4*pow(m_Lb,2)*(-175*pow(m_Lc,6) - 31*pow(s0,3) +
-                                      32*pow(sp,2)*(23*sp +
-                                      18*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + 15*pow(m_Lc,4)*
-                                      (-115*s0 + 140*sp +
-                                      41*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + pow(s0,2)*
-                                      (428*sp + 95*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
-                                      4*s0*sp*(277*sp +
-                                      137*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
+                                      32*pow(sp,2)*(23*sp + 18*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      15*pow(m_Lc,4)*(-115*s0 + 140*sp +
+                                      41*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))\
+                                      + pow(s0,2)*(428*sp + 95*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*s0*sp*(277*sp + 137*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
                                       3*pow(m_Lc,2)*(335*pow(s0,2) +
-                                      4*sp*(275*sp +
-                                      151*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
-                                      2*s0*(680*sp +
-                                      179*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)))) +
+                                      4*sp*(275*sp + 151*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      2*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)))) +
                                       8*m_Lb*m_Lc*(-25*pow(m_Lc,6) - 31*pow(s0,3) +
-                                      32*pow(sp,2)*(23*sp +
-                                      18*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + 3*pow(m_Lc,4)*
-                                      (-115*s0 + 140*sp +
-                                      41*pow(-s0 + sp,0.5)*pow(sp - pow(m_Lb - m_Lc,2),0.5)
-                                      ) + pow(s0,2)*
-                                      (428*sp + 95*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) -
-                                      4*s0*sp*(277*sp +
-                                      137*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) +
+                                      32*pow(sp,2)*(23*sp + 18*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      3*pow(m_Lc,4)*(-115*s0 + 140*sp +
+                                      41*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))\
+                                      + pow(s0,2)*(428*sp + 95*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) -
+                                      4*s0*sp*(277*sp + 137*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
                                       pow(m_Lc,2)*(-335*pow(s0,2) -
-                                      4*sp*(275*sp +
-                                      151*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5)) +
-                                      2*s0*(680*sp +
-                                      179*pow(-s0 + sp,0.5)*
-                                      pow(sp - pow(m_Lb - m_Lc,2),0.5))))))/64.0;
+                                      4*sp*(275*sp + 151*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      2*s0*(680*sp + 179*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))))))/64.0;
 
                 const double wm12z5 = (pow(m_Lb,-2)*pow(m_Lc,-2)*pow(s0 - sp,-3)*
                                       (-93*sp*pow(s0,4) + pow(s0,5) + 908*pow(s0,3)*pow(sp,2) -
@@ -811,11 +802,11 @@ namespace eos
                 const double wm15 =  wm15z1 * z + wm15z2 * z2 + wm15z3 * z3 + wm15z4 * z4 + wm15z5 * z5;
 
                 return 1.0
-                    + _zetapone             * wm11
-                    + _zetappone    / 2.0   * wm12
-                    + _zetapppone   / 6.0   * wm13
-                    + _zetappppone  / 24.0  * wm14
-                    + _zetapppppone / 120.0 * wm15;
+                   + _zetapone             * wm11
+                   + _zetappone    / 2.0   * wm12
+                   + _zetapppone   / 6.0   * wm13
+                   + _zetappppone  / 24.0  * wm14
+                   + _zetapppppone / 120.0 * wm15;
             }
 
             Diagnostics diagnostics() const
@@ -824,8 +815,12 @@ namespace eos
 
                 // Inputs
                 {
-                    results.add(Diagnostics::Entry{ _q2(1.0), "q2(w = 1.0)" });
-                    results.add(Diagnostics::Entry{ _zeta_power_series(1.0), "q2(w = 1.0)" });
+                    results.add(Diagnostics::Entry{ _q2(1.0),                "q2(w = 1.0)" });
+                    results.add(Diagnostics::Entry{ _sp(),                   "sp" });
+                    results.add(Diagnostics::Entry{ _z(_q2(1.0)),            "z(q2(w = 1))" });
+                    results.add(Diagnostics::Entry{ _zeta_power_series(1.0), "zeta(q2 = 1.0)" });
+                    results.add(Diagnostics::Entry{ _zeta_power_series(2.0), "zeta(q2 = 2.0)" });
+                    results.add(Diagnostics::Entry{ _zeta_power_series(7.0), "zeta(q2 = 7.0)" });
                 }
 
                 return results;

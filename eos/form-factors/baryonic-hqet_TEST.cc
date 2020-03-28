@@ -38,18 +38,23 @@ class LbToLcHQETFormFactorsTest :
 
         virtual void run() const
         {
-            static const double eps = 1.0e-6;
+            static const double eps = 1.0e-4;
 
 
             {
                 Parameters p = Parameters::Defaults();
-                p["Lambda_b->Lambda_c::zeta'(1)@HQET"]     = -0.849472;
-                p["Lambda_b->Lambda_c::zeta''(1)@HQET"]    =  2.0 * 0.583711;
-                p["mass::Lambda_b"]                        =  5.27942;
-                p["mass::Lambda_c"]                        =  1.86723;
+                p["mass::B_d"]                              =  5.27942;
+                p["mass::D_d"]                              =  1.86723;
+                p["mass::Lambda_b"]                         =  5.6194;
+                p["mass::Lambda_c"]                         =  2.2865;
+                p["Lambda_b->Lambda_c::zeta'(1)@HQET"]      =  1.2;
+                p["Lambda_b->Lambda_c::zeta''(1)@HQET"]     =  2.3;
+                p["Lambda_b->Lambda_c::zeta'''(1)@HQET"]    =  3.4;
+                p["Lambda_b->Lambda_c::zeta''''(1)@HQET"]   =  4.5;
+                p["Lambda_b->Lambda_c::zeta'''''(1)@HQET"]  =  5.6;
 
                 auto oo = Options{
-                    { "z-order-lp",   "2" },
+                    { "z-order-lp",   "5" },
                     { "z-order-slp",  "2" },
                     { "z-order-sslp", "1" }
                 };
@@ -60,8 +65,12 @@ class LbToLcHQETFormFactorsTest :
                 static const std::vector<std::pair<double, double>> ref
                 {
                     /* Inputs */
-                    std::make_pair(+0.288815, eps), // q2(w = 1.0)
-                    std::make_pair(+0.288815, eps), // zeta_power_series(q2(w = 1.0))
+                    std::make_pair(+11.1082, eps), // q2(w = 1.0)
+                    std::make_pair(+51.0746, eps), // sp
+                    std::make_pair(+0.0, eps), // z(q2(w = 1))
+                    std::make_pair(+1.68446, eps), // zeta_power_series(q2(w = 1.0))
+                    std::make_pair(+1.59472, eps), // zeta_power_series(q2(w = 2.0))
+                    std::make_pair(+1.22334, eps), // zeta_power_series(q2(w = 7.0))
                 };
 
                 TEST_CHECK_DIAGNOSTICS(diag, ref);
