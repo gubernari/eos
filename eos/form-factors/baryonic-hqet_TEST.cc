@@ -52,6 +52,10 @@ class LbToLcHQETFormFactorsTest :
                 p["Lambda_b->Lambda_c::zeta'''(1)@HQET"]    =  3.4;
                 p["Lambda_b->Lambda_c::zeta''''(1)@HQET"]   =  4.5;
                 p["Lambda_b->Lambda_c::zeta'''''(1)@HQET"]  =  5.6;
+                p["Lambda_b->Lambda_c::b_1(1)@HQET"]        =  2.7;
+                p["Lambda_b->Lambda_c::b_1'(1)@HQET"]       =  3.4;
+                p["Lambda_b->Lambda_c::b_2(1)@HQET"]        =  2.7;
+                p["Lambda_b->Lambda_c::b_2'(1)@HQET"]       =  3.4;
 
                 auto oo = Options{
                     { "z-order-lp",   "5" },
@@ -59,18 +63,24 @@ class LbToLcHQETFormFactorsTest :
                     { "z-order-sslp", "1" }
                 };
 
-                HQETVariables ff(p, oo);//what should I put here?
+                HQETFormFactorBaseBaryons ff(p, oo);
                 Diagnostics diag = ff.diagnostics();
 
                 static const std::vector<std::pair<double, double>> ref
                 {
                     /* Inputs */
-                    std::make_pair(+11.1082, eps), // q2(w = 1.0)
-                    std::make_pair(+51.0746, eps), // sp
-                    std::make_pair(+0.0, eps), // z(q2(w = 1))
-                    std::make_pair(+1.68446, eps), // zeta_power_series(q2(w = 1.0))
-                    std::make_pair(+1.59472, eps), // zeta_power_series(q2(w = 2.0))
-                    std::make_pair(+1.22334, eps), // zeta_power_series(q2(w = 7.0))
+                    std::make_pair(+11.1082, eps),    // q2(w = 1.0)
+                    std::make_pair(+51.0746, eps),    // sp
+                    std::make_pair(+0.0,     eps),    // z(q2(w = 1))
+                    std::make_pair(+1.68446, eps),    // zeta_power_series(q2(w = 1.0))
+                    std::make_pair(+1.59472, eps),    // zeta_power_series(q2(w = 2.0))
+                    std::make_pair(+1.22334, eps),    // zeta_power_series(q2(w = 7.0))
+                    std::make_pair(+3.89103, eps),    // b1(q2(w = 1.0))
+                    std::make_pair(+3.78467, eps),    // b1(q2(w = 2.0))
+                    std::make_pair(+3.21729, eps),    // b1(q2(w = 7.0))
+                    std::make_pair(+3.89103, eps),    // b2(q2(w = 1.0))
+                    std::make_pair(+3.78467, eps),    // b2(q2(w = 2.0))
+                    std::make_pair(+3.21729, eps),    // b2(q2(w = 7.0))
                 };
 
                 TEST_CHECK_DIAGNOSTICS(diag, ref);

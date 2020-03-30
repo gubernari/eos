@@ -38,7 +38,7 @@ namespace eos
 {
     using std::sqrt;
 
-    class HQETVariables :
+    class HQETFormFactorBaseBaryons :
         public virtual ParameterUser
     {
         protected:
@@ -68,11 +68,14 @@ namespace eos
             // parameters for the leading Isgur-Wise function zeta
             UsedParameter _zetapone, _zetappone, _zetapppone, _zetappppone, _zetapppppone;
 
+            // parameters for subsubleading 1/m_c corrections
+            UsedParameter _b1one, _b1pone, _b2one, _b2pone;
+
 
 
 
         public:
-            HQETVariables(const Parameters & p, const Options & o) :
+            HQETFormFactorBaseBaryons(const Parameters & p, const Options & o) :
                 _model(Model::make("SM", p, o)),
                 _m_B(p["mass::B_d"], *this),
                 _m_D(p["mass::D_d"], *this),
@@ -92,10 +95,26 @@ namespace eos
                 _zetappone(p["Lambda_b->Lambda_c::zeta''(1)@HQET"], *this),
                 _zetapppone(p["Lambda_b->Lambda_c::zeta'''(1)@HQET"], *this),
                 _zetappppone(p["Lambda_b->Lambda_c::zeta''''(1)@HQET"], *this),
-                _zetapppppone(p["Lambda_b->Lambda_c::zeta'''''(1)@HQET"], *this)
+                _zetapppppone(p["Lambda_b->Lambda_c::zeta'''''(1)@HQET"], *this),
+                _b1one(p["Lambda_b->Lambda_c::b_1(1)@HQET"], *this),
+                _b1pone(p["Lambda_b->Lambda_c::b_1'(1)@HQET"], *this),
+                _b2one(p["Lambda_b->Lambda_c::b_2(1)@HQET"], *this),
+                _b2pone(p["Lambda_b->Lambda_c::b_2'(1)@HQET"], *this)
             {}
 
-            ~HQETVariables() = default;
+            ~HQETFormFactorBaseBaryons() = default;
+
+        protected:
+            /*
+             * HQET parameters following [BLPR2017]
+             */
+            inline double _mu() const { return 2.31; } // mu^2 = m_b * m_c
+            inline double _alpha_s() const { return 0.26; }
+            inline double _m_b_1S() const { return 4.71; }
+            inline double _m_b_pole() const { return _m_b_1S() * (1 + 2.0 / 9.0 * power_of<2>(_alpha_s())); }
+            inline double _m_c_pole() const { return _m_b_pole() - 3.40; }
+            inline double _lambda_1() const { return -0.30; }
+            inline double _LambdaBar() const { return 0.0; }//TODO
 
             const double _sp() const
             {
@@ -809,18 +828,297 @@ namespace eos
                    + _zetapppppone / 120.0 * wm15;
             }
 
+            double _b1(const double & q2) const
+            {
+                const double m_Lb = this->_m_Lb();
+                const double m_Lc = this->_m_Lc();
+
+                const double sp = this->_sp();
+                const double s0 = this->_s0();
+
+                // expansion in z around z_0
+                const double  z_0 = _z(_q2(1.0));
+                const double  z   = (_z(q2) - z_0);
+
+
+                const double wm11z1 = (pow(m_Lb,-1)*pow(m_Lc,-1)*pow(s0 - sp,-1)*
+                                      (2*s0*sp - 2*pow(sp,2) + s0*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*sp*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*m_Lb*m_Lc*(-2*s0 + 2*sp + pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lb,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lc,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))))/2.;
+
+                const double wm11 =  wm11z1 * z;
+
+                return _b1one + _b1pone * wm11;
+            }
+
+            double _b2(const double & q2) const
+            {
+                const double m_Lb = this->_m_Lb();
+                const double m_Lc = this->_m_Lc();
+
+                const double sp = this->_sp();
+                const double s0 = this->_s0();
+
+                // expansion in z around z_0
+                const double  z_0 = _z(_q2(1.0));
+                const double  z   = (_z(q2) - z_0);
+
+
+                const double wm11z1 = (pow(m_Lb,-1)*pow(m_Lc,-1)*pow(s0 - sp,-1)*
+                                      (2*s0*sp - 2*pow(sp,2) + s0*pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*sp*pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5) -
+                                      2*m_Lb*m_Lc*(-2*s0 + 2*sp + pow(-s0 + sp,0.5)*
+                                      pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lb,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5)) +
+                                      pow(m_Lc,2)*(-2*s0 + 2*sp +
+                                      pow(-s0 + sp,0.5)*pow(2*m_Lb*m_Lc + sp - pow(m_Lb,2) - pow(m_Lc,2),0.5))))/2.;
+
+                const double wm11 =  wm11z1 * z;
+
+                return _b2one + _b2pone * wm11;
+            }
+
+
+            /*
+             * Auxilliary functions for the HQET Wilson coefficients
+             *
+             * We use a fixed scale mu = sqrt(m_b * m_c), with m_b = 4.2 and m_c = 1.27,
+             * which yields mu = 2.31 GeV.
+             * WARNING Danny, does this still apply?
+             */
+
+            inline double _wz(const double & z) const
+            {
+                return 0.5 * (z + 1.0 / z);
+            }
+
+            inline double _wp(const double & w) const { return w + std::sqrt(w * w - 1.0); }
+            inline double _wm(const double & w) const { return w - std::sqrt(w * w - 1.0); }
+
+            double _r(const double & w) const
+            {
+                if (w < 1.0)
+                    return std::numeric_limits<double>::quiet_NaN();
+
+                if (w - 1.0 < 1.0e-5)
+                    return 1.0 - (w - 1.0) / 3.0;
+
+                return std::log(_wp(w)) / std::sqrt(w * w - 1.0);
+            }
+
+            inline double _Omega(const double & w, const double & z) const
+            {
+                if (w < 1.0)
+                    return std::numeric_limits<double>::quiet_NaN();
+
+                const double lnz = std::log(z);
+
+                if (w - 1.0 < 1.0e-5)
+                    return -1.0 - (1.0 + z) / (1.0 - z) * lnz;
+
+                const double wm = _wm(w);
+                const double wp = _wp(w);
+
+                const complex<double> li2wmz = dilog(1.0 - wm * z);
+                const complex<double> li2wpz = dilog(1.0 - wp * z);
+                const complex<double> li2wm2 = dilog(1.0 - wm * wm);
+                const complex<double> li2wp2 = dilog(1.0 - wp * wp);
+
+                return w * real(2.0 * (li2wmz - li2wpz) + li2wp2 - li2wm2) / (2.0 * std::sqrt(w * w - 1.0))
+                    - w * _r(w) * lnz + 1.0;
+            }
+
+            /* Wilson Coefficients */
+
+            inline double _CS(const double & w, const double & z) const
+            {
+                const double z2  = z * z;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = 2.0 * z * (w - wz) * _Omega(w, z);
+                result -= (w - 1.0) * (z + 1.0) * (z + 1.0) * _r(w);
+                result += (z2 - 1.0) * lnz;
+
+                return result / (3.0 * z * (w - wz));
+            }
+
+            inline double _CP(const double & w, const double & z) const
+            {
+                const double z2  = z * z;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = 2.0 * z * (w - wz) * _Omega(w, z);
+                result -= (w + 1.0) * (z - 1.0) * (z - 1.0) * _r(w);
+                result += (z2 - 1.0) * lnz;
+
+                return result / (3.0 * z * (w - wz));
+            }
+
+            inline double _CV1(const double & w, const double & z) const
+            {
+                const double z2  = z * z;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = 2.0 * (w + 1.0) * ((3.0 * w - 1.0) * z - z2 - 1.0) * _r(w);
+                result += (12.0 * z * (wz - w) - (z2 - 1.0) * lnz);
+                result += 4.0 * z * (w - wz) * _Omega(w, z);
+
+                return result / (6.0 * z * (w - wz));
+            }
+
+            inline double _CV2(const double & w, const double & z) const
+            {
+                const double z2  = z * z, z3 = z2 * z;
+                const double w2  = w * w;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = ((4.0 * w2 + 2.0 * w) * z2 - (2.0 * w2 + 5.0 * w - 1.0) * z - (1.0 + w) * z3 + 2.0) * _r(w);
+                result += z * (2.0 * (z - 1.0) * (wz - w) + (z2 - (4.0 * w - 2.0) * z + (-2.0 * w + 3)) * lnz);
+
+                return -1.0 * result / (6.0 * z2 * power_of<2>(w - wz));
+            }
+
+            inline double _CV3(const double & w, const double & z) const
+            {
+                const double z2  = z * z, z3 = z2 * z;
+                const double w2  = w * w;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = (-2.0 * z3 + (2.0 * w2 + 5.0 * w - 1.0) * z2 - (4.0 * w2 + 2.0 * w) * z + w + 1.0) * _r(w);
+                result += 2.0 * z * (z - 1.0) * (wz - w) + ((-2.0 * w + 3.0) * z2 + (-4.0 * w + 2.0) * z + 1.0) * lnz;
+
+                return +1.0 * result / (6.0 * z * power_of<2>(w - wz));
+            }
+
+            inline double _CA1(const double & w, const double & z) const
+            {
+                const double z2  = z * z;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = 2.0 * (w - 1.0) * ((3.0 * w + 1.0) * z - z2 - 1.0) * _r(w);
+                result += (12.0 * z * (wz - w) - (z2 - 1.0) * lnz);
+                result += 4.0 * z * (w - wz) * _Omega(w, z);
+
+                return result / (6.0 * z * (w - wz));
+            }
+
+            inline double _CA2(const double & w, const double & z) const
+            {
+                const double z2  = z * z, z3 = z2 * z;
+                const double w2  = w * w;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = ((4.0 * w2 - 2.0 * w) * z2 + (2.0 * w2 - 5.0 * w - 1.0) * z + (1.0 - w) * z3 + 2.0) * _r(w);
+                result += z * (2.0 * (z + 1.0) * (wz - w) + (z2 - (4.0 * w + 2.0) * z + (2.0 * w + 3)) * lnz);
+
+                return -1.0 * result / (6.0 * z2 * power_of<2>(w - wz));
+            }
+
+            inline double _CA3(const double & w, const double & z) const
+            {
+                const double z2  = z * z, z3 = z2 * z;
+                const double w2  = w * w;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = (2.0 * z3 + (2.0 * w2 - 5.0 * w - 1.0) * z2 + (4.0 * w2 - 2.0 * w) * z - w + 1.0) * _r(w);
+                result += 2.0 * z * (z + 1.0) * (wz - w) - ((2.0 * w + 3.0) * z2 - (4.0 * w + 2.0) * z + 1.0) * lnz;
+
+                return +1.0 * result / (6.0 * z * power_of<2>(w - wz));
+            }
+
+            inline double _CT1(const double & w, const double & z) const
+            {
+                const double z2  = z * z;
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = (w - 1.0) * ((4.0 * w + 2.0) * z - z2 - 1.0) * _r(w);
+                result += 6.0 * z * (wz - w) - (z2 - 1.0) * lnz;
+                result += 2.0 * z * (w - wz) * _Omega(w, z);
+
+                return +1.0 / (3.0 * z * (w - wz)) * result;
+            }
+
+            inline double _CT2(const double & w, const double & z) const
+            {
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = (1.0 - w * z) * _r(w) + z * lnz;
+
+                return +2.0 / (3.0 * z * (w - wz)) * result;
+            }
+
+            inline double _CT3(const double & w, const double & z) const
+            {
+                const double wz  = _wz(z);
+                const double lnz = std::log(z);
+
+                double result = (w - z) * _r(w) + lnz;
+
+                return +2.0 / (3.0 * (w - wz)) * result;
+            }
+
+            /*
+             * HQET form factors
+             */
+
+            // Ausiliary function
+
+            inline double _A(const double & w) const
+            {
+                return 0.0;//TODO
+            }
+
+            inline double _B1(const double & w) const
+            {
+                return (w - 1.0) / (w + 1.0) + 1.0 / _LambdaBar() * _A(w);
+            }
+
+            inline double _B2(const double & w) const
+            {
+                return -2.0 / (w + 1.0);
+            }
+
+            double _f1(const double & q2) const
+            {
+                return 0.0;
+            }
+
             Diagnostics diagnostics() const
             {
                 Diagnostics results;
 
                 // Inputs
                 {
-                    results.add(Diagnostics::Entry{ _q2(1.0),                "q2(w = 1.0)" });
-                    results.add(Diagnostics::Entry{ _sp(),                   "sp" });
-                    results.add(Diagnostics::Entry{ _z(_q2(1.0)),            "z(q2(w = 1))" });
+                    results.add(Diagnostics::Entry{ _q2(1.0),                "q2(w = 1.0)"    });
+                    results.add(Diagnostics::Entry{ _sp(),                   "sp"             });
+                    results.add(Diagnostics::Entry{ _z(_q2(1.0)),            "z(q2(w = 1))"   });
                     results.add(Diagnostics::Entry{ _zeta_power_series(1.0), "zeta(q2 = 1.0)" });
                     results.add(Diagnostics::Entry{ _zeta_power_series(2.0), "zeta(q2 = 2.0)" });
                     results.add(Diagnostics::Entry{ _zeta_power_series(7.0), "zeta(q2 = 7.0)" });
+                    results.add(Diagnostics::Entry{ _b1(1.0),                "b1(q2 = 1.0)"   });
+                    results.add(Diagnostics::Entry{ _b1(2.0),                "b1(q2 = 2.0)"   });
+                    results.add(Diagnostics::Entry{ _b1(7.0),                "b1(q2 = 7.0)"   });
+                    results.add(Diagnostics::Entry{ _b2(1.0),                "b2(q2 = 1.0)"   });
+                    results.add(Diagnostics::Entry{ _b2(2.0),                "b2(q2 = 2.0)"   });
+                    results.add(Diagnostics::Entry{ _b2(7.0),                "b2(q2 = 7.0)"   });
                 }
 
                 return results;

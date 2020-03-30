@@ -2968,7 +2968,7 @@ groups:
           central: 0
           min: 0
           max: 0
-      # Initial parameters for Lambda_b->Lambda_c transitions in HQET parametrisation from [BBGORvD2018]
+      # Parameters for Lambda_b->Lambda_c form factors in the Heavy-Quark Expansion (HQE)
       "Lambda_b->Lambda_c::zeta'(1)@HQET" :
           central: 0.00
           min:  0.00
@@ -2994,6 +2994,26 @@ groups:
           min: 0.00
           max: 0.00
           latex: '$\zeta^{(5)}(1)$'
+      "Lambda_b->Lambda_c::b_1(1)@HQET" :
+          central: 0.00
+          min:  0.00
+          max:  0.00
+          latex: '$b_1(1)$'
+      "Lambda_b->Lambda_c::b_1'(1)@HQET" :
+          central: 0.00
+          min: 0.00
+          max: 0.00
+          latex: '$b_1^{(1)}(1)$'
+      "Lambda_b->Lambda_c::b_2(1)@HQET" :
+          central: 0.00
+          min:  0.00
+          max:  0.00
+          latex: '$b_2(1)$'
+      "Lambda_b->Lambda_c::b_2'(1)@HQET" :
+          central: 0.00
+          min: 0.00
+          max: 0.00
+          latex: '$b_2^{(1)}(1)$'
       # Initial parameters for Lambda_b->Lambda_c(2595, 2625) transitions in HQET parametrisation from [BBGORvD2018]
       "Lambda_b->Lambda_c^*::zeta(q^2_max)@HQET" :
           central: 0.013054
