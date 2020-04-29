@@ -2991,6 +2991,23 @@ groups:
           comments: "Slope of the NLO IW function, [-1.0, 1.0]"
   # }}}
 
+  # 
+  # {{{
+  - title: 'Parameters in Non-Local Matrix Elements for $B\to P$ transitions'
+    description: ''
+    parameters:
+      'b->sccbar::mu' :
+          central: +4.2
+          min:     +4.2
+          max:     +4.2
+          comments: 'Renormalization scale for the Wilson coefficients.'
+      'b->sccbar::mu_c' :
+          central: +2.56
+          min:     +1.28
+          max:     +2.56
+          comments: 'Renormalization scale for the charm quark mass.'
+  # }}}
+
   # Miscellaneous Form Factor Parameters
   # {{{
   - title: 'Miscellaneous Form Factor Parameters'

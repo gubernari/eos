@@ -375,6 +375,7 @@ namespace eos
 
             /* Exclusive Rare B Decays */
 
+#if 0
             make_signal_pdf("B->Kll::d^2Gamma@LargeRecoil",
                     Options{ },
                     &BToKDilepton<LargeRecoil>::two_differential_decay_width,
@@ -434,7 +435,7 @@ namespace eos
                         "s_max"
                     )
                 ),
-
+#endif
         };
 
         return signal_pdf_entries;
