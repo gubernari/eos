@@ -93,11 +93,17 @@ namespace eos
             double phi_bar_bar_3(const double & omega_1, const double & omega_2) const;
             double phi_bar_bar_4(const double & omega_1, const double & omega_2) const;
 
+            double phi_double_bar_3(const double & omega_1, const double & omega_2) const;
+            double phi_double_bar_4(const double & omega_1, const double & omega_2) const;
+
             double psi_bar_4(const double & omega_1, const double & omega_2) const;
             double chi_bar_4(const double & omega_1, const double & omega_2) const;
 
             double psi_bar_bar_4(const double & omega_1, const double & omega_2) const;
             double chi_bar_bar_4(const double & omega_1, const double & omega_2) const;
+
+            double psi_double_bar_4(const double & omega_1, const double & omega_2) const;
+            double chi_double_bar_4(const double & omega_1, const double & omega_2) const;
             /*!
              * Pseudo observables for the two-particle LCDAs
              */

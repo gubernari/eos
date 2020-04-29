@@ -268,6 +268,12 @@ namespace eos
         }
 
         /* Leading twist three-particle LCDAs */
+        /*
+         * psi_bar B-LCDAs are the psi integrated over omega_1
+         * psi_bar2 B-LCDAs are the psi integrated over omega_2
+         * psi_bar_bar B-LCDAs are the psi integrated over both omega_1 and omega_2
+         * psi_double_bar B-LCDAs are the psi integrated twice over omega_1
+         */
 
         inline double phi_3(const double & omega_1, const double & omega_2) const
         {
@@ -337,6 +343,19 @@ namespace eos
             return termA + termB + termC + termD;
         }
 
+        inline double phi_double_bar_3(const double & omega_1, const double & omega_2) const
+        {
+            const double omega_0 = lambda_B();
+            const double exp     = std::exp(-(omega_1 + omega_2) / omega_0);
+            const double expm1   = std::exp(omega_1 / omega_0);
+            const double exp2    = std::exp(-omega_2 / omega_0);
+
+            const double termA = - (lambda_E2 - lambda_H2) / (3.0 * pow(omega_0, 2)) * pow(omega_2, 2) * exp2;
+            const double termB = + (lambda_E2 - lambda_H2) / (6.0 * pow(omega_0, 3)) * exp * (2.0 * omega_0 + omega_1 + expm1 * omega_1) * pow(omega_2, 2);
+
+            return termA + termB;
+        }
+
         inline double phi_bar_bar_4(const double & omega_1, const double & omega_2) const
         {
             const double omega_0 = lambda_B();
@@ -347,6 +366,19 @@ namespace eos
             const double termD = - 1.0 / 3.0 * (- lambda_E2 - lambda_H2);
 
             return termA + termB + termC + termD;
+        }
+
+        inline double phi_double_bar_4(const double & omega_1, const double & omega_2) const
+        {
+            const double omega_0 = lambda_B();
+            const double exp     = std::exp(-(omega_1 + omega_2) / omega_0);
+            const double expm1   = std::exp(omega_1 / omega_0);
+            const double exp2    = std::exp(-omega_2 / omega_0);
+
+            const double termA = - (lambda_E2 + lambda_H2) / (6.0 * pow(omega_0, 2)) * pow(omega_2, 2) * exp2;
+            const double termB = + (lambda_E2 + lambda_H2) / (6.0 * pow(omega_0, 3)) * exp * (omega_0 + expm1 * omega_1) * pow(omega_2, 2);
+
+            return termA + termB;
         }
 
         inline double psi_bar_4(const double & omega_1, const double & omega_2) const
@@ -371,6 +403,18 @@ namespace eos
             return termA + termB;
         }
 
+        inline double psi_double_bar_4(const double & omega_1, const double & omega_2) const
+        {
+            const double omega_0 = lambda_B();
+            const double exp     = std::exp(-(omega_1 + omega_2) / omega_0);
+            const double expm1   = std::exp(omega_1 / omega_0);
+            const double exp2    = std::exp(-omega_2 / omega_0);
+
+            const double termA = - lambda_E2 / (3.0 * omega_0) * 2.0 * omega_2 * exp2;
+            const double termB = + lambda_E2 / (3.0 * pow(omega_0, 2)) * exp * (2.0 * omega_0 + omega_1 + expm1 * omega_1) * omega_2;
+
+            return termA + termB;
+        }
 
         inline double chi_bar_4(const double & omega_1, const double & omega_2) const
         {
@@ -390,6 +434,19 @@ namespace eos
                                * omega_0 - omega_1) * (omega_0 + omega_2)  * std::exp(-(omega_1 + omega_2) / omega_0);
             const double termB = lambda_H2 / (3.0 * omega_0) * ((-1.0 +  std::exp( omega_1 / omega_0))
                                * omega_0 - omega_1) * std::exp(- omega_1/ omega_0);
+
+            return termA + termB;
+        }
+
+        inline double chi_double_bar_4(const double & omega_1, const double & omega_2) const
+        {
+            const double omega_0 = lambda_B();
+            const double exp     = std::exp(-(omega_1 + omega_2) / omega_0);
+            const double expm1   = std::exp(omega_1 / omega_0);
+            const double exp2    = std::exp(-omega_2 / omega_0);
+
+            const double termA = - lambda_H2 / (3.0 * omega_0) * 2.0 * omega_2 * exp2;
+            const double termB = + lambda_H2 / (3.0 * pow(omega_0, 2)) * exp * (2.0 * omega_0 + omega_1 + expm1 * omega_1) * omega_2;
 
             return termA + termB;
         }
@@ -589,6 +646,18 @@ namespace eos
     }
 
     double
+    BMesonLCDAs::phi_double_bar_3(const double & omega_1, const double & omega_2) const
+    {
+        return _imp->phi_double_bar_3(omega_1, omega_2);
+    }
+
+    double
+    BMesonLCDAs::phi_double_bar_4(const double & omega_1, const double & omega_2) const
+    {
+        return _imp->phi_double_bar_4(omega_1, omega_2);
+    }
+
+    double
     BMesonLCDAs::psi_bar_4(const double & omega_1, const double & omega_2) const
     {
         return _imp->psi_bar_4(omega_1, omega_2);
@@ -601,6 +670,12 @@ namespace eos
     }
 
     double
+    BMesonLCDAs::psi_double_bar_4(const double & omega_1, const double & omega_2) const
+    {
+        return _imp->psi_double_bar_4(omega_1, omega_2);
+    }
+
+    double
     BMesonLCDAs::chi_bar_4(const double & omega_1, const double & omega_2) const
     {
         return _imp->chi_bar_4(omega_1, omega_2);
@@ -610,6 +685,12 @@ namespace eos
     BMesonLCDAs::chi_bar_bar_4(const double & omega_1, const double & omega_2) const
     {
         return _imp->chi_bar_bar_4(omega_1, omega_2);
+    }
+
+    double
+    BMesonLCDAs::chi_double_bar_4(const double & omega_1, const double & omega_2) const
+    {
+        return _imp->chi_double_bar_4(omega_1, omega_2);
     }
 
     double
