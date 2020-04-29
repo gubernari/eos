@@ -139,8 +139,21 @@ namespace test
 #define TEST_CHECK_NEARLY_EQUAL(a, b, eps) \
     do \
     { \
-        auto a_val = (a); \
-        auto b_val = (b); \
+        typename std::remove_const<typename std::remove_reference<decltype(a)>::type>::type a_val{}; \
+        typename std::remove_const<typename std::remove_reference<decltype(b)>::type>::type b_val{}; \
+        try \
+        { \
+            a_val = (a); \
+            b_val = (b); \
+        } \
+        catch(std::exception & e) \
+        { \
+            throw TestCaseFailedException(__LINE__, __FILE__, stringify("unexpected exception encountered: ") + e.what()); \
+        } \
+        catch(...) \
+        { \
+            throw TestCaseFailedException(__LINE__, __FILE__, "unexpected unknown exception encountered"); \
+        } \
         if (std::abs((a_val - b_val)) <= eps) \
             break; \
         else \
