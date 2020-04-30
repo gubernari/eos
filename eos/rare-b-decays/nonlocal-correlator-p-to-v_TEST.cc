@@ -285,32 +285,32 @@ class NonlocalCorrelatorTest :
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)),  8.63720e-9, 1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 0.0)),  0.0,        1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 1.0)),  6.13438e-9, 1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 1.0)),  0.0,        1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)),  3.21337e-9, 1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 3.0)),  0.0,        1.0e-11);
-                //TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)),  1.01785e-8, 1.0e-11);
-                //TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-5.0)),  0.0,        1.0e-11);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)),  5.33392e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 0.0)),  0.0,        1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)),  8.45168e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 3.0)),  0.0,        1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)),  6.91408e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-5.0)),  0.0,        1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-7.0)),  7.99300e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-7.0)),  0.0,        1.0e-10);
 
                 TEST_CHECK_NEARLY_EQUAL(real(nc->H_para( 0.0)), -1.38926e-7, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_para( 0.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_para( 1.0)), -9.73881e-8, 1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_para( 1.0)),  0.0,        1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(real(nc->H_para( 3.0)),  2.83843e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_para( 3.0)),  0.0,        1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(real(nc->H_para(-5.0)), -2.45818e-7, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_para(-5.0)),  0.0,        1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_para(-7.0)), -2.64257e-7, 1.0e-9 );
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_para(-7.0)),  0.0,        1.0e-10);
 
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long( 0.0)), -8.12935e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long( 0.0)),  1.20463e-7, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long( 0.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long( 1.0)), -5.70008e-8, 1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long( 1.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long( 3.0)),  1.59723e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long( 3.0)),  2.17771e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long( 3.0)),  0.0,        1.0e-10);
-                //TEST_CHECK_NEARLY_EQUAL(real(nc->H_long(-5.0)), -8.33070e-7, 1.0e-11);
-                //TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long(-5.0)),  0.0,        1.0e-11);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long(-5.0)),  1.91693e-7, 1.0e-9 );
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long(-5.0)),  0.0,        1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_long(-7.0)),  2.05484e-7, 1.0e-9 );
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_long(-7.0)),  0.0,        1.0e-11);
 
                 TEST_CHECK_NEARLY_EQUAL(real(nc->normalized_moment_V1( 0.0)),  0.590215, 1.0e-4);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->normalized_moment_V1( 0.0)),  0.0,      1.0e-4);
