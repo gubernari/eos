@@ -5046,6 +5046,7 @@ namespace eos
             // analytic
             std::make_pair("B->K^*::QCDF",          &nc_p_to_v::QCDF::make),
             std::make_pair("B->K^*::LCSR",          &nc_p_to_v::LCSR::make),
+            std::make_pair("B_s->phi::LCSR",          &nc_p_to_v::LCSR::make),
             // parametrizations
             std::make_pair("B->K^*::GvDV2019",      &nc_p_to_v::GvDV2019<nc_p_to_v::BToKstar>::make),
         };
