@@ -1927,6 +1927,8 @@ namespace eos
             public NonlocalCorrelator<nc::PToP>
         {
             public:
+                std::shared_ptr<Model> model;
+
                 UsedParameter re_alpha_0_plus;
                 UsedParameter im_alpha_0_plus;
 
@@ -1946,6 +1948,15 @@ namespace eos
 
                 UsedParameter m_Bsstar;
 
+                UsedParameter m_B;
+
+                UsedParameter m_P;
+
+                // renormalization scale for the virtual charm quark's mass
+                UsedParameter mu_c;
+
+                UsedParameter t0;
+
                 GvDV2020(const Parameters & p, const Options & o) :
                     re_alpha_0_plus(p[stringify(Process_::label) + "ccbar::Re{alpha_0^perp}@GvDV2020"], *this),
                     im_alpha_0_plus(p[stringify(Process_::label) + "ccbar::Im{alpha_0^perp}@GvDV2020"], *this),
@@ -1964,19 +1975,33 @@ namespace eos
                     m_psi2S(p["mass::psi(2S)"], *this),
                     Gamma_psi2S(p["decay-width::psi(2S)"], *this),
 
-                    m_Bsstar(p["mass::B_s^*"], *this)
+                    m_Bsstar(p["mass::B_s^*"], *this),
+
+                    m_B(p["mass::B_d"], *this),
+
+                    m_P(p["mass::K_d"], *this),
+
+                    mu_c(p["b->sccbar::mu_c"], *this),
+
+                    t0(p["b->sccbar::t_0"], *this)
                 {
                 }
 
                 ~GvDV2020() = default;
 
+                // mass of the virtual charm quark
+                double m_c() const
+                {
+                    return model->m_c_msbar(mu_c());
+                }
+
                 complex<double> z(const double & q2) const
                 {
                     const double m_psi2S2 = pow(m_psi2S, 2);
                     const double tplus    = 4.0 * pow(m_D0, 2);
-                    const double t0opt    = tplus - std::sqrt(tplus * (tplus - m_psi2S2));
+                    const double t0    = this->t0();
 
-                    return (std::sqrt(tplus - q2) - std::sqrt(tplus - t0opt)) / (std::sqrt(tplus - q2) + std::sqrt(tplus - t0opt));
+                    return (std::sqrt(tplus - q2) - std::sqrt(tplus - t0)) / (std::sqrt(tplus - q2) + std::sqrt(tplus - t0));
                 }
 
                 // Blaschke-like factor capturing the two poles for J/psi and psi(2S).
@@ -2006,7 +2031,29 @@ namespace eos
                 // Outer function for H_+
                 inline complex<double> phi_plus(const double & q2) const
                 {
-                    return 1.0; // TODO
+                    const double m_P2 =  pow(m_P(), 2);
+                    const double m_b2 =  pow(m_c(), 2);
+                    const double m_B2 =  pow(m_B(), 2),  m_B4 =  pow(m_B(), 4);
+                    const double m_D02 = pow(m_D0(), 2), m_D04 = pow(m_D0(), 4);
+                    const auto   z     = this->z(q2);
+                    const double t0    = this->t0();
+
+
+                    return (m_B2 * pow(2.0,-0.5) * pow(M_PI,-1) * pow(4.0 * m_D02 - t0,0.5) * pow(t0,-0.5) *
+                           pow(m_b2 + t0,-4.0) * pow(pow(t0,-1) *
+                           (8.0 * m_D02 - t0 + 4.0 * pow(4.0 * m_D04 - m_D02 * t0,0.5)),0.5) *
+                           pow(z - pow(t0,-1) * (8.0 * m_D02 - t0 +
+                           4.0 * pow(4.0 * m_D04 - m_D02 * t0,0.5)),-1) *
+                           pow(m_b2 + 8.0 * m_D02 - t0 +
+                           2.0 * pow(4.0 * m_b2 * m_D02 + 16.0 * m_D04 - m_b2 * t0 -
+                           4.0 * m_D02 * t0,0.5),2.0) *
+                           pow(z - pow(m_b2 + t0,-1) * (m_b2 + 8.0 * m_D02 - t0 +
+                           2.0 * pow(4.0 * m_b2 * m_D02 + 16.0 * m_D04 - m_b2 * t0 -
+                           4.0 * m_D02 * t0,0.5)),-4.0) * pow((1.0 + z) * pow(1.0 - z,-5.0),0.5) *
+                           pow(m_B4 * pow(-1.0 + z,4.0) - 2.0 * m_B2 * pow(-1.0 + z,2.0) *
+                           (-(16.0 * m_D02 * z) + pow(m_P,2.0) * pow(-1.0 + z,2.0) +
+                           t0 * pow(1.0 + z,2.0)) + pow(16.0 * m_D02 * z +
+                           pow(m_P,2.0) * pow(-1.0 + z,2.0) - t0 * pow(1.0 + z,2.0),2.0),1.5))/2.0; //TODO test this function
                 }
 
                 inline complex<double> P(const double & q2, const complex<double> & alpha_0, const complex<double> & alpha_1,
@@ -2025,38 +2072,36 @@ namespace eos
                     return phi_plus(q2) * blaschke_cc(q2) * blaschke_bs_plus(q2) * (this->z(q2) - this->z(0.0)) * P(q2, alpha_0, alpha_1, alpha_2);
                 }
 
-                inline double res_jacobian(const double & mR2) const
-                {
-                    const double tplus    = 4.0 * pow(m_D0, 2);
-
-                    throw InternalError("Nico needs to implement this!");
-                    return 0.0;
-                }
-
                 virtual complex<double> H_plus_residue_jpsi() const
                 {
                     const double m_Jpsi2  = pow(m_Jpsi, 2);
                     const double m_psi2S2 = pow(m_psi2S, 2);
+                    const double tplus    = 4.0 * pow(m_D0, 2);
+                    const auto   z_Jpsi   = this->z(m_Jpsi2);
+                    const auto   z_psi2S  = this->z(m_psi2S2);
 
                     const complex<double> alpha_0 = complex<double>(re_alpha_0_plus, im_alpha_0_plus);
                     const complex<double> alpha_1 = complex<double>(re_alpha_1_plus, im_alpha_1_plus);
                     const complex<double> alpha_2 = complex<double>(re_alpha_2_plus, im_alpha_2_plus);
 
-                    throw InternalError("Nico needs to implement this!");
-                    return 0.0;
+                    return phi_plus(m_Jpsi2) * 4.0 * (m_Jpsi2 - tplus) * (1.0 - z_Jpsi * conj(z_psi2S)) / (z_Jpsi - z_psi2S)
+                    * blaschke_bs_plus(m_Jpsi2) *  (this->z(m_Jpsi2) - this->z(0.0)) * P(m_Jpsi2, alpha_0, alpha_1, alpha_2);
                 };
 
                 virtual complex<double> H_plus_residue_psi2s() const
                 {
                     const double m_Jpsi2  = pow(m_Jpsi, 2);
                     const double m_psi2S2 = pow(m_psi2S2, 2);
+                    const double tplus    = 4.0 * pow(m_D0, 2);
+                    const auto   z_Jpsi   = this->z(m_Jpsi2);
+                    const auto   z_psi2S  = this->z(m_psi2S2);
 
                     const complex<double> alpha_0 = complex<double>(re_alpha_0_plus, im_alpha_0_plus);
                     const complex<double> alpha_1 = complex<double>(re_alpha_1_plus, im_alpha_1_plus);
                     const complex<double> alpha_2 = complex<double>(re_alpha_2_plus, im_alpha_2_plus);
 
-                    throw InternalError("Nico needs to implement this!");
-                    return 0.0;
+                    return phi_plus(m_psi2S2) * 4.0 * (m_psi2S2 - tplus) * (1.0 - z_psi2S * conj(z_Jpsi)) / (z_psi2S - z_Jpsi)
+                    * blaschke_bs_plus(m_psi2S2) *  (this->z(m_psi2S2) - this->z(0.0)) * P(m_psi2S2, alpha_0, alpha_1, alpha_2);
                 };
 
                 virtual complex<double> normalized_moment_A(const double & q2) const
