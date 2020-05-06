@@ -3006,6 +3006,10 @@ groups:
           min:     +1.28
           max:     +2.56
           comments: 'Renormalization scale for the charm quark mass.'
+      'b->sccbar::t_0' :
+          central: +10.0
+          min:     +10.0
+          max:     +10.0
   # }}}
 
   # Miscellaneous Form Factor Parameters
