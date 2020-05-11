@@ -2991,7 +2991,7 @@ groups:
           comments: "Slope of the NLO IW function, [-1.0, 1.0]"
   # }}}
 
-  # 
+  #
   # {{{
   - title: 'Parameters in Non-Local Matrix Elements for $B\to P$ transitions'
     description: ''
@@ -3010,6 +3010,10 @@ groups:
           central: +10.0
           min:     +10.0
           max:     +10.0
+      'b->sccbar::t_s' :
+          central: +4.2
+          min:     +4.2
+          max:     +4.2
   # }}}
 
   # Miscellaneous Form Factor Parameters
