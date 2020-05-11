@@ -161,5 +161,20 @@ class NonlocalCorrelatorTest :
                 TEST_CHECK_NEARLY_EQUAL(real(nc->normalized_moment_A(-5.0)),  0.394032, 1.0e-3);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->normalized_moment_A(-5.0)),  0.0,      1.0e-4);
             }
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["mass::B_d"]                = 5.27958;
+                p["mass::K_d"]                = 0.497614;
+                p["b->sccbar::t_0"]           = 1.0;
+                p["b->sccbar::t_s"]           = 1.0;
+
+                Options o = { { "model", "WilsonScan" } };
+
+                auto nc = NonlocalCorrelator<nc::PToP>::make("B->K::LCSR", p, o);
+
+
+                TEST_CHECK_NEARLY_EQUAL(nc->phi_plus(0.0),  0.0,        1.0e-11);
+            }
         }
 } nonlocal_correlator_test;

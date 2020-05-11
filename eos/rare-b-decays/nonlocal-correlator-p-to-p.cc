@@ -1952,10 +1952,10 @@ namespace eos
 
                 UsedParameter m_P;
 
-                // renormalization scale for the virtual charm quark's mass
-                UsedParameter mu_c;
+                UsedParameter t_0;
 
-                UsedParameter t0;
+                // Subtraction point for the dispersione relation
+                UsedParameter t_s;
 
                 GvDV2020(const Parameters & p, const Options & o) :
                     re_alpha_0_plus(p[stringify(Process_::label) + "ccbar::Re{alpha_0^perp}@GvDV2020"], *this),
@@ -1981,27 +1981,21 @@ namespace eos
 
                     m_P(p["mass::K_d"], *this),
 
-                    mu_c(p["b->sccbar::mu_c"], *this),
+                    t_0(p["b->sccbar::t_0"], *this),
 
-                    t0(p["b->sccbar::t_0"], *this)
+                    t_s(p["b->sccbar::t_s"], *this)
                 {
                 }
 
                 ~GvDV2020() = default;
 
-                // mass of the virtual charm quark
-                double m_c() const
-                {
-                    return model->m_c_msbar(mu_c());
-                }
-
                 complex<double> z(const double & q2) const
                 {
                     const double m_psi2S2 = pow(m_psi2S, 2);
                     const double tplus    = 4.0 * pow(m_D0, 2);
-                    const double t0    = this->t0();
+                    const double t_0    = this->t_0();
 
-                    return (std::sqrt(tplus - q2) - std::sqrt(tplus - t0)) / (std::sqrt(tplus - q2) + std::sqrt(tplus - t0));
+                    return (std::sqrt(tplus - q2) - std::sqrt(tplus - t_0)) / (std::sqrt(tplus - q2) + std::sqrt(tplus - t_0));
                 }
 
                 // Blaschke-like factor capturing the two poles for J/psi and psi(2S).
@@ -2031,29 +2025,29 @@ namespace eos
                 // Outer function for H_+
                 inline complex<double> phi_plus(const double & q2) const
                 {
-                    const double m_P2 =  pow(m_P(), 2);
-                    const double m_b2 =  pow(m_c(), 2);
-                    const double m_B2 =  pow(m_B(), 2),  m_B4 =  pow(m_B(), 4);
+                    const double m_P2  = pow(m_P(), 2);
+                    const double m_B2  = pow(m_B(), 2),  m_B4 =  pow(m_B(), 4);
                     const double m_D02 = pow(m_D0(), 2), m_D04 = pow(m_D0(), 4);
                     const auto   z     = this->z(q2);
-                    const double t0    = this->t0();
+                    const double t_0   = this->t_0();
+                    const double t_s   = this->t_s();
 
 
-                    return (m_B2 * pow(2.0,-0.5) * pow(M_PI,-1) * pow(4.0 * m_D02 - t0,0.5) * pow(t0,-0.5) *
-                           pow(m_b2 + t0,-4.0) * pow(pow(t0,-1) *
-                           (8.0 * m_D02 - t0 + 4.0 * pow(4.0 * m_D04 - m_D02 * t0,0.5)),0.5) *
-                           pow(z - pow(t0,-1) * (8.0 * m_D02 - t0 +
-                           4.0 * pow(4.0 * m_D04 - m_D02 * t0,0.5)),-1) *
-                           pow(m_b2 + 8.0 * m_D02 - t0 +
-                           2.0 * pow(4.0 * m_b2 * m_D02 + 16.0 * m_D04 - m_b2 * t0 -
-                           4.0 * m_D02 * t0,0.5),2.0) *
-                           pow(z - pow(m_b2 + t0,-1) * (m_b2 + 8.0 * m_D02 - t0 +
-                           2.0 * pow(4.0 * m_b2 * m_D02 + 16.0 * m_D04 - m_b2 * t0 -
-                           4.0 * m_D02 * t0,0.5)),-4.0) * pow((1.0 + z) * pow(1.0 - z,-5.0),0.5) *
+                    return (m_B2 * pow(2.0,-0.5) * pow(M_PI,-1) * pow(4.0 * m_D02 - t_0,0.5) * pow(t_0,-0.5) *
+                           pow(t_s + t_0,-4.0) * pow(pow(t_0,-1) *
+                           (8.0 * m_D02 - t_0 + 4.0 * pow(4.0 * m_D04 - m_D02 * t_0,0.5)),0.5) *
+                           pow(z - pow(t_0,-1) * (8.0 * m_D02 - t_0 +
+                           4.0 * pow(4.0 * m_D04 - m_D02 * t_0,0.5)),-1) *
+                           pow(t_s + 8.0 * m_D02 - t_0 +
+                           2.0 * pow(4.0 * t_s * m_D02 + 16.0 * m_D04 - t_s * t_0 -
+                           4.0 * m_D02 * t_0,0.5),2.0) *
+                           pow(z - pow(t_s + t_0,-1) * (t_s + 8.0 * m_D02 - t_0 +
+                           2.0 * pow(4.0 * t_s * m_D02 + 16.0 * m_D04 - t_s * t_0 -
+                           4.0 * m_D02 * t_0,0.5)),-4.0) * pow((1.0 + z) * pow(1.0 - z,-5.0),0.5) *
                            pow(m_B4 * pow(-1.0 + z,4.0) - 2.0 * m_B2 * pow(-1.0 + z,2.0) *
                            (-(16.0 * m_D02 * z) + pow(m_P,2.0) * pow(-1.0 + z,2.0) +
-                           t0 * pow(1.0 + z,2.0)) + pow(16.0 * m_D02 * z +
-                           pow(m_P,2.0) * pow(-1.0 + z,2.0) - t0 * pow(1.0 + z,2.0),2.0),1.5))/2.0; //TODO test this function
+                           t_0 * pow(1.0 + z,2.0)) + pow(16.0 * m_D02 * z +
+                           pow(m_P,2.0) * pow(-1.0 + z,2.0) - t_0 * pow(1.0 + z,2.0),2.0),1.5))/2.0; //TODO test this function
                 }
 
                 inline complex<double> P(const double & q2, const complex<double> & alpha_0, const complex<double> & alpha_1,
@@ -2116,7 +2110,9 @@ namespace eos
 
                 virtual Diagnostics diagnostics() const
                 {
-                    return {};
+                    Diagnostics results;
+
+                    return results;
                 }
         };
     }
