@@ -3014,6 +3014,30 @@ groups:
           central: +4.2
           min:     +4.2
           max:     +4.2
+      'B->Kccbar::Re{alpha_0^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
+      'B->Kccbar::Im{alpha_0^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
+      'B->Kccbar::Re{alpha_1^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
+      'B->Kccbar::Im{alpha_1^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
+      'B->Kccbar::Re{alpha_2^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
+      'B->Kccbar::Im{alpha_2^perp}@GvDV2020' :
+          central: +0.0
+          min:     +0.0
+          max:     +0.0
   # }}}
 
   # Miscellaneous Form Factor Parameters

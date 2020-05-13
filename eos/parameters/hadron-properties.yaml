@@ -286,6 +286,24 @@ groups:
           comments: 'cf. [IKMvD2014]'
   # }}}
 
+  # Decay Widths
+  # {{{
+  - title: 'Decay Widths'
+    description: ''
+    parameters:
+      # Mean life times
+      'decay-width::J/psi' :
+          central: +9.29e-5
+          min:     +9.01e-5
+          max:     +9.57e-5
+          comments: 'GeV, cf. [PDG2019]'
+      'decay-width::psi(2S)' :
+          central: +2.94e-4
+          min:     +2.86e-4
+          max:     +3.02e-4
+          comments: 'GeV, cf. [PDG2019]'
+  # }}}
+
   # Mean Meson Lifetimes
   # {{{
   - title: 'Mean Meson Lifetimes'
@@ -328,8 +346,8 @@ groups:
   # Mean Baryon Lifetimes
   # {{{
   - title: 'Mean Baryon Lifetimes'
-    description: '' 
-    parameters: 
+    description: ''
+    parameters:
       'life_time::Lambda_b' :
           central: +1.471e-12
           min:     +1.462e-12
