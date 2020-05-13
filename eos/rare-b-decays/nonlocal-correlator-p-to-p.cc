@@ -1893,7 +1893,7 @@ namespace eos
                     results.add({ this->I3d1_A_chi_double_bar_4(0.02, 0.4, 0.3, 0.7, 2.0),         "I3d1_A_chi_double_4(0.02, 0.4, 0.3, 0.7, 2.0)" });
                     results.add({ this->I3d1_A_chi_double_bar_4(0.01, 0.7, 0.9, 0.1, 3.0),         "I3d1_A_chi_double_4(0.01, 0.7, 0.9, 0.1, 3.0)" });
 
-                return results;
+                    return results;
                 }
 
                 virtual complex<double> H_plus(const double & q2) const
@@ -2111,6 +2111,9 @@ namespace eos
                 virtual Diagnostics diagnostics() const
                 {
                     Diagnostics results;
+
+                    results.add({ real(this->phi_plus(0.0)),            "Re{phi_+(q2 = 0.0)}"      });
+                    results.add({ imag(this->phi_plus(0.0)),            "Im{phi_+(q2 = 0.0)}"      });
 
                     return results;
                 }

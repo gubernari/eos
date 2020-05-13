@@ -23,12 +23,12 @@
 using namespace test;
 using namespace eos;
 
-class NonlocalCorrelatorTest :
+class NonlocalCorrelatorLCSRTest :
     public TestCase
 {
     public:
-        NonlocalCorrelatorTest() :
-            TestCase("nonlocal_correlator_test")
+        NonlocalCorrelatorLCSRTest() :
+            TestCase("nonlocal_correlator_lcsr_test")
         {
         }
 
@@ -161,6 +161,21 @@ class NonlocalCorrelatorTest :
                 TEST_CHECK_NEARLY_EQUAL(real(nc->normalized_moment_A(-5.0)),  0.394032, 1.0e-3);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->normalized_moment_A(-5.0)),  0.0,      1.0e-4);
             }
+        }
+} nonlocal_correlator_lcsr_test;
+
+class NonlocalCorrelatorGvDV2020Test :
+    public TestCase
+{
+    public:
+        NonlocalCorrelatorGvDV2020Test() :
+            TestCase("nonlocal_correlator_GvDV2020_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
 
             {
                 Parameters p = Parameters::Defaults();
@@ -171,10 +186,28 @@ class NonlocalCorrelatorTest :
 
                 Options o = { { "model", "WilsonScan" } };
 
-                auto nc = NonlocalCorrelator<nc::PToP>::make("B->K::LCSR", p, o);
+                auto nc = NonlocalCorrelator<nc::PToP>::make("B->K::GvDV2020", p, o);
 
 
-                TEST_CHECK_NEARLY_EQUAL(nc->phi_plus(0.0),  0.0,        1.0e-11);
+                auto diagnostics = nc->diagnostics();
+
+                std::cout << "Diagnostics:" << std::endl;
+                for (auto & d : diagnostics)
+                {
+                    std::cout << d.description << ": " << d.value << std::endl;
+                }
+                std::cout << "Diagnostics ended" << std::endl;
+
+                static const std::vector<std::pair<double, double>> reference
+                {
+                    /* outer functions */
+                    std::make_pair(0.0,  1.0e-11),            // Re{phi_+(q2 = 0.0)}
+                    std::make_pair(0.0,  1.0e-11),            // Im{phi_+(q2 = 0.0)}
+                };
+                TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
+
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_plus(0.0)),  0.0,        1.0e-4);
+                TEST_CHECK_NEARLY_EQUAL(imag(nc->H_plus(0.0)),  0.0,        1.0e-4);
             }
         }
-} nonlocal_correlator_test;
+} nonlocal_correlator_gvdv2020_test;
