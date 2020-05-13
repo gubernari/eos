@@ -179,10 +179,22 @@ class NonlocalCorrelatorGvDV2020Test :
 
             {
                 Parameters p = Parameters::Defaults();
-                p["mass::B_d"]                = 5.27958;
-                p["mass::K_d"]                = 0.497614;
-                p["b->sccbar::t_0"]           = 1.0;
-                p["b->sccbar::t_s"]           = 1.0;
+                p["mass::B_d"]                               = 5.27942;
+                p["mass::K_d"]                               = 0.4936;
+                p["mass::J/psi"]                             = 3.0969;
+                p["mass::psi(2S)"]                           = 3.6860;
+                p["mass::B_s^*"]                             = 5.4154;
+                p["mass::D^0"]                               = 1.86723;
+                p["decay-width::J/psi"]                      = 9.29e-5;
+                p["decay-width::psi(2S)"]                    = 2.94e-4;
+                p["b->sccbar::t_0"]                          = 9.0;
+                p["b->sccbar::t_s"]                          = 5.0;
+                p["B->Kccbar::Re{alpha_0^perp}@GvDV2020"]    = 2.0;
+                p["B->Kccbar::Im{alpha_0^perp}@GvDV2020"]    = 3.0;
+                p["B->Kccbar::Re{alpha_1^perp}@GvDV2020"]    = 4.0;
+                p["B->Kccbar::Im{alpha_1^perp}@GvDV2020"]    = 5.0;
+                p["B->Kccbar::Re{alpha_2^perp}@GvDV2020"]    = 6.0;
+                p["B->Kccbar::Im{alpha_2^perp}@GvDV2020"]    = 7.0;
 
                 Options o = { { "model", "WilsonScan" } };
 
@@ -201,12 +213,12 @@ class NonlocalCorrelatorGvDV2020Test :
                 static const std::vector<std::pair<double, double>> reference
                 {
                     /* outer functions */
-                    std::make_pair(0.0,  1.0e-11),            // Re{phi_+(q2 = 0.0)}
-                    std::make_pair(0.0,  1.0e-11),            // Im{phi_+(q2 = 0.0)}
+                    std::make_pair(-7.99392,  eps),            // Re{phi_+(q2 = 0.0)}
+                    std::make_pair( 0.0,      eps),            // Im{phi_+(q2 = 0.0)}
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_plus(0.0)),  0.0,        1.0e-4);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_plus(1.0)), 10.0,        1.0e-4);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_plus(0.0)),  0.0,        1.0e-4);
             }
         }
