@@ -285,13 +285,13 @@ class NonlocalCorrelatorTest :
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)),  5.33392e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)), -5.33392e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 0.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)),  8.45168e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)), -8.45168e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 3.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)),  6.91408e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)), -6.91408e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-5.0)),  0.0,        1.0e-10);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-7.0)),  7.99300e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-7.0)), -7.99300e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-7.0)),  0.0,        1.0e-10);
 
                 TEST_CHECK_NEARLY_EQUAL(real(nc->H_para( 0.0)), -1.38926e-7, 1.0e-10);
@@ -370,13 +370,13 @@ class NonlocalCorrelatorTest :
 
                 auto nc = NonlocalCorrelator<nc::PToV>::make("B_s->phi::LCSR", p, o);
 
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)),  4.90182e-8, 1.0e-11);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 0.0)), -4.90182e-8, 1.0e-11);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 0.0)),  0.0,        1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)),  8.55393e-8, 1.0e-11);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp( 3.0)), -8.55393e-8, 1.0e-11);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp( 3.0)),  0.0,        1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)),  5.90284e-8, 1.0e-11);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-5.0)), -5.90284e-8, 1.0e-11);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-5.0)),  0.0,        1.0e-11);
-                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-7.0)),  6.84565e-8, 1.0e-10);
+                TEST_CHECK_NEARLY_EQUAL(real(nc->H_perp(-7.0)), -6.84565e-8, 1.0e-10);
                 TEST_CHECK_NEARLY_EQUAL(imag(nc->H_perp(-7.0)),  0.0,        1.0e-11);
 
                 TEST_CHECK_NEARLY_EQUAL(real(nc->H_para( 0.0)), -1.42157e-7, 1.0e-9 );

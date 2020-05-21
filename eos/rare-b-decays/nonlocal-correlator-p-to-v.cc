@@ -4799,7 +4799,7 @@ namespace eos
                     auto         C_2_EOS = wc.c2();
                     auto         C_1_AK  = C_2_EOS - 1.0 / 6.0 * C_1_EOS;
 
-                    return - (2.0 * C_1_AK) * sqrt(eos::lambda(m_B2 , m_V2, q2)) * Q_c * this->V1(q2) / (sqrt(2.0) * m_B3);
+                    return (2.0 * C_1_AK) * sqrt(eos::lambda(m_B2 , m_V2, q2)) * Q_c * this->V1(q2) / (sqrt(2.0) * m_B3);
                 }
 
                 virtual complex<double> H_para(const double & q2) const
@@ -4831,9 +4831,11 @@ namespace eos
                     auto         C_2_EOS = wc.c2();
                     auto         C_1_AK  = C_2_EOS - 1.0 / 6.0 * C_1_EOS;
 
-                    return (2.0 * C_1_AK) * sqrt(2) * Q_c * (eos::lambda(m_B2 , m_V2, q2) *
-                    ((m_B2 - m_V2) / (m_B2 - m_V2 - q2) * (this->V2(q2) - this->V23(q2))) //V3
-                    - this->V2(q2) * (m_B2 - m_V2) * (m_B2 + 3.0 * m_V2 - q2))
+                    return - (2.0 * C_1_AK) * sqrt(2) * Q_c
+                    * (
+                        this->V2(q2) * (m_B2 - m_V2) * (m_B2 + 3.0 * m_V2 - q2) - eos::lambda(m_B2 , m_V2, q2) *
+                        ((m_B2 - m_V2) / (m_B2 - m_V2 - q2) * (this->V2(q2) - this->V23(q2))) //V3
+                    )
                     / (2.0 * m_B3 * m_V * (m_B2 - m_V2));
                 }
 
