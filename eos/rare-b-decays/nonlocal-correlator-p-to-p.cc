@@ -2047,7 +2047,7 @@ namespace eos
                            pow(m_B4 * pow(-1.0 + z,4.0) - 2.0 * m_B2 * pow(-1.0 + z,2.0) *
                            (-(16.0 * m_D02 * z) + pow(m_P,2.0) * pow(-1.0 + z,2.0) +
                            t_0 * pow(1.0 + z,2.0)) + pow(16.0 * m_D02 * z +
-                           pow(m_P,2.0) * pow(-1.0 + z,2.0) - t_0 * pow(1.0 + z,2.0),2.0),1.5))/2.0; //TODO test this function
+                           pow(m_P,2.0) * pow(-1.0 + z,2.0) - t_0 * pow(1.0 + z,2.0),2.0),1.5))/2.0;
                 }
 
                 inline complex<double> P(const double & q2, const complex<double> & alpha_0, const complex<double> & alpha_1,
@@ -2063,7 +2063,7 @@ namespace eos
                     const complex<double> alpha_1 = complex<double>(re_alpha_1_plus, im_alpha_1_plus);
                     const complex<double> alpha_2 = complex<double>(re_alpha_2_plus, im_alpha_2_plus);
 
-                    return phi_plus(q2) * blaschke_cc(q2) * blaschke_bs_plus(q2) * (this->z(q2) - this->z(0.0)) * P(q2, alpha_0, alpha_1, alpha_2);
+                    return phi_plus(q2) * blaschke_cc(q2) /* * blaschke_bs_plus(q2)*/ * (this->z(q2) - this->z(0.0)) * P(q2, alpha_0, alpha_1, alpha_2);
                 }
 
                 virtual complex<double> H_plus_residue_jpsi() const
@@ -2112,8 +2112,12 @@ namespace eos
                 {
                     Diagnostics results;
 
-                    results.add({ real(this->phi_plus(0.0)),            "Re{phi_+(q2 = 0.0)}"      });
-                    results.add({ imag(this->phi_plus(0.0)),            "Im{phi_+(q2 = 0.0)}"      });
+                    results.add({ real(this->phi_plus(0.0)),                               "Re{phi_+(q2 = 0.0)}"                              });
+                    results.add({ imag(this->phi_plus(0.0)),                               "Im{phi_+(q2 = 0.0)}"                              });
+                    results.add({ real(this->P(1.0, 2.0, 3.0, 4.0)),                       "Re{P(q2 = 1.0, 2.0, 3.0, 4.0)}"                   });
+                    results.add({ imag(this->P(1.0, 2.0, 3.0, 4.0)),                       "Im{P(q2 = 1.0, 2.0, 3.0, 4.0)}"                   });
+                    results.add({ real(this->P(1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))),     "Re{P(q2 = 1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))}" });
+                    results.add({ imag(this->P(1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))),     "Im{P(q2 = 1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))}" });
 
                     return results;
                 }

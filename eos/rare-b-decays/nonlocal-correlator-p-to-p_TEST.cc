@@ -215,6 +215,10 @@ class NonlocalCorrelatorGvDV2020Test :
                     /* outer functions */
                     std::make_pair(-7.99392,  eps),            // Re{phi_+(q2 = 0.0)}
                     std::make_pair( 0.0,      eps),            // Im{phi_+(q2 = 0.0)}
+                    std::make_pair( 2.93084,  eps),            // Re{P(q2 = 1.0, 2.0, 3.0, 4.0)}
+                    std::make_pair( 0.0,      eps),            // Im{P(q2 = 1.0, 2.0, 3.0, 4.0)}
+                    std::make_pair( 2.93084,  eps),            // Re{P(q2 = 1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))}
+                    std::make_pair( 0.0,      eps),            // Im{P(q2 = 1.0, (2.0,5.0), (3.0,6.0), (4.0,7.0))}
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
