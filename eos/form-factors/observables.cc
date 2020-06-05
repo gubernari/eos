@@ -707,6 +707,12 @@ namespace eos
                         &AnalyticFormFactorBToVLCSR<lcsr::BToDstar>::normalized_moment_1_t_23B,
                         std::make_tuple("q2")),
 
+                make_form_factor_adapter("B->D(^*)::f_0(q2_num)/A_0(q2_denom)",
+                        "B->D",       &FormFactors<PToP>::f_0,
+                        std::make_tuple("q2_num"),
+                        "B->D^*",     &FormFactors<PToV>::a_0,
+                        std::make_tuple("q2_denom")),
+
                 make_observable("B->D^*::a_0[A_1]@HQE", R"(a_0^{A_1})",
                         &BGLCoefficients::A1_a0),
 
@@ -1084,6 +1090,18 @@ namespace eos
                 make_observable("B_s->D_s^*::T_23B[s^1/s^0](q2)",
                         &AnalyticFormFactorBToVLCSR<lcsr::BsToDsstar>::normalized_moment_1_t_23B,
                         std::make_tuple("q2")),
+
+                make_form_factor_adapter("B(_s)->D(_s)^*::A_0(q2_num)/A_0(q2_denom)",
+                        "B_s->D_s^*", &FormFactors<PToV>::a_0,
+                        std::make_tuple("q2_num"),
+                        "B->D^*",     &FormFactors<PToV>::a_0,
+                        std::make_tuple("q2_denom")),
+
+                make_form_factor_adapter("B_s->D_s(^*)::f_0(q2_num)/A_0(q2_denom)",
+                        "B_s->D_s",       &FormFactors<PToP>::f_0,
+                        std::make_tuple("q2_num"),
+                        "B_s->D_s^*",     &FormFactors<PToV>::a_0,
+                        std::make_tuple("q2_denom")),
 
                 make_observable("B_s->D_s^*::a_0[A_1]@HQE", R"(a_0^{A_1})",
                         &BGLCoefficients::A1s_a0),
