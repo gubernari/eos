@@ -1202,6 +1202,9 @@ namespace eos
                         &BGLCoefficients::V4s_a0,
                         std::make_tuple(),
                         Options()),
+
+                make_observable("B_s->D_s^*::rho^2@HQE", R"(\rho^2_{(s)})",
+                        &BGLCoefficients::rho2s),
             }
         );
 

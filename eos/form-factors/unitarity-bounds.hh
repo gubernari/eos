@@ -217,6 +217,9 @@ namespace eos
             double A7s_a1() const;
             double A7s_a2() const;
             // }}}
+
+            // CLN parameter
+            double rho2s() const;
     };
 
     /* Unitarity bound implemented as discussed in [BJvD2019] */

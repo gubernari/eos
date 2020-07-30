@@ -1267,6 +1267,23 @@ namespace eos
             return 0.11437742691975071 + 0.08810044101490708*as + -0.2250545454775743*epsb + -1.1763768368075502*chi3spone*epsb + -0.3863240448191096*chi3sppone*epsb + 0.2250545454775743*epsc + -1.1763768368075502*chi3spone*epsc + -0.3863240448191096*chi3sppone*epsc + 0.29409420920188756*xispone + 0.01852326157479586*as*xispone + -0.22009663960555897*epsb*xispone + -0.7726480896382192*chi3spone*epsb*xispone + 0.22009663960555897*epsc*xispone + -0.7726480896382192*chi3spone*epsc*xispone + 0.0965810112047774*xisppone + -0.040173922804480615*as*xisppone + 0.11437742691975071*l2sone*pow(epsc,2) + 0.24580370359949882*l2spone*pow(epsc,2) + -0.2250545454775743*l5sone*pow(epsc,2) + -0.22009663960555897*l5spone*pow(epsc,2) + 0.29409420920188756*l2sone*xispone*pow(epsc,2) + 0.1931620224095548*l2spone*xispone*pow(epsc,2) + -0.22009663960555897*l5sone*xispone*pow(epsc,2) + 0.0965810112047774*l2sone*xisppone*pow(epsc,2);
         }
         // }}}
+
+        // CLN parameter
+        // {{{
+        double rho2s() const
+        {
+            const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
+            const double epsc = _eps_c_s();
+
+            return (1.20204 * epsb - 9.61629 * chi2one * epsb + 28.8489 * chi3pone * epsb +
+                    1.20204 * epsc - 9.61629 * chi3pone * epsc - 2.40407 * epsb * etaone +
+                    as * (1.54068 - xipone) +
+                    2.40407 * xipone + (2.40407 * l2pone - 1.20204 * l5one +
+                    2.40407 * l2one * xipone) * pow(epsc, 2))/(-2.40407 + as -
+                    2.40407 * l2one * pow(epsc, 2));
+        }
+        // }}}
     };
 
     BGLCoefficients::BGLCoefficients(const Parameters & p, const Options & o) :
@@ -1426,6 +1443,11 @@ namespace eos
     double BGLCoefficients::A7s_a0() const { return _imp->A7s_a0(); }
     double BGLCoefficients::A7s_a1() const { return _imp->A7s_a1(); }
     double BGLCoefficients::A7s_a2() const { return _imp->A7s_a2(); }
+    // }}}
+
+    // CLN parameter
+    // {{{
+    double BGLCoefficients::rho2s()  const { return _imp->rho2s();  }
     // }}}
 
     template <> struct Implementation<HQETUnitarityBounds>
