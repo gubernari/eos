@@ -218,7 +218,8 @@ namespace eos
             double A7s_a2() const;
             // }}}
 
-            // CLN parameter
+            // CLN parameters
+            double rho2d() const;
             double rho2s() const;
     };
 

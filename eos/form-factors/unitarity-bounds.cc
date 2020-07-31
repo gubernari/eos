@@ -1268,13 +1268,13 @@ namespace eos
         }
         // }}}
 
-        // CLN parameter
+        // CLN parameters
         // {{{
-        double rho2s() const
+        double rho2d() const
         {
             const double as   = _alpha_s() / M_PI;
-            const double epsb = _eps_b_s();
-            const double epsc = _eps_c_s();
+            const double epsb = _eps_b();
+            const double epsc = _eps_c();
 
             return (1.20204 * epsb - 9.61629 * chi2one * epsb + 28.8489 * chi3pone * epsb +
                     1.20204 * epsc - 9.61629 * chi3pone * epsc - 2.40407 * epsb * etaone +
@@ -1282,6 +1282,20 @@ namespace eos
                     2.40407 * xipone + (2.40407 * l2pone - 1.20204 * l5one +
                     2.40407 * l2one * xipone) * pow(epsc, 2))/(-2.40407 + as -
                     2.40407 * l2one * pow(epsc, 2));
+        }
+
+        double rho2s() const
+        {
+            const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
+            const double epsc = _eps_c_s();
+
+            return (1.20204 * epsb - 9.61629 * chi2sone * epsb + 28.8489 * chi3spone * epsb +
+                    1.20204 * epsc - 9.61629 * chi3spone * epsc - 2.40407 * epsb * etasone +
+                    as * (1.54068 - xispone) +
+                    2.40407 * xispone + (2.40407 * l2spone - 1.20204 * l5sone +
+                    2.40407 * l2sone * xispone) * pow(epsc, 2))/(-2.40407 + as -
+                    2.40407 * l2sone * pow(epsc, 2));
         }
         // }}}
     };
@@ -1445,8 +1459,9 @@ namespace eos
     double BGLCoefficients::A7s_a2() const { return _imp->A7s_a2(); }
     // }}}
 
-    // CLN parameter
+    // CLN parameters
     // {{{
+    double BGLCoefficients::rho2d()  const { return _imp->rho2d();  }
     double BGLCoefficients::rho2s()  const { return _imp->rho2s();  }
     // }}}
 
