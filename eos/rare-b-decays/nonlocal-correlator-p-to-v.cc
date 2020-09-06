@@ -4867,6 +4867,12 @@ namespace eos
         };
         constexpr const char * BToKstar::label;
 
+        struct BsToPhi
+        {
+            constexpr static const char * label = "B_s->phi";
+        };
+        constexpr const char * BsToPhi::label;
+
         /*
          * Parametrize the entire correlator, i.e., both leading and all sub-leading powers as described in [GvDV2019].
          */
@@ -5048,7 +5054,7 @@ namespace eos
             // analytic
             std::make_pair("B->K^*::QCDF",          &nc_p_to_v::QCDF::make),
             std::make_pair("B->K^*::LCSR",          &nc_p_to_v::LCSR::make),
-            std::make_pair("B_s->phi::LCSR",          &nc_p_to_v::LCSR::make),
+            std::make_pair("B_s->phi::LCSR",        &nc_p_to_v::LCSR::make),
             // parametrizations
             std::make_pair("B->K^*::GvDV2019",      &nc_p_to_v::GvDV2019<nc_p_to_v::BToKstar>::make),
         };
@@ -5137,4 +5143,14 @@ namespace eos
     }
 
     template class NonlocalCorrelatorObservable<nc::BToKstar, nc::PToV>;
+
+    namespace nc
+    {
+        struct BsToPhi
+        {
+            static constexpr const char * prefix = "B_s->phi";
+        };
+    }
+
+    template class NonlocalCorrelatorObservable<nc::BsToPhi, nc::PToV>;
 }

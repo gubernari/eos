@@ -36,6 +36,7 @@ namespace eos
 
         // forward declarations
         struct BToKstar;
+        struct BsToPhi;
     }
 }
 
