@@ -25,6 +25,11 @@
 #include <eos/form-factors/form-factors-fwd.hh>
 #include <eos/form-factors/mesonic.hh>
 #include <eos/form-factors/mesonic-processes.hh>
+#include <eos/utils/model.hh>
+
+// TODO move references
+// [BGL1997] C.G. Boyd, B. Grinstein and R.F. Lebed, hep-ph/9705252
+// [BGS2017] D. Bigi, P. Gambino and S. Schacht, arXiv:1707.09509
 
 namespace eos
 {
@@ -35,18 +40,33 @@ namespace eos
         public FormFactors<PToV>
     {
         private:
+            
+            std::shared_ptr<Model> _model;
+            
             std::array<UsedParameter, 4> _a_g, _a_f, _a_F1, _a_F2;
             UsedParameter _t_0;
+            UsedParameter _m_c_pole, _m_b_pole;
+            UsedParameter _cond_qq, _cond_G2;
 
+            const double _mu;   // TODO maybe declare the scale of alpha_s(mu) as a UsedParameter
             const double _mB, _mB2, _mV, _mV2;
             const double _t_p, _t_m;
+            const double _chi_T_pl, _chi_L_pl;
+            const double _chi_T_mi, _chi_L_mi;
 
             static constexpr double chi_1m = 1.0;
             static constexpr double chi_1p = 1.0;
+            static constexpr double nI = 2.0;     // [BGL1997] isospin Clebsch-Gordan factor for B->D* and B->D
+
+            double inline _m_c_hat() const { return _m_c_pole() / _m_b_pole(); }
 
             double _z(const double & t, const double & t_0) const;
+            
+            double _chi_T(const double & u) const;
 
-            double _phi(const double & s, const double & K,  const unsigned & a, const unsigned & b, const unsigned & c, const double & chi) const;
+            double _chi_L(const double & u) const;
+
+            double _phi(const double & s, const unsigned & K, const unsigned & a, const unsigned & b, const unsigned & c, const double & chi) const;
 
             static std::string _par_name(const std::string & ff_name);
 
@@ -60,6 +80,10 @@ namespace eos
             double g(const double & s) const;
 
             double f(const double & s) const;
+
+            double F1(const double & s) const;
+
+            double F2(const double & s) const;
 
             virtual double v(const double & s) const;
 

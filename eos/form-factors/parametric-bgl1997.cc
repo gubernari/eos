@@ -27,4 +27,5 @@ namespace eos
 
     template <> const double BGL1997FormFactors<BToDstar>::chi_1p;
     template <> const double BGL1997FormFactors<BToDstar>::chi_1m;
+    template <> const double BGL1997FormFactors<BToDstar>::nI;
 }
