@@ -71,6 +71,7 @@ namespace eos
             static std::string _par_name(const std::string & ff_name);
 
         public:
+
             BGL1997FormFactors(const Parameters &, const Options &);
 
             ~BGL1997FormFactors();
@@ -102,6 +103,62 @@ namespace eos
             virtual double t_3(const double & s) const;
 
             virtual double t_23(const double & s) const;
+    };
+
+
+
+    template <>
+    class BGL1997FormFactors<BToD> :
+        public FormFactors<PToP>
+    {
+        private:
+            
+            std::shared_ptr<Model> _model;
+            
+            std::array<UsedParameter, 4> _a_f_p, _a_f_0, _a_f_t;
+            UsedParameter _t_0;
+            UsedParameter _m_c_pole, _m_b_pole;
+            UsedParameter _cond_qq, _cond_G2;
+
+            const double _mu;   // TODO maybe declare the scale of alpha_s(mu) as a UsedParameter
+            const double _mB, _mB2, _mP, _mP2;
+            const double _t_p, _t_m;
+            const double _chi_T_pl, _chi_L_pl;
+            const double _chi_T_mi, _chi_L_mi;
+
+            static constexpr double chi_1m = 1.0;
+            static constexpr double chi_1p = 1.0;
+            static constexpr double nI = 2.0;     // [BGL1997] isospin Clebsch-Gordan factor for B->D* and B->D
+
+            double inline _m_c_hat() const { return _m_c_pole() / _m_b_pole(); }
+
+// TODO same function used in <BToDstar>
+            double _z(const double & t, const double & t_0) const;
+ 
+// TODO same function used in <BToDstar>
+            double _chi_T(const double & u) const;
+
+// TODO same function used in <BToDstar>
+            double _chi_L(const double & u) const;
+
+// TODO same function used in <BToDstar>
+            double _phi(const double & s, const unsigned & K, const unsigned & a, const unsigned & b, const unsigned & c, const double & chi) const;
+
+            static std::string _par_name(const std::string & ff_name);
+
+        public:
+
+            BGL1997FormFactors(const Parameters &, const Options &);
+
+            ~BGL1997FormFactors();
+
+            static FormFactors<PToP> * make(const Parameters & parameters, const Options & options);
+
+            virtual double f_p(const double & s) const;
+
+            virtual double f_0(const double & s) const;
+
+            virtual double f_t(const double & s) const;
     };
 }
 
