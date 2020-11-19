@@ -4823,6 +4823,7 @@ namespace eos
                     const double m_B     = this-> m_B();
                     const double m_B2    = pow(m_B, 2);
                     const double m_B3    = pow(m_B, 3);
+                    const double m_B4    = pow(m_B, 4);
                     const double m_V     = this-> m_V();
                     const double m_V2    = pow(m_V, 2);
                     const double Q_c     = 2.0 / 3.0; //Charm quark charge
@@ -4831,12 +4832,12 @@ namespace eos
                     auto         C_2_EOS = wc.c2();
                     auto         C_1_AK  = C_2_EOS - 1.0 / 6.0 * C_1_EOS;
 
-                    return - (2.0 * C_1_AK) * sqrt(2) * Q_c
+                    return - (2.0 * C_1_AK) * q2 * Q_c
                     * (
                         this->V2(q2) * (m_B2 - m_V2) * (m_B2 + 3.0 * m_V2 - q2) - eos::lambda(m_B2 , m_V2, q2) *
                         ((m_B2 - m_V2) / (m_B2 - m_V2 - q2) * (this->V2(q2) - this->V23(q2))) //V3
                     )
-                    / (2.0 * m_B3 * m_V * (m_B2 - m_V2));
+                    / (2.0 * m_B4 * m_V * (m_B2 - m_V2));
                 }
 
                 virtual complex<double> normalized_moment_V1(const double & q2) const
