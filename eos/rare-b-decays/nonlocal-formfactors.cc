@@ -114,7 +114,7 @@ namespace eos
 
         //Expansion in polynomials orthogonal on the arc of the unit circle (zXY, zXY*)
         complex<double> PGvDV2020(complex<double> z, const complex<double> zXY,
-            const complex<double> & alpha_0, const complex<double> & alpha_1, const complex<double> & alpha_2)
+                                  const complex<double> & alpha_0, const complex<double> & alpha_1, const complex<double> & alpha_2/*, const complex<double> & alpha_3*/)
         {
 
             const double alphaXY = std::abs(std::arg(zXY));
@@ -127,8 +127,19 @@ namespace eos
                                         2*sin(alphaXY)*(sin(alphaXY)-alphaXY*cos(alphaXY))/denom) *
                                         sqrt( 2*denom/(-9*alphaXY + 8*pow(alphaXY,3) + 8*alphaXY*cos(2*alphaXY) +
                                         alphaXY*cos(4*alphaXY) + 4*sin(2*alphaXY) - 2*sin(4*alphaXY)) );
+            const complex<double> P3z = 12*pow(-(pow(-2*alphaXY + sin(2*alphaXY),-1)*pow(-2 + 2*cos(2*alphaXY) + 2*pow(alphaXY,2) + alphaXY*sin(2*alphaXY),-1)*
+                                        (419 - 176*cos(6*alphaXY) + cos(8*alphaXY) - 2080*pow(alphaXY,2) + 64*cos(6*alphaXY)*pow(alphaXY,2) +
+                                        4*cos(4*alphaXY)*(151 + 72*pow(alphaXY,2)) + 16*cos(2*alphaXY)*(-53 + 108*pow(alphaXY,2)) + 1152*pow(alphaXY,4) +
+                                        1344*alphaXY*sin(2*alphaXY) - 384*alphaXY*sin(4*alphaXY) - 192*alphaXY*sin(6*alphaXY))),-0.5)*
+                                        (pow(z,3) + (pow(-2*alphaXY + sin(2*alphaXY),-1)*pow(2*(-1 + cos(2*alphaXY) + pow(alphaXY,2)) + alphaXY*sin(2*alphaXY),-1)*
+                                        sin(alphaXY)*(15 + cos(4*alphaXY) + 16*cos(2*alphaXY)*(-1 + pow(alphaXY,2)) + 8*pow(alphaXY,2) -
+                                        24*alphaXY*sin(2*alphaXY)))/6. + z*pow(12*(-1 + cos(2*alphaXY) + pow(alphaXY,2)) + 6*alphaXY*sin(2*alphaXY),-1)*
+                                        sin(alphaXY)*(-12*alphaXY*cos(alphaXY) + 9*sin(alphaXY) + sin(3*alphaXY)) -
+                                        (pow(z,2)*pow(-2*alphaXY + sin(2*alphaXY),-1)*pow(2*(-1 + cos(2*alphaXY) + pow(alphaXY,2)) + alphaXY*sin(2*alphaXY),-1)*
+                                        sin(alphaXY)*(9 - 16*cos(2*alphaXY) + 7*cos(4*alphaXY) - 24*pow(alphaXY,2) +
+                                        4*alphaXY*(4*sin(2*alphaXY) + sin(4*alphaXY))))/6.);
 
-            return alpha_0*P0z + alpha_1*P1z + alpha_2*P2z;
+            return alpha_0*P0z + alpha_1*P1z + alpha_2*P2z /*+ alpha_3*P3z*/;
         }
 
     }
