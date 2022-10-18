@@ -436,7 +436,8 @@ def sample_nested(analysis_file:str, posterior:str, base_directory:str='./', bou
     Samples from a likelihood associated with a named posterior using dynamic nested sampling.
 
     The results of the find-cluster command are expected in EOS_BASE_DIRECTORY/POSTERIOR/clusters.
-    The output file will be stored in EOS_BASE_DIRECTORY/POSTERIOR/nested.
+    The output file with the importance samples will be stored in EOS_BASE_DIRECTORY/POSTERIOR/samples.
+    The native output produced by ``dynesty`` will be stored in EOS_BASE_DIRECTORY/POSTERIOR/nested.
 
     :param analysis_file: The name of the analysis file that describes the named posterior, or an object of class `eos.AnalysisFile`.
     :type analysis_file: str or `eos.AnalysisFile`
@@ -455,9 +456,10 @@ def sample_nested(analysis_file:str, posterior:str, base_directory:str='./', bou
     """
     analysis = analysis_file.analysis(posterior)
     results = analysis.sample_nested(bound=bound, nlive=nlive, dlogz=dlogz, maxiter=maxiter)
-    #samples = map(analysis._x_to_par, results.samples)
-    #weights = _np.exp(results.logwt - results.logz[-1])
-    eos.data.DynestyResults.create(os.path.join(base_directory, posterior, 'dynesty_results'), analysis.varied_parameters, results)
+    samples = _np.array(list(map(analysis._x_to_par, results.samples)))
+    weights = _np.exp(results.logwt - results.logz[-1])
+    eos.data.ImportanceSamples.create(os.path.join(base_directory, posterior, 'samples'), analysis.varied_parameters, samples, weights)
+    eos.data.DynestyResults.create(os.path.join(base_directory, posterior, 'nested'), analysis.varied_parameters, results)
 
 
 class Executor:
