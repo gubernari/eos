@@ -761,6 +761,29 @@ groups:
           max:     +10.591752810763625
           latex:    '$\alpha_{T,2}^{B \to D,\mathrm{BSZ2015}}$'
           unit:     '1'
+      # form factor parameters for B->D for [BFW:2010A] parametrization
+      'B->D::a^%1%_%2%@BFW2010' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B \to D,\mathrm{BFW2010}}$'
+          matrix:
+            - ["f+", "f0", "fT"]
+            - [0, 1, 2, 3, 4]
+      'B->D::tp@BFW2010' :
+          central:  51.1082
+          min:      51.1082
+          max:      51.1082
+          latex:    '$t_+^{B\to D}$'
+          comment:  '(mB + mD)^2'
+          unit:     'GeV'
+      'B->D::t0@BFW2010' :
+          central:  6.18487
+          min:      6.18487
+          max:      6.18487
+          latex:   '$t_0^{B\to D}$'
+          unit:     'GeV'
       # form factor parameters for B->D for [BGL:1997A]
       'B(*)->D(*)::n_f@BGL1997' :
           central: 2.0
@@ -894,6 +917,29 @@ groups:
           max:      0.0
           latex:    '$\alpha_{T,2}^{B_s \to D_s,\mathrm{BSZ2015}}$'
           unit:     '1'
+      # form factor parameters for B_s->D_s for [BFW:2010A] parametrization
+      'B_s->D_s::a^%1%_%2%@BFW2010' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B_s \to D_s,\mathrm{BFW2010}}$'
+          matrix:
+            - ["f+", "f0", "fT"]
+            - [0, 1, 2, 3, 4]
+      'B_s->D_s::tp@BFW2010' :
+          central:  53.8055
+          min:      53.8055
+          max:      53.8055
+          latex:    '$t_+^{B_s\to D_s}$'
+          comment:  '(mBs + mDs)^2'
+          unit:     'GeV'
+      'B_s->D_s::t0@BFW2010' :
+          central:  6.12349
+          min:      6.12349
+          max:      6.12349
+          latex:   '$t_0^{B_s\to D_s}$'
+          unit:     'GeV'
   # }}}
 
   # Parameters in B -> V Form Factor Parametrizations
@@ -1915,6 +1961,37 @@ groups:
           max:     0.0
           latex:    '$a_{T_{23},3}^{B\to D^*,\mathrm{BGL97}}$'
           unit:     '1'
+      # form factor parameters for B->D^* for [BFW:2010A] parametrization
+      'B->D^*::a^%1%_%2%@BFW2010' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B \to D^*,\mathrm{BFW2010}}$'
+          matrix:
+            - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
+            - [0, 1, 2, 3, 4]
+      'B->D^*::tp_a@BFW2010' :
+          central:  53.1339
+          min:      53.1339
+          max:      53.1339
+          latex:    '$t_+^{V, B\to D^*}$'
+          comment:  '(mB + mD*)^2'
+          unit:     'GeV'
+      'B->D^*::tp_v@BFW2010' :
+          central:  53.1339
+          min:      53.1339
+          max:      53.1339
+          latex:    '$t_+^{V, B\to D^*}$'
+          comment:  '(mB + mD*)^2'
+          unit:     'GeV'
+      'B->D^*::t0@BFW2010' :
+          central:  5.64172
+          min:      5.64172
+          max:      5.64172
+          latex:    '$t_0^{B\to D^*}$'
+          comment:  't_0_opt'
+          unit:     'GeV'
       # form factor parameters for B_s->D_s^* inspired by [BSZ:2015A]
       'B_s->D_s^*::alpha^A0_0@BSZ2015' :
           central:  0.0
@@ -2030,6 +2107,37 @@ groups:
           max:      0.0
           latex:    '$\alpha_{T_{23},2}^{B_s \to D_s^*,\mathrm{BSZ2015}}$'
           unit:     '1'
+      # form factor parameters for B_s->D_s^* for [BFW:2010A] parametrization
+      'B_s->D_s^*::a^%1%_%2%@BFW2010' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B_s \to D_s^*,\mathrm{BFW2010}}$'
+          matrix:
+            - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
+            - [0, 1, 2, 3, 4]
+      'B_s->D_s^*::tp_a@BFW2010' :
+          central:  55.9366
+          min:      55.9366
+          max:      55.9366
+          latex:    '$t_+^{V, B_s\to D_s^*}$'
+          comment:  '(mBs + mDs*)^2'
+          unit:     'GeV'
+      'B_s->D_s^*::tp_v@BFW2010' :
+          central:  55.9366
+          min:      55.9366
+          max:      55.9366
+          latex:    '$t_+^{V, B_s\to D_s^*}$'
+          comment:  '(mBs + mDs*)^2'
+          unit:     'GeV'
+      'B_s->D_s^*::t0@BFW2010' :
+          central:  5.57421
+          min:      5.57421
+          max:      5.57421
+          latex:    '$t_0^{B_s\to D_s^*}$'
+          comment:  't_0_opt'
+          unit:     'GeV'
       # form factor parameters for B->gamma* according to [KKvDZ2022A], Table 3, p. 10
       # inspired by [BSZ:2015A]
       'B->gamma^*::N^omega_1_0@KKvDZ2022' :
@@ -3921,7 +4029,7 @@ groups:
           min:      5.56488
           max:      5.56488
           latex:    '$t_+^{D\to K^*}$'
-          comment:  '(mB + mK)^2'
+          comment:  '(mD + mK)^2'
           unit:     'GeV'
       'D->K::t0@BFW2010' :
           central:  1.04
