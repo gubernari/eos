@@ -201,6 +201,8 @@ namespace eos
             static const std::vector<OptionSpecification> options;
     };
 
+    extern template class BFW2010FormFactors<BToDstar, PToV>;
+    extern template class BFW2010FormFactors<BsToDsstar, PToV>;
     extern template class BFW2010FormFactors<BToKstar, PToV>;
     extern template class BFW2010FormFactors<BsToPhi, PToV>;
 
@@ -346,9 +348,12 @@ namespace eos
             static const std::vector<OptionSpecification> options;
     };
 
-    extern template class BFW2010FormFactors<DToK,  PToP>;
-    extern template class BFW2010FormFactors<BToK,  PToP>;
-    extern template class BFW2010FormFactors<BsToK, PToP>;
+    extern template class BFW2010FormFactors<DToK,   PToP>;
+    extern template class BFW2010FormFactors<DToK,   PToP>;
+    extern template class BFW2010FormFactors<BToD,   PToP>;
+    extern template class BFW2010FormFactors<BsToDs, PToP>;
+    extern template class BFW2010FormFactors<BToK,   PToP>;
+    extern template class BFW2010FormFactors<BsToK,  PToP>;
 }
 
 #endif
