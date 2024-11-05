@@ -1002,7 +1002,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.007954146388511356 + 0.002658864279089947*as + 0.007954146388511356*l2one*epsc2;
         }
 
         double T4_a1() const
@@ -1012,7 +1012,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.08156473276594307 + 0.07411808069728959*as + 0.03181658555404542*epsb + -0.2545326844323634*chi3pone*epsb + 0.03181658555404542*epsc + -0.2545326844323634*chi3pone*epsc + 0.06363317110809084*xipone + 0.021270914232719575*as*xipone + 0.08156473276594307*l2one*epsc2 + 0.06363317110809084*l2pone*epsc2 + -0.03181658555404542*l5one*epsc2 + 0.06363317110809084*l2one*xipone*epsc2;
         }
 
         double T4_a2() const
@@ -1022,7 +1022,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.3373046777286239 + 0.4909817757126442*as + 0.26262575995568144*epsb + -3.1191368173749052*chi3pone*epsb + -1.0181307377294535*chi3ppone*epsb + 0.26262575995568144*epsc + -3.1191368173749052*chi3pone*epsc + -1.0181307377294535*chi3ppone*epsc + 0.7797842043437263*xipone + 0.6354864740437558*as*xipone + 0.2545326844323634*epsb*xipone + -2.036261475458907*chi3pone*epsb*xipone + 0.2545326844323634*epsc*xipone + -2.036261475458907*chi3pone*epsc*xipone + 0.2545326844323634*xippone + 0.0850836569308783*as*xippone + 0.3373046777286239*l2one*epsc2 + 0.6525178621275446*l2pone*epsc2 + -0.26262575995568144*l5one*epsc2 + -0.2545326844323634*l5pone*epsc2 + 0.7797842043437263*l2one*xipone*epsc2 + 0.5090653688647268*l2pone*xipone*epsc2 + -0.2545326844323634*l5one*xipone*epsc2 + 0.2545326844323634*l2one*xippone*epsc2;
         }
 
         double T5_a0() const
@@ -1031,7 +1031,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0018999627451430382 + 0.0006351081345396198*as + 0.0018999627451430382*l2one*epsc2;
         }
 
         double T5_a1() const
@@ -1041,7 +1041,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.017691356396422223 + 0.01580208901755895*as + -0.016815959861989967*epsb + -0.06079880784457723*chi3pone*epsb + 0.016815959861989967*epsc + 0.06079880784457723*chi2one*epsc + -0.06079880784457723*chi3pone*epsc + 0.033631919723979935*epsc*etaone + 0.015199701961144308*xipone + 0.0050808650763169575*as*xipone + 0.017691356396422223*l2one*epsc2 + 0.015199701961144308*l2pone*epsc2 + 0.015199701961144308*l3one*epsc2 + 0.016815959861989967*l5one*epsc2 + -0.033631919723979935*l6one*epsc2 + 0.015199701961144308*l2one*xipone*epsc2;
         }
 
         double T5_a2() const
@@ -1051,7 +1051,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.062096581417229 + 0.08515196368715783*as + -0.1229485920923181*epsb + -0.6877210203746656*chi3pone*epsb + -0.24319523137830895*chi3ppone*epsb + 0.1229485920923181*epsc + 0.6877210203746656*chi2one*epsc + 0.4863904627566179*chi2pone*epsc + -0.6877210203746656*chi3pone*epsc + -0.24319523137830895*chi3ppone*epsc + 0.2458971841846362*epsc*etaone + 0.2690553577918395*epsc*etapone + 0.1719302550936664*xipone + 0.1365784422931055*as*xipone + -0.13452767889591974*epsb*xipone + -0.4863904627566179*chi3pone*epsb*xipone + 0.13452767889591974*epsc*xipone + 0.4863904627566179*chi2one*epsc*xipone + -0.4863904627566179*chi3pone*epsc*xipone + 0.2690553577918395*epsc*etaone*xipone + 0.06079880784457724*xippone + 0.020323460305267833*as*xippone + 0.062096581417229*l2one*epsc2 + 0.1415308511713778*l2pone*epsc2 + 0.1719302550936664*l3one*epsc2 + 0.12159761568915448*l3pone*epsc2 + 0.1229485920923181*l5one*epsc2 + 0.13452767889591974*l5pone*epsc2 + -0.38042486308055595*l6one*epsc2 + -0.2690553577918395*l6pone*epsc2 + 0.1719302550936664*l2one*xipone*epsc2 + 0.12159761568915448*l2pone*xipone*epsc2 + 0.12159761568915448*l3one*xipone*epsc2 + 0.13452767889591974*l5one*xipone*epsc2 + -0.2690553577918395*l6one*xipone*epsc2 + 0.06079880784457724*l2one*xippone*epsc2;
         }
 
         double T6_a0() const
@@ -1060,7 +1060,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0018999627451430382 + 0.0006351081345396198*as + 0.0018999627451430382*l2one*epsc2;
         }
 
         double T6_a1() const
@@ -1070,7 +1070,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.017691356396422223 + 0.01580208901755895*as + -0.016815959861989964*epsb + 0.060798807844577224*chi2one*epsb + -0.060798807844577224*chi3pone*epsb + 0.01681595986198997*epsc + -0.060798807844577224*chi3pone*epsc + -0.033631919723979935*epsb*etaone + 0.015199701961144306*xipone + 0.005080865076316958*as*xipone + 0.017691356396422223*l2one*epsc2 + 0.015199701961144306*l2pone*epsc2 + -0.01681595986198997*l5one*epsc2 + 0.015199701961144306*l2one*xipone*epsc2;
         }
 
         double T6_a2() const
@@ -1080,16 +1080,17 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.062096581417229 + 0.08515196368715786*as + -0.1229485920923181*epsb + 0.6877210203746656*chi2one*epsb + 0.4863904627566179*chi2pone*epsb + -0.6877210203746656*chi3pone*epsb + -0.24319523137830895*chi3ppone*epsb + 0.1229485920923181*epsc + -0.6877210203746656*chi3pone*epsc + -0.24319523137830895*chi3ppone*epsc + -0.2458971841846362*epsb*etaone + -0.2690553577918395*epsb*etapone + 0.1719302550936664*xipone + 0.13657844229310553*as*xipone + -0.1345276788959197*epsb*xipone + 0.4863904627566179*chi2one*epsb*xipone + -0.4863904627566179*chi3pone*epsb*xipone + 0.13452767889591974*epsc*xipone + -0.4863904627566179*chi3pone*epsc*xipone + -0.2690553577918395*epsb*etaone*xipone + 0.06079880784457724*xippone + 0.020323460305267833*as*xippone + 0.062096581417229*l2one*epsc2 + 0.1415308511713778*l2pone*epsc2 + -0.1229485920923181*l5one*epsc2 + -0.13452767889591974*l5pone*epsc2 + 0.1719302550936664*l2one*xipone*epsc2 + 0.12159761568915448*l2pone*xipone*epsc2 + -0.13452767889591974*l5one*xipone*epsc2 + 0.06079880784457724*l2one*xippone*epsc2;
         }
 
         double T7_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b();
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.014082253085597513 + 0.023483668425490135*as + 0.014082253085597513*epsb + 0.014082253085597513*epsc + 0.014082253085597513*l2one*epsc2 + -0.014082253085597513*l5one*epsc2;
         }
 
         double T7_a1() const
@@ -1099,7 +1100,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.13057035472750284 + 0.2506199645069021*as + 0.13057035472750284*epsb + -0.4506320987391204*chi3pone*epsb + 0.13057035472750284*epsc + -0.4506320987391204*chi3pone*epsc + 0.1126580246847801*xipone + 0.1878693474039211*as*xipone + 0.1126580246847801*epsb*xipone + 0.1126580246847801*epsc*xipone + 0.13057035472750284*l2one*epsc2 + 0.1126580246847801*l2pone*epsc2 + -0.13057035472750284*l5one*epsc2 + -0.1126580246847801*l5pone*epsc2 + 0.1126580246847801*l2one*xipone*epsc2 + -0.1126580246847801*l5one*xipone*epsc2;
         }
 
         double T7_a2() const
@@ -1109,16 +1110,17 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.44527688302044277 + 0.9265206779774454*as + 0.44527688302044277*epsb + -5.079515548758332*chi3pone*epsb + -1.8025283949564816*chi3ppone*epsb + 0.44527688302044277*epsc + -5.079515548758332*chi3pone*epsc + -1.8025283949564816*chi3ppone*epsc + 1.269878887189583*xipone + 2.380698410863059*as*xipone + 1.269878887189583*epsb*xipone + -3.6050567899129633*chi3pone*epsb*xipone + 1.269878887189583*epsc*xipone + -3.6050567899129633*chi3pone*epsc*xipone + 0.4506320987391204*xippone + 0.7514773896156844*as*xippone + 0.4506320987391204*epsb*xippone + 0.4506320987391204*epsc*xippone + 0.44527688302044277*l2one*epsc2 + 1.0445628378200227*l2pone*epsc2 + -0.44527688302044277*l5one*epsc2 + -1.0445628378200227*l5pone*epsc2 + 1.269878887189583*l2one*xipone*epsc2 + 0.9012641974782408*l2pone*xipone*epsc2 + -1.269878887189583*l5one*xipone*epsc2 + -0.9012641974782408*l5pone*xipone*epsc2 + 0.4506320987391204*l2one*xippone*epsc2 + -0.4506320987391204*l5one*xippone*epsc2;
         }
 
         double T8_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b();
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.007442866622238243 + 0.004254233697022471*as + -0.0033637495368397784*epsb + 0.0033637495368397784*epsc + -0.006727499073679558*epsb*etaone + 0.007442866622238243*l2one*epsc2 + -0.0033637495368397784*l5one*epsc2;
         }
 
         double T8_a1() const
@@ -1128,7 +1130,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.061991898167731534 + 0.041108351567110284*as + -0.028016788333473753*epsb + 0.23817173191162377*chi2one*epsb + -0.23817173191162377*chi3pone*epsb + 0.028016788333473753*epsc + -0.23817173191162377*chi3pone*epsc + -0.05603357666694753*epsb*etaone + -0.05381999258943646*epsb*etapone + 0.059542932977905944*xipone + 0.034033869576179765*as*xipone + -0.026909996294718228*epsb*xipone + 0.026909996294718228*epsc*xipone + -0.05381999258943646*epsb*etaone*xipone + 0.061991898167731534*l2one*epsc2 + 0.059542932977905944*l2pone*epsc2 + -0.028016788333473753*l5one*epsc2 + -0.026909996294718228*l5pone*epsc2 + 0.059542932977905944*l2one*xipone*epsc2 + -0.026909996294718228*l5one*xipone*epsc2;
         }
 
         double T8_a2() const
@@ -1138,16 +1140,17 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.1698682704309257 + 0.07485642073680311*as + -0.07677073162624659*epsb + 2.4600842051906566*chi2one*epsb + 1.9053738552929902*chi2pone*epsb + -2.4600842051906566*chi3pone*epsb + -0.9526869276464951*chi3ppone*epsb + 0.07677073162624659*epsc + -2.4600842051906566*chi3pone*epsc + -0.9526869276464951*chi3ppone*epsc + -0.1535414632524932*epsb*etaone + -0.5559085985144531*epsb*etapone + -0.21527997035774585*epsb*etappone + 0.6150210512976642*xipone + 0.39693455168924174*as*xipone + -0.2779542992572265*epsb*xipone + 1.9053738552929902*chi2one*epsb*xipone + -1.9053738552929902*chi3pone*epsb*xipone + 0.2779542992572265*epsc*xipone + -1.9053738552929902*chi3pone*epsc*xipone + -0.5559085985144531*epsb*etaone*xipone + -0.4305599407154917*epsb*etapone*xipone + 0.23817173191162377*xippone + 0.13613547830471906*as*xippone + -0.10763998517887292*epsb*xippone + 0.10763998517887292*epsc*xippone + -0.21527997035774585*epsb*etaone*xippone + 0.1698682704309257*l2one*epsc2 + 0.49593518534185227*l2pone*epsc2 + -0.07677073162624659*l5one*epsc2 + -0.22413430666779002*l5pone*epsc2 + 0.6150210512976642*l2one*xipone*epsc2 + 0.47634346382324755*l2pone*xipone*epsc2 + -0.2779542992572265*l5one*xipone*epsc2 + -0.21527997035774585*l5pone*xipone*epsc2 + 0.23817173191162377*l2one*xippone*epsc2 + -0.10763998517887292*l5one*xippone*epsc2;
         }
 
         double T9_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b();
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.007442866622238245 + 0.00425423369702247*as + -0.0033637495368397793*epsb + 0.0033637495368397793*epsc + 0.006727499073679559*epsc*etaone + 0.007442866622238245*l2one*epsc2 + 0.0033637495368397793*l5one*epsc2 + -0.006727499073679559*l6one*epsc2;
         }
 
         double T9_a1() const
@@ -1157,7 +1160,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.061991898167731534 + 0.04110835156711028*as + -0.028016788333473763*epsb + -0.23817173191162383*chi3pone*epsb + 0.028016788333473763*epsc + 0.23817173191162383*chi2one*epsc + -0.23817173191162383*chi3pone*epsc + 0.05603357666694753*epsc*etaone + 0.05381999258943647*epsc*etapone + 0.05954293297790596*xipone + 0.03403386957617976*as*xipone + -0.026909996294718234*epsb*xipone + 0.026909996294718234*epsc*xipone + 0.05381999258943647*epsc*etaone*xipone + 0.061991898167731534*l2one*epsc2 + 0.05954293297790596*l2pone*epsc2 + 0.05954293297790596*l3one*epsc2 + 0.028016788333473763*l5one*epsc2 + 0.026909996294718234*l5pone*epsc2 + -0.08294357296166577*l6one*epsc2 + -0.05381999258943647*l6pone*epsc2 + 0.05954293297790596*l2one*xipone*epsc2 + 0.026909996294718234*l5one*xipone*epsc2 + -0.05381999258943647*l6one*xipone*epsc2;
         }
 
         double T9_a2() const
@@ -1167,16 +1170,17 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.1698682704309257 + 0.07485642073680306*as + -0.07677073162624659*epsb + -2.4600842051906566*chi3pone*epsb + -0.9526869276464951*chi3ppone*epsb + 0.07677073162624659*epsc + 2.4600842051906566*chi2one*epsc + 1.9053738552929902*chi2pone*epsc + -2.4600842051906566*chi3pone*epsc + -0.9526869276464951*chi3ppone*epsc + 0.15354146325249318*epsc*etaone + 0.5559085985144531*epsc*etapone + 0.21527997035774585*epsc*etappone + 0.6150210512976642*xipone + 0.39693455168924163*as*xipone + -0.27795429925722653*epsb*xipone + -1.9053738552929902*chi3pone*epsb*xipone + 0.27795429925722653*epsc*xipone + 1.9053738552929902*chi2one*epsc*xipone + -1.9053738552929902*chi3pone*epsc*xipone + 0.5559085985144531*epsc*etaone*xipone + 0.4305599407154917*epsc*etapone*xipone + 0.23817173191162377*xippone + 0.13613547830471903*as*xippone + -0.10763998517887292*epsb*xippone + 0.10763998517887292*epsc*xippone + 0.21527997035774585*epsc*etaone*xippone + 0.1698682704309257*l2one*epsc2 + 0.49593518534185227*l2pone*epsc2 + 0.6150210512976642*l3one*epsc2 + 0.47634346382324755*l3pone*epsc2 + 0.07677073162624659*l5one*epsc2 + 0.22413430666779008*l5pone*epsc2 + -0.43149576250971977*l6one*epsc2 + -0.663548583693326*l6pone*epsc2 + 0.6150210512976642*l2one*xipone*epsc2 + 0.47634346382324755*l2pone*xipone*epsc2 + 0.47634346382324755*l3one*xipone*epsc2 + 0.27795429925722653*l5one*xipone*epsc2 + 0.21527997035774585*l5pone*xipone*epsc2 + -0.7711885688721989*l6one*xipone*epsc2 + -0.4305599407154917*l6pone*xipone*epsc2 + 0.23817173191162377*l2one*xippone*epsc2 + 0.10763998517887292*l5one*xippone*epsc2 + -0.21527997035774585*l6one*xippone*epsc2;
         }
 
         double T10_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b();
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.009957656651211184 + 0.01660546119080049*as + 0.009957656651211184*epsb + 0.009957656651211184*epsc + 0.01991531330242237*epsb*etaone + 0.01991531330242237*epsc*etaone + 0.009957656651211184*l2one*epsc2 + 0.009957656651211184*l5one*epsc2 + -0.01991531330242237*l6one*epsc2;
         }
 
         double T10_a1() const
@@ -1186,7 +1190,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.09232718324975024 + 0.17721507640356235*as + 0.09232718324975024*epsb + 0.3186450128387579*chi2one*epsb + -0.3186450128387579*chi3pone*epsb + 0.09232718324975024*epsc + 0.3186450128387579*chi2one*epsc + -0.3186450128387579*chi3pone*epsc + 0.18465436649950048*epsb*etaone + 0.18465436649950048*epsc*etaone + 0.15932250641937895*epsb*etapone + 0.15932250641937895*epsc*etapone + 0.07966125320968948*xipone + 0.1328436895264039*as*xipone + 0.07966125320968948*epsb*xipone + 0.07966125320968948*epsc*xipone + 0.15932250641937895*epsb*etaone*xipone + 0.15932250641937895*epsc*etaone*xipone + 0.09232718324975024*l2one*epsc2 + 0.07966125320968948*l2pone*epsc2 + 0.07966125320968948*l3one*epsc2 + 0.09232718324975024*l5one*epsc2 + 0.07966125320968948*l5pone*epsc2 + -0.26431561970918993*l6one*epsc2 + -0.15932250641937895*l6pone*epsc2 + 0.07966125320968948*l2one*xipone*epsc2 + 0.07966125320968948*l5one*xipone*epsc2 + -0.15932250641937895*l6one*xipone*epsc2;
         }
 
         double T10_a2() const
@@ -1196,7 +1200,7 @@ namespace eos
             const double epsc = _eps_c();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.31485830348936417 + 0.6551490543074092*as + 0.31485830348936417*epsb + 3.591759889669524*chi2one*epsb + 2.549160102710063*chi2pone*epsb + -3.591759889669524*chi3pone*epsb + -1.2745800513550316*chi3ppone*epsb + 0.31485830348936417*epsc + 3.591759889669524*chi2one*epsc + 2.549160102710063*chi2pone*epsc + -3.591759889669524*chi3pone*epsc + -1.2745800513550316*chi3ppone*epsc + 0.6297166069787283*epsb*etaone + 0.6297166069787283*epsc*etaone + 1.795879944834762*epsb*etapone + 1.795879944834762*epsc*etapone + 0.6372900256775158*epsb*etappone + 0.6372900256775158*epsc*etappone + 0.897939972417381*xipone + 1.6834079902813064*as*xipone + 0.897939972417381*epsb*xipone + 2.549160102710063*chi2one*epsb*xipone + -2.549160102710063*chi3pone*epsb*xipone + 0.897939972417381*epsc*xipone + 2.549160102710063*chi2one*epsc*xipone + -2.549160102710063*chi3pone*epsc*xipone + 1.795879944834762*epsb*etaone*xipone + 1.795879944834762*epsc*etaone*xipone + 1.2745800513550316*epsb*etapone*xipone + 1.2745800513550316*epsc*etapone*xipone + 0.3186450128387579*xippone + 0.5313747581056155*as*xippone + 0.3186450128387579*epsb*xippone + 0.3186450128387579*epsc*xippone + 0.6372900256775158*epsb*etaone*xippone + 0.6372900256775158*epsc*etaone*xippone + 0.31485830348936417*l2one*epsc2 + 0.738617465998002*l2pone*epsc2 + 0.897939972417381*l3one*epsc2 + 0.6372900256775158*l3pone*epsc2 + 0.31485830348936417*l5one*epsc2 + 0.738617465998002*l5pone*epsc2 + -1.5276565793961092*l6one*epsc2 + -2.11452495767352*l6pone*epsc2 + 0.897939972417381*l2one*xipone*epsc2 + 0.6372900256775158*l2pone*xipone*epsc2 + 0.6372900256775158*l3one*xipone*epsc2 + 0.897939972417381*l5one*xipone*epsc2 + 0.6372900256775158*l5pone*xipone*epsc2 + -2.4331699705122776*l6one*xipone*epsc2 + -1.2745800513550316*l6pone*xipone*epsc2 + 0.3186450128387579*l2one*xippone*epsc2 + 0.3186450128387579*l5one*xippone*epsc2 + -0.6372900256775158*l6one*xippone*epsc2;
         }
         // }}}
 
@@ -1267,28 +1271,31 @@ namespace eos
         double fTs_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.00966678746772539 + 0.016120405609235954*as + 0.00966678746772539*epsb + 0.00966678746772539*epsc + -0.01933357493545078*epsb*etasone + -0.01933357493545078*epsc*etasone + 0.00966678746772539*l1sone*epsc2 + -0.00966678746772539*l4sone*epsc2;
         }
 
         double fTs_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0904562210942245 + 0.1734159116203609*as + 0.0904562210942245*epsb + -0.30933719896721246*chi2sone*epsb + 0.9280115969016375*chi3spone*epsb + 0.0904562210942245*epsc + -0.30933719896721246*chi2sone*epsc + 0.9280115969016375*chi3spone*epsc + -0.180912442188449*epsb*etasone + -0.180912442188449*epsc*etasone + -0.15466859948360623*epsb*etaspone + -0.15466859948360623*epsc*etaspone + 0.07733429974180311*xispone + 0.12896324487388763*as*xispone + 0.07733429974180311*epsb*xispone + 0.07733429974180311*epsc*xispone + -0.15466859948360623*epsb*etasone*xispone + -0.15466859948360623*epsc*etasone*xispone + 0.07733429974180311*l1spone*epsc2 + 0.0904562210942245*l1sone*epsc2 + -0.07733429974180311*l4spone*epsc2 + -0.0904562210942245*l4sone*epsc2 + 0.07733429974180311*l1sone*xispone*epsc2 + -0.07733429974180311*l4sone*xispone*epsc2;
         }
 
         double fTs_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.3114246240345193 + 0.6475515597600012*as + 0.3114246240345193*epsb + -3.5132734729496087*chi2sone*epsb + -2.4746975917376997*chi2spone*epsb + 10.539820418848826*chi3spone*epsb + 3.71204638760655*chi3sppone*epsb + 0.3114246240345193*epsc + -3.5132734729496087*chi2sone*epsc + -2.4746975917376997*chi2spone*epsc + 10.539820418848826*chi3spone*epsc + 3.71204638760655*chi3sppone*epsc + -0.6228492480690386*epsb*etasone + -0.6228492480690386*epsc*etasone + -1.7566367364748043*epsb*etaspone + -1.7566367364748043*epsc*etaspone + -0.6186743979344249*epsb*etasppone + -0.6186743979344249*epsc*etasppone + 0.8783183682374022*xispone + 1.6452537827106624*as*xispone + 0.8783183682374022*epsb*xispone + -2.4746975917376997*chi2sone*epsb*xispone + 7.4240927752131*chi3spone*epsb*xispone + 0.8783183682374022*epsc*xispone + -2.4746975917376997*chi2sone*epsc*xispone + 7.4240927752131*chi3spone*epsc*xispone + -1.7566367364748043*epsb*etasone*xispone + -1.7566367364748043*epsc*etasone*xispone + -1.2373487958688498*epsb*etaspone*xispone + -1.2373487958688498*epsc*etaspone*xispone + 0.30933719896721246*xisppone + 0.5158529794955505*as*xisppone + 0.30933719896721246*epsb*xisppone + 0.30933719896721246*epsc*xisppone + -0.6186743979344249*epsb*etasone*xisppone + -0.6186743979344249*epsc*etasone*xisppone + 0.3114246240345193*l1sone*epsc2 + 0.723649768753796*l1spone*epsc2 + -0.3114246240345193*l4sone*epsc2 + -0.723649768753796*l4spone*epsc2 + 0.8783183682374022*l1sone*xispone*epsc2 + 0.6186743979344249*l1spone*xispone*epsc2 + -0.8783183682374022*l4sone*xispone*epsc2 + -0.6186743979344249*l4spone*xispone*epsc2 + 0.30933719896721246*l1sone*xisppone*epsc2 + -0.30933719896721246*l4sone*xisppone*epsc2;
         }
         // }}}
 
@@ -1415,82 +1422,91 @@ namespace eos
         double T1s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.005303371401576171 + 0.002984624789048728*as + -0.0023078743419353625*epsb + 0.0023078743419353625*epsc + 0.004615748683870725*epsb*etasone + 0.005303371401576171*l2sone*epsc2 + -0.0023078743419353625*l5sone*epsc2;
         }
 
         double T1s_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.049193794682977326 + 0.031688272203984034*as + -0.021407721227583158*epsb + -0.1697078848504375*chi2sone*epsb + 0.5091236545513125*chi3spone*epsb + 0.021407721227583158*epsc + -0.1697078848504375*chi3spone*epsc + 0.042815442455166317*epsb*etasone + 0.0369259894709658*epsb*etaspone + 0.042426971212609375*xispone + 0.023876998312389822*as*xispone + -0.0184629947354829*epsb*xispone + 0.0184629947354829*epsc*xispone + 0.0369259894709658*epsb*etasone*xispone + 0.049193794682977326*l2sone*epsc2 + 0.042426971212609375*l2spone*epsc2 + -0.021407721227583158*l5sone*epsc2 + -0.0184629947354829*l5spone*epsc2 + 0.042426971212609375*l2sone*xispone*epsc2 + -0.0184629947354829*l5sone*xispone*epsc2;
         }
 
         double T1s_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.152764229440672 + 0.07358933273759395*as + -0.0664785885798743*epsb + -1.9136171995561493*chi2sone*epsb + -1.3576630788034998*chi2spone*epsb + 5.740851598668448*chi3spone*epsb + 2.03649461820525*chi3sppone*epsb + 0.0664785885798743*epsc + -1.9136171995561493*chi3spone*epsc + -0.6788315394017499*chi3sppone*epsc + 0.1329571771597486*epsb*etasone + 0.41637551858326205*epsb*etaspone + 0.1477039578838632*epsb*etasppone + 0.4784042998890373*xispone + 0.30126017425665197*as*xispone + -0.20818775929163102*epsb*xispone + -1.3576630788034998*chi2sone*epsb*xispone + 4.0729892364105*chi3spone*epsb*xispone + 0.20818775929163102*epsc*xispone + -1.3576630788034998*chi3spone*epsc*xispone + 0.41637551858326205*epsb*etasone*xispone + 0.2954079157677264*epsb*etaspone*xispone + 0.16970788485043747*xisppone + 0.09550799324955929*as*xisppone + -0.0738519789419316*epsb*xisppone + 0.0738519789419316*epsc*xisppone + 0.1477039578838632*epsb*etasone*xisppone + 0.152764229440672*l2sone*epsc2 + 0.3935503574638186*l2spone*epsc2 + -0.0664785885798743*l5sone*epsc2 + -0.17126176982066524*l5spone*epsc2 + 0.4784042998890373*l2sone*xispone*epsc2 + 0.33941576970087495*l2spone*xispone*epsc2 + -0.20818775929163102*l5sone*xispone*epsc2 + -0.1477039578838632*l5spone*xispone*epsc2 + 0.16970788485043747*l2sone*xisppone*epsc2 + -0.0738519789419316*l5sone*xisppone*epsc2;
         }
 
         double T2s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.00106406613984606 + 0.0003556896380373649*as + 0.00106406613984606*l2sone*epsc2;
         }
 
         double T2s_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.011366320304480485 + 0.009527969427653715*as + -0.009780667574323585*epsb + -0.034050116475073916*chi2sone*epsb + 0.10215034942522176*chi3spone*epsb + 0.009780667574323585*epsc + -0.034050116475073916*chi3spone*epsc + 0.01956133514864717*epsb*etasone + 0.008512529118768479*xispone + 0.002845517104298919*as*xispone + 0.011366320304480485*l2sone*epsc2 + 0.008512529118768479*l2spone*epsc2 + -0.009780667574323585*l5sone*epsc2 + 0.008512529118768479*l2sone*xispone*epsc2;
         }
 
         double T2s_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.04649869228477457 + 0.061016848241349474*as + -0.08491544150876175*epsb + -0.43182248269352336*chi2sone*epsb + -0.2724009318005914*chi2spone*epsb + 1.2954674480805701*chi3spone*epsb + 0.4086013977008871*chi3sppone*epsb + 0.08491544150876175*epsc + -0.43182248269352336*chi3spone*epsc + -0.1362004659002957*chi3sppone*epsc + 0.1698308830175235*epsb*etasone + 0.15649068118917736*epsb*etaspone + 0.10795562067338084*xispone + 0.08191478962982757*as*xispone + -0.07824534059458868*epsb*xispone + -0.2724009318005914*chi2sone*epsb*xispone + 0.8172027954017742*chi3spone*epsb*xispone + 0.07824534059458868*epsc*xispone + -0.2724009318005914*chi3spone*epsc*xispone + 0.15649068118917736*epsb*etasone*xispone + 0.03405011647507392*xisppone + 0.011382068417195676*as*xisppone + 0.04649869228477457*l2sone*epsc2 + 0.09093056243584388*l2spone*epsc2 + -0.08491544150876175*l5sone*epsc2 + -0.07824534059458868*l5spone*epsc2 + 0.10795562067338084*l2sone*xispone*epsc2 + 0.06810023295014785*l2spone*xispone*epsc2 + -0.07824534059458868*l5sone*xispone*epsc2 + 0.03405011647507392*l2sone*xisppone*epsc2;
         }
 
         double T23s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0032856900136407955 + 0.0010983207226422545*as + 0.0032856900136407955*l2sone*epsc2;
         }
 
         double T23s_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.03821102696074016 + 0.032126984281562174*as + 0.013142760054563206*epsb + -0.10514208043650546*chi2sone*epsb + 0.31542624130951635*chi3spone*epsb + 0.01314276005456317*epsc + 0.10514208043650554*chi2sone*epsc + -0.10514208043650546*chi3spone*epsc + -0.026285520109126412*epsb*etasone + 0.02628552010912638*epsc*etasone + 0.026285520109126364*xispone + 0.008786565781138036*as*xispone + 0.03821102696074016*l2sone*epsc2 + 0.026285520109126364*l2spone*epsc2 + 0.026285520109126385*l3sone*epsc2 + 0.013142760054563206*l5sone*epsc2 + -0.026285520109126385*l6sone*epsc2 + 0.026285520109126364*l2sone*xispone*epsc2;
         }
 
         double T23s_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.1799521152793105 + 0.24300691099939695*as + 0.12655858773383452*epsb + -1.4330370236166963*chi2sone*epsb + -0.8411366434920439*chi2spone*epsb + 4.299111070850089*chi3spone*epsb + 1.2617049652380659*chi3sppone*epsb + 0.12655858773383424*epsc + 1.433037023616697*chi2sone*epsc + 0.8411366434920442*chi2spone*epsc + -1.4330370236166963*chi3spone*epsc + -0.42056832174602193*chi3sppone*epsc + -0.25311717546766904*epsb*etasone + 0.2531171754676687*epsc*etasone + -0.21028416087301116*epsb*etaspone + 0.21028416087301105*epsc*etaspone + 0.35825925590417407*xispone + 0.27458900581477363*as*xispone + 0.10514208043650558*epsb*xispone + -0.8411366434920439*chi2sone*epsb*xispone + 2.5234099304761317*chi3spone*epsb*xispone + 0.10514208043650543*epsc*xispone + 0.8411366434920442*chi2sone*epsc*xispone + -0.8411366434920439*chi3spone*epsc*xispone + -0.21028416087301116*epsb*etasone*xispone + 0.21028416087301105*epsc*etasone*xispone + 0.10514208043650548*xisppone + 0.03514626312455215*as*xisppone + 0.1799521152793105*l2sone*epsc2 + 0.3056882156859214*l2spone*epsc2 + 0.35825925590417423*l3sone*epsc2 + 0.21028416087301105*l3spone*epsc2 + 0.12655858773383452*l5sone*epsc2 + 0.10514208043650558*l5spone*epsc2 + -0.35825925590417423*l6sone*epsc2 + -0.21028416087301105*l6spone*epsc2 + 0.35825925590417407*l2sone*xispone*epsc2 + 0.21028416087301097*l2spone*xispone*epsc2 + 0.21028416087301105*l3sone*xispone*epsc2 + 0.10514208043650558*l5sone*xispone*epsc2 + -0.21028416087301105*l6sone*xispone*epsc2 + 0.10514208043650548*l2sone*xisppone*epsc2;
         }
         // }}}
 
@@ -1617,82 +1633,91 @@ namespace eos
         double T1bars_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.006279445375704966 + 0.003638375183292366*as + -0.0029315258902368664*epsb + 0.0029315258902368664*epsc + -0.005863051780473733*epsc*etasone + 0.006279445375704966*l1sone*epsc2 + -0.0029315258902368664*l4sone*epsc2;
         }
 
         double T1bars_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.055423603583944527 + 0.03694318529992362*as + -0.02587421644993889*epsb + -0.20094225202255891*chi3spone*epsb + 0.02587421644993889*epsc + -0.20094225202255891*chi2sone*epsc + 0.6028267560676768*chi3spone*epsc + -0.05174843289987778*epsc*etasone + -0.046904414243789855*epsc*etaspone + 0.05023556300563973*xispone + 0.02910700146633893*as*xispone + -0.023452207121894927*epsb*xispone + 0.023452207121894927*epsc*xispone + -0.046904414243789855*epsc*etasone*xispone + 0.055423603583944527*l1sone*epsc2 + 0.05023556300563973*l1spone*epsc2 + -0.02587421644993889*l4sone*epsc2 + -0.023452207121894927*l4spone*epsc2 + 0.05023556300563973*l1sone*xispone*epsc2 + -0.023452207121894927*l4sone*xispone*epsc2;
         }
 
         double T1bars_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.16268561155695807 + 0.07824669591820689*as + -0.07594891805149258*epsb + -2.1754398187313426*chi3spone*epsb + -0.8037690080902358*chi3sppone*epsb + 0.07594891805149258*epsc + -2.1754398187313426*chi2sone*epsc + -1.6075380161804715*chi2spone*epsc + 6.526319456194027*chi3spone*epsc + 2.4113070242707066*chi3sppone*epsc + -0.15189783610298516*epsc*etasone + -0.507796291686602*epsc*etaspone + -0.18761765697515942*epsc*etasppone + 0.5438599546828357*xispone + 0.3537594853320668*as*xispone + -0.253898145843301*epsb*xispone + -1.6075380161804715*chi3spone*epsb*xispone + 0.253898145843301*epsc*xispone + -1.6075380161804715*chi2sone*epsc*xispone + 4.822614048541413*chi3spone*epsc*xispone + -0.507796291686602*epsc*etasone*xispone + -0.37523531395031884*epsc*etaspone*xispone + 0.20094225202255894*xisppone + 0.11642800586535572*as*xisppone + -0.09380882848757971*epsb*xisppone + 0.09380882848757971*epsc*xisppone + -0.18761765697515942*epsc*etasone*xisppone + 0.16268561155695807*l1sone*epsc2 + 0.4433888286715562*l1spone*epsc2 + -0.07594891805149258*l4sone*epsc2 + -0.20699373159951115*l4spone*epsc2 + 0.5438599546828357*l1sone*xispone*epsc2 + 0.4018845040451179*l1spone*xispone*epsc2 + -0.253898145843301*l4sone*xispone*epsc2 + -0.18761765697515942*l4spone*xispone*epsc2 + 0.20094225202255894*l1sone*xisppone*epsc2 + -0.09380882848757971*l4sone*xisppone*epsc2;
         }
 
         double T2bars_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.0015316603889868848 + -0.0005119942350893066*as + -0.0015316603889868848*l1sone*epsc2;
         }
 
         double T2bars_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.01523543419560388 + -0.012837094303612273*as + 0.013123510563295124*epsb + 0.049013132447580314*chi3spone*epsb + -0.013123510563295124*epsc + 0.049013132447580314*chi2sone*epsc + -0.14703939734274096*chi3spone*epsc + 0.026247021126590248*epsc*etasone + -0.012253283111895079*xispone + -0.004095953880714453*as*xispone + -0.01523543419560388*l1sone*epsc2 + -0.012253283111895079*l1spone*epsc2 + 0.013123510563295124*l4sone*epsc2 + -0.012253283111895079*l1sone*xispone*epsc2;
         }
 
         double T2bars_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.05766303680766183 + -0.0742514207574954*as + 0.10429260961664973*epsb + 0.5855601591544847*chi3spone*epsb + 0.19605252979032126*chi3sppone*epsb + -0.10429260961664973*epsc + 0.5855601591544847*chi2sone*epsc + 0.3921050595806425*chi2spone*epsc + -1.7566804774634543*chi3spone*epsc + -0.5881575893709637*chi3sppone*epsc + 0.20858521923329945*epsc*etasone + 0.20997616901272195*epsc*etaspone + -0.14639003978862117*xispone + -0.1108886621903271*as*xispone + 0.10498808450636098*epsb*xispone + 0.3921050595806425*chi3spone*epsb*xispone + -0.10498808450636098*epsc*xispone + 0.3921050595806425*chi2sone*epsc*xispone + -1.1763151787419275*chi3spone*epsc*xispone + 0.20997616901272195*epsc*etasone*xispone + -0.049013132447580314*xisppone + -0.01638381552285781*as*xisppone + -0.05766303680766183*l1sone*epsc2 + -0.12188347356483102*l1spone*epsc2 + 0.10429260961664973*l4sone*epsc2 + 0.10498808450636098*l4spone*epsc2 + -0.14639003978862117*l1sone*xispone*epsc2 + -0.09802626489516063*l1spone*xispone*epsc2 + 0.10498808450636098*l4sone*xispone*epsc2 + -0.049013132447580314*l1sone*xisppone*epsc2;
         }
 
         double T23bars_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.004371536851026707 + -0.0014612910814299973*as + -0.004371536851026707*l1sone*epsc2;
         }
 
         double T23bars_a1() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.047586912810369 + -0.04165717237084313*as + -0.01748614740410682*epsb + -0.13988917923285463*chi2sone*epsb + 0.13988917923285463*chi3spone*epsb + -0.01748614740410684*epsc + 0.13988917923285463*chi2sone*epsc + -0.41966753769856396*chi3spone*epsc + -0.03497229480821366*epsb*etasone + 0.03497229480821368*epsc*etasone + -0.03497229480821366*xispone + -0.011690328651439978*as*xispone + -0.047586912810369*l1sone*epsc2 + -0.03497229480821366*l1spone*epsc2 + 0.017486147404106835*l4sone*epsc2 + -0.03497229480821366*l1sone*xispone*epsc2;
         }
 
         double T23bars_a2() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return -0.2094948966027084 + -0.2941557148897957*as + -0.1553753564332622*epsb + -1.8025595683975166*chi2sone*epsb + -1.1191134338628366*chi2spone*epsb + 1.802559568397517*chi3spone*epsb + 0.5595567169314184*chi3sppone*epsb + -0.1553753564332624*epsc + 1.802559568397517*chi2sone*epsc + 1.1191134338628368*chi2spone*epsc + -5.407678705192552*chi3spone*epsc + -1.6786701507942554*chi3sppone*epsc + -0.31075071286652456*epsb*etasone + 0.3107507128665248*epsc*etasone + -0.27977835846570914*epsb*etaspone + 0.27977835846570936*epsc*etaspone + -0.45063989209937927*xispone + -0.35663803626962504*as*xispone + -0.13988917923285446*epsb*xispone + -1.1191134338628366*chi2sone*epsb*xispone + 1.1191134338628368*chi3spone*epsb*xispone + -0.13988917923285468*epsc*xispone + 1.1191134338628368*chi2sone*epsc*xispone + -3.357340301588511*chi3spone*epsc*xispone + -0.27977835846570914*epsb*etasone*xispone + 0.27977835846570936*epsc*etasone*xispone + -0.1398891792328546*xisppone + -0.0467613146057599*as*xisppone + -0.2094948966027084*l1sone*epsc2 + -0.38069530248295197*l1spone*epsc2 + 0.1553753564332624*l4sone*epsc2 + 0.13988917923285468*l4spone*epsc2 + -0.45063989209937927*l1sone*xispone*epsc2 + -0.2797783584657092*l1spone*xispone*epsc2 + 0.13988917923285468*l4sone*xispone*epsc2 + -0.1398891792328546*l1sone*xisppone*epsc2;
         }
         // }}}
 
@@ -1996,10 +2021,11 @@ namespace eos
         double T4s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0038692335355298545 + 0.0012933841461525606*as + 0.0038692335355298545*l2sone*epsc2;
         }
 
         double T4s_a1() const
@@ -2009,7 +2035,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.046921378231901255 + 0.03847593352404564*as + 0.015476934142119418*epsb + -0.12381547313695535*chi3spone*epsb + 0.015476934142119418*epsc + -0.12381547313695535*chi3spone*epsc + 0.030953868284238836*xispone + 0.010347073169220485*as*xispone + 0.046921378231901255*l2sone*epsc2 + 0.030953868284238836*l2spone*epsc2 + -0.015476934142119418*l5sone*epsc2 + 0.030953868284238836*l2sone*xispone*epsc2;
         }
 
         double T4s_a2() const
@@ -2019,16 +2045,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.23063034199798754 + 0.30375562024325803*as + 0.1567316446433662*epsb + -1.749115049694751*chi3spone*epsb + -0.4952618925478214*chi3sppone*epsb + 0.1567316446433662*epsc + -1.749115049694751*chi3spone*epsc + -0.4952618925478214*chi3sppone*epsc + 0.43727876242368774*xispone + 0.32850161453080606*as*xispone + 0.12381547313695535*epsb*xispone + -0.9905237850956428*chi3spone*epsb*xispone + 0.12381547313695535*epsc*xispone + -0.9905237850956428*chi3spone*epsc*xispone + 0.12381547313695535*xisppone + 0.04138829267688194*as*xisppone + 0.23063034199798754*l2sone*epsc2 + 0.37537102585521004*l2spone*epsc2 + -0.1567316446433662*l5sone*epsc2 + -0.12381547313695535*l5spone*epsc2 + 0.43727876242368774*l2sone*xispone*epsc2 + 0.2476309462739107*l2spone*xispone*epsc2 + -0.12381547313695535*l5sone*xispone*epsc2 + 0.12381547313695535*l2sone*xisppone*epsc2;
         }
 
         double T5s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0008942822543584558 + 0.00029893530058386786*as + 0.0008942822543584558*l2sone*epsc2;
         }
 
         double T5s_a1() const
@@ -2038,7 +2065,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.00999826190595043 + 0.008120804260731354*as + -0.0081518516564649*epsb + -0.028617032139470585*chi3spone*epsb + 0.008151851656464896*epsc + 0.028617032139470585*chi2sone*epsc + -0.028617032139470585*chi3spone*epsc + 0.0163037033129298*epsc*etasone + 0.007154258034867646*xispone + 0.002391482404670942*as*xispone + 0.00999826190595043*l2sone*epsc2 + 0.007154258034867646*l2spone*epsc2 + 0.007154258034867646*l3sone*epsc2 + 0.0081518516564649*l5sone*epsc2 + -0.0163037033129298*l6sone*epsc2 + 0.007154258034867646*l2sone*xispone*epsc2;
         }
 
         double T5s_a2() const
@@ -2048,16 +2075,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.04299410423573535 + 0.054628550455241724*as + -0.07483569644879517*epsb + -0.37717844526935496*chi3spone*epsb + -0.11446812855788234*chi3sppone*epsb + 0.07483569644879515*epsc + 0.37717844526935496*chi2sone*epsc + 0.22893625711576468*chi2spone*epsc + -0.37717844526935496*chi3spone*epsc + -0.11446812855788234*chi3sppone*epsc + 0.14967139289759035*epsc*etasone + 0.1304296265034384*epsc*etaspone + 0.09429461131733874*xispone + 0.0697493988951927*as*xispone + -0.06521481325171918*epsb*xispone + -0.22893625711576468*chi3spone*epsb*xispone + 0.0652148132517192*epsc*xispone + 0.22893625711576468*chi2sone*epsc*xispone + -0.22893625711576468*chi3spone*epsc*xispone + 0.1304296265034384*epsc*etasone*xispone + 0.028617032139470585*xisppone + 0.009565929618683768*as*xisppone + 0.04299410423573535*l2sone*epsc2 + 0.07998609524760344*l2spone*epsc2 + 0.09429461131733874*l3sone*epsc2 + 0.05723406427894117*l3spone*epsc2 + 0.07483569644879517*l5sone*epsc2 + 0.06521481325171918*l5spone*epsc2 + -0.21488620614930953*l6sone*epsc2 + -0.1304296265034384*l6spone*epsc2 + 0.09429461131733874*l2sone*xispone*epsc2 + 0.05723406427894117*l2spone*xispone*epsc2 + 0.05723406427894117*l3sone*xispone*epsc2 + 0.06521481325171918*l5sone*xispone*epsc2 + -0.1304296265034384*l6sone*xispone*epsc2 + 0.028617032139470585*l2sone*xisppone*epsc2;
         }
 
         double T6s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.0008942822543584558 + 0.00029893530058386786*as + 0.0008942822543584558*l2sone*epsc2;
         }
 
         double T6s_a1() const
@@ -2067,7 +2095,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.009998261905950432 + 0.008120804260731355*as + -0.0081518516564649*epsb + 0.028617032139470585*chi2sone*epsb + -0.028617032139470585*chi3spone*epsb + 0.008151851656464901*epsc + -0.028617032139470585*chi3spone*epsc + -0.016303703312929792*epsb*etasone + 0.007154258034867646*xispone + 0.002391482404670943*as*xispone + 0.009998261905950432*l2sone*epsc2 + 0.007154258034867646*l2spone*epsc2 + -0.008151851656464901*l5sone*epsc2 + 0.007154258034867646*l2sone*xispone*epsc2;
         }
 
         double T6s_a2() const
@@ -2077,16 +2105,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.04299410423573535 + 0.05462855045524174*as + -0.07483569644879517*epsb + 0.37717844526935496*chi2sone*epsb + 0.22893625711576468*chi2spone*epsb + -0.37717844526935496*chi3spone*epsb + -0.11446812855788234*chi3sppone*epsb + 0.07483569644879517*epsc + -0.37717844526935496*chi3spone*epsc + -0.11446812855788234*chi3sppone*epsc + -0.1496713928975903*epsb*etasone + -0.13042962650343837*epsb*etaspone + 0.09429461131733874*xispone + 0.06974939889519273*as*xispone + -0.0652148132517192*epsb*xispone + 0.22893625711576468*chi2sone*epsb*xispone + -0.22893625711576468*chi3spone*epsb*xispone + 0.0652148132517192*epsc*xispone + -0.22893625711576468*chi3spone*epsc*xispone + -0.13042962650343837*epsb*etasone*xispone + 0.028617032139470585*xisppone + 0.009565929618683768*as*xisppone + 0.04299410423573535*l2sone*epsc2 + 0.07998609524760344*l2spone*epsc2 + -0.07483569644879517*l5sone*epsc2 + -0.0652148132517192*l5spone*epsc2 + 0.09429461131733874*l2sone*xispone*epsc2 + 0.05723406427894117*l2spone*xispone*epsc2 + -0.0652148132517192*l5sone*xispone*epsc2 + 0.028617032139470585*l2sone*xisppone*epsc2;
         }
 
         double T7s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.008880721929533939 + 0.014809556958285919*as + 0.008880721929533939*epsb + 0.008880721929533939*epsc + 0.008880721929533939*l2sone*epsc2 + -0.008880721929533939*l5sone*epsc2;
         }
 
         double T7s_a1() const
@@ -2096,7 +2125,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.09419314822522039 + 0.17781229715364028*as + 0.09419314822522039*epsb + -0.28418310174508604*chi3spone*epsb + 0.09419314822522039*epsc + -0.28418310174508604*chi3spone*epsc + 0.07104577543627151*xispone + 0.11847645566628734*as*xispone + 0.07104577543627151*epsb*xispone + 0.07104577543627151*epsc*xispone + 0.09419314822522039*l2sone*epsc2 + 0.07104577543627151*l2spone*epsc2 + -0.09419314822522039*l5sone*epsc2 + -0.07104577543627151*l5spone*epsc2 + 0.07104577543627151*l2sone*xispone*epsc2 + -0.07104577543627151*l5sone*xispone*epsc2;
         }
 
         double T7s_a2() const
@@ -2106,16 +2135,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.3685526663349023 + 0.7582917620602395*as + 0.3685526663349023*epsb + -3.5825469466972244*chi3spone*epsb + -1.1367324069803442*chi3sppone*epsb + 0.3685526663349023*epsc + -3.5825469466972244*chi3spone*epsc + -1.1367324069803442*chi3sppone*epsc + 0.8956367366743061*xispone + 1.6594512885616968*as*xispone + 0.8956367366743061*epsb*xispone + -2.2734648139606883*chi3spone*epsb*xispone + 0.8956367366743061*epsc*xispone + -2.2734648139606883*chi3spone*epsc*xispone + 0.28418310174508604*xisppone + 0.47390582266514936*as*xisppone + 0.28418310174508604*epsb*xisppone + 0.28418310174508604*epsc*xisppone + 0.3685526663349023*l2sone*epsc2 + 0.7535451858017631*l2spone*epsc2 + -0.3685526663349023*l5sone*epsc2 + -0.7535451858017631*l5spone*epsc2 + 0.8956367366743061*l2sone*xispone*epsc2 + 0.5683662034901721*l2spone*xispone*epsc2 + -0.8956367366743061*l5sone*xispone*epsc2 + -0.5683662034901721*l5spone*xispone*epsc2 + 0.28418310174508604*l2sone*xisppone*epsc2 + -0.28418310174508604*l5sone*xisppone*epsc2;
         }
 
         double T8s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.004677562565499274 + 0.002641374892133541*as + -0.0020525698318663577*epsb + 0.0020525698318663577*epsc + -0.004105139663732715*epsb*etasone + 0.004677562565499274*l2sone*epsc2 + -0.0020525698318663577*l5sone*epsc2;
         }
 
         double T8s_a1() const
@@ -2125,7 +2155,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.04518475698853479 + 0.029053820100103885*as + -0.01982760631337054*epsb + 0.14968200209597676*chi2sone*epsb + -0.14968200209597676*chi3spone*epsb + 0.019827606313370535*epsc + -0.14968200209597676*chi3spone*epsc + -0.03965521262674108*epsb*etasone + -0.03284111730986172*epsb*etaspone + 0.03742050052399419*xispone + 0.021130999137068326*as*xispone + -0.01642055865493086*epsb*xispone + 0.01642055865493086*epsc*xispone + -0.03284111730986172*epsb*etasone*xispone + 0.04518475698853479*l2sone*epsc2 + 0.03742050052399419*l2spone*epsc2 + -0.019827606313370535*l5sone*epsc2 + -0.01642055865493086*l5spone*epsc2 + 0.03742050052399419*l2sone*xispone*epsc2 + -0.01642055865493086*l5sone*xispone*epsc2;
         }
 
         double T8s_a2() const
@@ -2135,16 +2165,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.1469215695665301 + 0.07347204786986515*as + -0.06447092414476885*epsb + 1.7452762278250669*chi2sone*epsb + 1.197456016767814*chi2spone*epsb + -1.7452762278250669*chi3spone*epsb + -0.598728008383907*chi3sppone*epsb + 0.06447092414476885*epsc + -1.7452762278250669*chi3spone*epsc + -0.598728008383907*chi3sppone*epsc + -0.12894184828953772*epsb*etasone + -0.38292393563365207*epsb*etaspone + -0.13136446923944692*epsb*etasppone + 0.4363190569562667*xispone + 0.27469255907496776*as*xispone + -0.19146196781682606*epsb*xispone + 1.197456016767814*chi2sone*epsb*xispone + -1.197456016767814*chi3spone*epsb*xispone + 0.19146196781682603*epsc*xispone + -1.197456016767814*chi3spone*epsc*xispone + -0.38292393563365207*epsb*etasone*xispone + -0.26272893847889384*epsb*etaspone*xispone + 0.14968200209597676*xisppone + 0.08452399654827332*as*xisppone + -0.06568223461972346*epsb*xisppone + 0.06568223461972346*epsc*xisppone + -0.13136446923944692*epsb*etasone*xisppone + 0.1469215695665301*l2sone*epsc2 + 0.3614780559082783*l2spone*epsc2 + -0.06447092414476885*l5sone*epsc2 + -0.15862085050696428*l5spone*epsc2 + 0.4363190569562667*l2sone*xispone*epsc2 + 0.2993640041919535*l2spone*xispone*epsc2 + -0.19146196781682603*l5sone*xispone*epsc2 + -0.13136446923944692*l5spone*xispone*epsc2 + 0.14968200209597676*l2sone*xisppone*epsc2 + -0.06568223461972346*l5sone*xisppone*epsc2;
         }
 
         double T9s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.004677562565499274 + 0.002641374892133541*as + -0.0020525698318663577*epsb + 0.0020525698318663577*epsc + 0.004105139663732715*epsc*etasone + 0.004677562565499274*l2sone*epsc2 + 0.0020525698318663577*l5sone*epsc2 + -0.004105139663732715*l6sone*epsc2;
         }
 
         double T9s_a1() const
@@ -2154,7 +2185,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.04518475698853479 + 0.029053820100103885*as + -0.01982760631337054*epsb + -0.14968200209597676*chi3spone*epsb + 0.019827606313370542*epsc + 0.14968200209597676*chi2sone*epsc + -0.14968200209597676*chi3spone*epsc + 0.03965521262674108*epsc*etasone + 0.03284111730986172*epsc*etaspone + 0.03742050052399419*xispone + 0.021130999137068326*as*xispone + -0.01642055865493086*epsb*xispone + 0.01642055865493086*epsc*xispone + 0.03284111730986172*epsc*etasone*xispone + 0.04518475698853479*l2sone*epsc2 + 0.03742050052399419*l2spone*epsc2 + 0.03742050052399419*l3sone*epsc2 + 0.01982760631337054*l5sone*epsc2 + 0.01642055865493086*l5spone*epsc2 + -0.05607577128167193*l6sone*epsc2 + -0.03284111730986172*l6spone*epsc2 + 0.03742050052399419*l2sone*xispone*epsc2 + 0.01642055865493086*l5sone*xispone*epsc2 + -0.03284111730986172*l6sone*xispone*epsc2;
         }
 
         double T9s_a2() const
@@ -2164,16 +2195,17 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.1469215695665301 + 0.07347204786986515*as + -0.06447092414476885*epsb + -1.7452762278250669*chi3spone*epsb + -0.598728008383907*chi3sppone*epsb + 0.06447092414476886*epsc + 1.7452762278250669*chi2sone*epsc + 1.197456016767814*chi2spone*epsc + -1.7452762278250669*chi3spone*epsc + -0.598728008383907*chi3sppone*epsc + 0.1289418482895377*epsc*etasone + 0.38292393563365207*epsc*etaspone + 0.13136446923944692*epsc*etasppone + 0.4363190569562667*xispone + 0.27469255907496776*as*xispone + -0.19146196781682606*epsb*xispone + -1.197456016767814*chi3spone*epsb*xispone + 0.19146196781682603*epsc*xispone + 1.197456016767814*chi2sone*epsc*xispone + -1.197456016767814*chi3spone*epsc*xispone + 0.38292393563365207*epsc*etasone*xispone + 0.26272893847889384*epsc*etaspone*xispone + 0.14968200209597676*xisppone + 0.08452399654827329*as*xisppone + -0.06568223461972346*epsb*xisppone + 0.06568223461972346*epsc*xisppone + 0.13136446923944692*epsc*etasone*xisppone + 0.1469215695665301*l2sone*epsc2 + 0.3614780559082783*l2spone*epsc2 + 0.4363190569562667*l3sone*epsc2 + 0.2993640041919535*l3spone*epsc2 + 0.06447092414476885*l5sone*epsc2 + 0.1586208505069643*l5spone*epsc2 + -0.32040381610636376*l6sone*epsc2 + -0.4486061702533755*l6spone*epsc2 + 0.4363190569562667*l2sone*xispone*epsc2 + 0.2993640041919535*l2spone*xispone*epsc2 + 0.2993640041919535*l3sone*xispone*epsc2 + 0.19146196781682606*l5sone*xispone*epsc2 + 0.13136446923944692*l5spone*xispone*epsc2 + -0.514288404873099*l6sone*xispone*epsc2 + -0.26272893847889384*l6spone*xispone*epsc2 + 0.14968200209597676*l2sone*xisppone*epsc2 + 0.06568223461972346*l5sone*xisppone*epsc2 + -0.13136446923944692*l6sone*xisppone*epsc2;
         }
 
         double T10s_a0() const
         {
             const double as   = _alpha_s() / M_PI;
+            const double epsb = _eps_b_s();
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.006279618698205529 + 0.010471938151572392*as + 0.006279618698205529*epsb + 0.006279618698205529*epsc + 0.012559237396411058*epsb*etasone + 0.012559237396411058*epsc*etasone + 0.006279618698205529*l2sone*epsc2 + 0.006279618698205529*l5sone*epsc2 + -0.012559237396411058*l6sone*epsc2;
         }
 
         double T10s_a1() const
@@ -2183,7 +2215,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.06660461385136295 + 0.12573228109569648*as + 0.06660461385136295*epsb + 0.20094779834257692*chi2sone*epsb + -0.20094779834257692*chi3spone*epsb + 0.06660461385136295*epsc + 0.20094779834257692*chi2sone*epsc + -0.20094779834257692*chi3spone*epsc + 0.1332092277027259*epsb*etasone + 0.1332092277027259*epsc*etasone + 0.10047389917128846*epsb*etaspone + 0.10047389917128846*epsc*etaspone + 0.05023694958564423*xispone + 0.08377550521257913*as*xispone + 0.05023694958564423*epsb*xispone + 0.05023694958564423*epsc*xispone + 0.10047389917128846*epsb*etasone*xispone + 0.10047389917128846*epsc*etasone*xispone + 0.06660461385136295*l2sone*epsc2 + 0.05023694958564423*l2spone*epsc2 + 0.05023694958564423*l3sone*epsc2 + 0.06660461385136295*l5sone*epsc2 + 0.05023694958564423*l5spone*epsc2 + -0.18344617728837015*l6sone*epsc2 + -0.10047389917128846*l6spone*epsc2 + 0.05023694958564423*l2sone*xispone*epsc2 + 0.05023694958564423*l5sone*xispone*epsc2 + -0.10047389917128846*l6sone*xispone*epsc2;
         }
 
         double T10s_a2() const
@@ -2193,7 +2225,7 @@ namespace eos
             const double epsc = _eps_c_s();
             const double epsc2 = power_of<2>(epsc);
 
-            return 0.0; // TODO: implement
+            return 0.26060608958979237 + 0.5361932470706913*as + 0.26060608958979237*epsb + 2.533243239928768*chi2sone*epsb + 1.6075823867406152*chi2spone*epsb + -2.533243239928768*chi3spone*epsb + -0.8037911933703076*chi3sppone*epsb + 0.26060608958979237*epsc + 2.533243239928768*chi2sone*epsc + 1.6075823867406152*chi2spone*epsc + -2.533243239928768*chi3spone*epsc + -0.8037911933703076*chi3sppone*epsc + 0.5212121791795847*epsb*etasone + 0.5212121791795847*epsc*etasone + 1.266621619964384*epsb*etaspone + 1.266621619964384*epsc*etaspone + 0.4018955966851538*epsb*etasppone + 0.4018955966851538*epsc*etasppone + 0.633310809982192*xispone + 1.17340925919073*as*xispone + 0.633310809982192*epsb*xispone + 1.6075823867406152*chi2sone*epsb*xispone + -1.6075823867406152*chi3spone*epsb*xispone + 0.633310809982192*epsc*xispone + 1.6075823867406152*chi2sone*epsc*xispone + -1.6075823867406152*chi3spone*epsc*xispone + 1.266621619964384*epsb*etasone*xispone + 1.266621619964384*epsc*etasone*xispone + 0.8037911933703076*epsb*etaspone*xispone + 0.8037911933703076*epsc*etaspone*xispone + 0.2009477983425769*xisppone + 0.3351020208503165*as*xisppone + 0.2009477983425769*epsb*xisppone + 0.2009477983425769*epsc*xisppone + 0.4018955966851538*epsb*etasone*xisppone + 0.4018955966851538*epsc*etasone*xisppone + 0.26060608958979237*l2sone*epsc2 + 0.5328369108109036*l2spone*epsc2 + 0.633310809982192*l3sone*epsc2 + 0.4018955966851538*l3spone*epsc2 + 0.26060608958979237*l5sone*epsc2 + 0.5328369108109036*l5spone*epsc2 + -1.1545229891617768*l6sone*epsc2 + -1.467569418306961*l6spone*epsc2 + 0.633310809982192*l2sone*xispone*epsc2 + 0.4018955966851538*l2spone*xispone*epsc2 + 0.4018955966851538*l3sone*xispone*epsc2 + 0.633310809982192*l5sone*xispone*epsc2 + 0.4018955966851538*l5spone*xispone*epsc2 + -1.668517216649538*l6sone*xispone*epsc2 + -0.8037911933703076*l6spone*xispone*epsc2 + 0.2009477983425769*l2sone*xisppone*epsc2 + 0.2009477983425769*l5sone*xisppone*epsc2 + -0.4018955966851538*l6sone*xisppone*epsc2;
         }
         // }}}
     };
