@@ -81,7 +81,7 @@ class LCSRFormFactorsTest :
                 {
                     std::make_pair(0.126841,   1.0e-7), // m_v(mu) in the MSbar scheme, strange quark for these tests
                     std::make_pair(0.896,      1.0e-7), // m_V, the K^* mass
-                    std::make_pair(0.217,      1.0e-7), // f_V, the K^* decay constant
+                    std::make_pair(0.204,      1.0e-7), // f_V, the K^* decay constant
 
                     std::make_pair(0.0748879,  1.0e-7), // sigma_0 value for q^2 = 5.0
                     std::make_pair(1.7,        1.0e-7), // s_0 value for V
