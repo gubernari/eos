@@ -1096,6 +1096,91 @@ groups:
           max:     0.0
           latex:    '$a_{T,3}^{B\to D,\mathrm{BGL97}}$'
           unit:     '1'
+      # form factor parameters for B->D for [G:2026A]
+      'B(*)->D(*)::n_f@G2026' :
+          central: 2.0
+          min:     2.0
+          max:     2.0
+          latex:   '$n_f$'
+          unit:    '1'
+      'B->D::t_0@G2026' :
+          central:  6.1848725
+          min:     0.0
+          max:     11.621
+          latex:    '$t_0^{B\to D,\mathrm{G26}}$'
+          unit:     'GeV^2'
+      'B->D::a^f+_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{+,0}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f+_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{+,1}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f+_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{+,2}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f+_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{+,3}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f0_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{0,0}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f0_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{0,1}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f0_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{0,2}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^f0_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{0,3}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^fT_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T,0}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^fT_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T,1}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^fT_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T,2}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D::a^fT_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T,3}^{B\to D,\mathrm{G26}}$'
+          unit:     '1'
       # form factor parameters for B_s->D_s inspired by [BSZ:2015A]
       'B_s->D_s::alpha^f+_0@BSZ2015' :
           central:  0.0
@@ -2169,6 +2254,181 @@ groups:
           min:     0.0
           max:     0.0
           latex:    '$a_{T_{23},3}^{B\to D^*,\mathrm{BGL97}}$'
+          unit:     '1'
+      # form factor parameters for B->D^* for [G:2026A]
+      'B->D^*::t_0@G2026' :
+          central:  5.6417164
+          min:      0.0
+          max:     10.684
+          latex:    '$t_0^{B\to D^*,\mathrm{G26}}$'
+          unit:     'GeV^2'
+      'B->D^*::a^g_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{g,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^g_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{g,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^g_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{g,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^g_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{g,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^f_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{f,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^f_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{f,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^f_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{f,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^f_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{f,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F1_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_1,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F1_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_1,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F1_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_1,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F1_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_1,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F2_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_2,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F2_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_2,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F2_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_2,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^F2_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{F_2,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T1_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_1,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T1_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_1,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T1_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_1,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T1_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_1,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T2_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_2,0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T2_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_2,1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T2_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_2,2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T2_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_2,3}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T23_0@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_{23},0}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T23_1@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_{23},1}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T23_2@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_{23},2}^{B\to D^*,\mathrm{G26}}$'
+          unit:     '1'
+      'B->D^*::a^T23_3@G2026' :
+          central: 0.0
+          min:     0.0
+          max:     0.0
+          latex:    '$a_{T_{23},3}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
       # form factor parameters for B_s->D_s^* inspired by [BSZ:2015A]
       'B_s->D_s^*::alpha^A0_0@BSZ2015' :

@@ -3108,6 +3108,10 @@ namespace eos
 
     template <> struct Implementation<BGLUnitarityBounds>
     {
+
+        // choose which parametrisation to read (BGL1997 or G2026)
+        RestrictedOption opt_form_factors;
+
         // B->D^* parameters
         std::array<UsedParameter, 4> _a_g, _a_f, _a_F1, _a_F2;
         // B->D parameters
@@ -3122,17 +3126,18 @@ namespace eos
 
         static const std::vector<OptionSpecification> options;
 
-        std::string _par_name_dstar(const std::string & ff_name)
+        std::string _par_name_dstar(const std::string & ff_name) const
         {
-            return std::string("B->D^*") + std::string("::a^") + ff_name + std::string("@BGL1997");
+            return "B->D^*::a^" + ff_name + "@" + opt_form_factors.value();
         }
 
-        std::string _par_name_d(const std::string & ff_name)
+        std::string _par_name_d(const std::string & ff_name) const
         {
-            return std::string("B->D") + std::string("::a^") + ff_name + std::string("@BGL1997");
+            return "B->D::a^" + ff_name + "@" + opt_form_factors.value();
         }
 
         Implementation(const Parameters & p, const Options & o, ParameterUser & u) :
+            opt_form_factors(o, options, "form-factors"_ok),
             // B->D^*
             _a_g{{   UsedParameter(p[_par_name_dstar("g_0")],  u),
                      UsedParameter(p[_par_name_dstar("g_1")],  u),
@@ -3165,7 +3170,7 @@ namespace eos
                      UsedParameter(p[_par_name_d("fT_3")], u) }},
             // further parameters
             opt_zorder_bound(o, "z-order-bound"_ok, { "1", "2" }, "2"),
-            nf(p["B(*)->D(*)::n_f@BGL1997"], u)
+            nf(p["B(*)->D(*)::n_f@" + opt_form_factors.value()], u)
         {
             if ("1" == opt_zorder_bound.value())
             {
@@ -3240,7 +3245,8 @@ namespace eos
     const std::vector<OptionSpecification>
     Implementation<BGLUnitarityBounds>::options
     {
-        { "z-order-bound"_ok, { "1"s, "2"s }, "2"s }
+        { "z-order-bound"_ok, { "1"s, "2"s }, "2"s },
+        { "form-factors"_ok, { "BGL1997"s, "G2026"s }, "BGL1997"s }
     };
 
     BGLUnitarityBounds::BGLUnitarityBounds(const Parameters & p, const Options & o) :

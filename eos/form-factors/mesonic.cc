@@ -39,6 +39,7 @@
 #include <eos/form-factors/parametric-kkvdz2022.hh>
 #include <eos/form-factors/parametric-kmpw2010.hh>
 #include <eos/form-factors/parametric-ksvd2025.hh>
+#include <eos/form-factors/parametric-g2026.hh>
 #include <eos/utils/destringify.hh>
 #include <eos/utils/qualified-name.hh>
 
@@ -67,6 +68,7 @@ namespace eos
         { "B->D^*::BSZ2015",      &BSZ2015FormFactors<BToDstar,   PToV>::make         },
         { "B->D^*::BGJvD2019",    &HQETFormFactors<BToDstar,      PToV>::make         },
         { "B->D^*::BGL1997",      &BGL1997FormFactors<BToDstar,   PToV>::make         },
+        { "B->D^*::G2026",        &G2026FormFactors<BToDstar,     PToV>::make         },
         { "B_s->K^*::BSZ2015",    &BSZ2015FormFactors<BsToKstar,  PToV>::make         },
         { "B_s->D_s^*::BSZ2015",  &BSZ2015FormFactors<BsToDsstar, PToV>::make         },
         { "B_s->D_s^*::BGJvD2019",&HQETFormFactors<BsToDsstar,    PToV>::make         },
@@ -362,6 +364,7 @@ namespace eos
         { "B->D::BSZ2015",           &BSZ2015FormFactors<BToD,   PToP>::make                                                                                      },
         { "B->D::BGJvD2019",         &HQETFormFactors<BToD,      PToP>::make                                                                                      },
         { "B->D::BGL1997",           &BGL1997FormFactors<BToD,   PToP>::make                                                                                      },
+        { "B->D::G2026",             &G2026FormFactors<BToD,     PToP>::make                                                                                      },
         { "B_s->D_s::BSZ2015",       &BSZ2015FormFactors<BsToDs, PToP>::make                                                                                      },
         { "B_s->D_s::BGJvD2019",     &HQETFormFactors<BsToDs,    PToP>::make                                                                                      },
         // c -> d
