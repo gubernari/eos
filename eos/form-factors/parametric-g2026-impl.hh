@@ -1,10 +1,7 @@
 /* vim: set sw=4 sts=4 et foldmethod=syntax : */
 
 /*
- * Copyright (c) 2020-2025 Danny van Dyk
- * Copyright (c) 2020      Nico Gubernari
- * Copyright (c) 2020      Christoph Bobeth
- * Copyright (c) 2025      Maximilian Hoverath
+ * Copyright (c) 2026 Nico Gubernari
  *
  * This file is part of the EOS project. EOS is free software;
  * you can redistribute it and/or modify it under the terms of the GNU General
@@ -59,10 +56,10 @@ namespace eos
                  UsedParameter(p[_par_name("F1_2")], *this),
                  UsedParameter(p[_par_name("F1_3")], *this)
         }},
-        _a_F2{{  /* F2_0 parameter determined by identity between F2 and F1 at q2 = 0 */
-                 UsedParameter(p[_par_name("F2_1")], *this),
-                 UsedParameter(p[_par_name("F2_2")], *this),
-                 UsedParameter(p[_par_name("F2_3")], *this)
+        _a_A0{{  /* A0_0 parameter determined by identity between A0 and F1 at q2 = 0 */
+                 UsedParameter(p[_par_name("A0_1")], *this),
+                 UsedParameter(p[_par_name("A0_2")], *this),
+                 UsedParameter(p[_par_name("A0_3")], *this)
         }},
         _a_T1{{  UsedParameter(p[_par_name("T1_0")], *this),
                  UsedParameter(p[_par_name("T1_1")], *this),
@@ -165,31 +162,31 @@ namespace eos
     }
 
     template<typename Process_>
-    double G2026FormFactors<Process_, PToV>::a_F2_0() const
+    double G2026FormFactors<Process_, PToV>::a_A0_0() const
     {
         const double r    = _mV / _mB;
         const double wmax = (power_of<2>(_mB) + power_of<2>(_mV)) / (2.0 * _mB * _mV);
 
         const double z = _traits._z(0.0, _traits.t_0, _traits.tp());
         const double x_F1 = _traits.blaschke_1p(0.0) * _phi(0.0, _traits.t_0, 48.0, 1, 1, 2, _traits.chi_1p);
-        const double x_F2 = _traits.blaschke_0m(0.0) * _phi(0.0, _traits.t_0, 64.0, 3, 3, 1, _traits.chi_0m) * (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * power_of<2>(_mB));
+        const double x_A0 = _traits.blaschke_0m(0.0) * _phi(0.0, _traits.t_0, 64.0, 3, 3, 1, _traits.chi_0m) * (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * power_of<2>(_mB));
         std::array<double, 4> an, zn;
         zn[0] = 1.0;
-        an[0]  = x_F2 * this->a_F1_0() * zn[0]; // a_F1[0] is the linear coefficient; we need the constant part
+        an[0]  = x_A0 * this->a_F1_0() * zn[0]; // a_F1[0] is the linear coefficient; we need the constant part
         for (unsigned i = 1 ; i < an.size() ; ++i)
         {
-            an[i] = x_F2 * this->_a_F1[i - 1] - x_F1 * this->_a_F2[i - 1];
+            an[i] = x_A0 * this->_a_F1[i - 1] - x_F1 * this->_a_A0[i - 1];
             zn[i] = z * zn[i - 1];
         }
         return std::inner_product(an.begin(), an.end(), zn.begin(), 0.0) / (zn[0] * x_F1);
     }
 
     template<typename Process_>
-    double G2026FormFactors<Process_, PToV>::F2(const double & s) const
+    double G2026FormFactors<Process_, PToV>::A0(const double & s) const
     {
         const double phi      = _phi(s, _traits.t_0, 64, 3, 3, 1, _traits.chi_0m);
         const double z        = _traits._z(s, _traits.t_0, _traits.tp());
-        const double series   = a_F2_0() + _a_F2[0] * z + _a_F2[1] * z * z + _a_F2[2] * z * z * z;
+        const double series   = a_A0_0() + _a_A0[0] * z + _a_A0[1] * z * z + _a_A0[2] * z * z * z;
         const double blaschke = _traits.blaschke_0m(s);
 
         return series / phi / blaschke;
@@ -204,7 +201,7 @@ namespace eos
     template<typename Process_>
     double G2026FormFactors<Process_, PToV>::a_0(const double & s) const
     {
-        return F2(s) / 2.0;
+        return A0(s) / 2.0;
     }
 
     template<typename Process_>

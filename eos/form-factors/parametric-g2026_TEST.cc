@@ -100,7 +100,7 @@ class G2026FormFactorsTest :
                 const double mV(BToDstar::m_V);
                 const double t_m = (mB - mV) * (mB - mV);
                 const double r   = mV / mB, wmax = (mB * mB + mV * mV) / (2.0 * mB * mV);
-                const double F2factor = (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * mB * mB);
+                const double A0factor = (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * mB * mB);
                 G2026FormFactors<BToDstar, PToV> ff(p, Options{ });
 
                 p["mass::B_c^*@BSZ2015"] = 6.329;
@@ -138,10 +138,10 @@ class G2026FormFactorsTest :
                 p["B->D^*::a^F1_2@G2026"] = 0.3e-02;
                 p["B->D^*::a^F1_3@G2026"] = 0.4e-02;
 
-                /* F2_0 parameter determined by identity between F2 and F1 at q2 = 0 */
-                p["B->D^*::a^F2_1@G2026"] = 0.2e-02;
-                p["B->D^*::a^F2_2@G2026"] = 0.3e-02;
-                p["B->D^*::a^F2_3@G2026"] = 0.4e-02;
+                /* A0_0 parameter determined by identity between A0 and F1 at q2 = 0 */
+                p["B->D^*::a^A0_1@G2026"] = 0.2e-02;
+                p["B->D^*::a^A0_2@G2026"] = 0.3e-02;
+                p["B->D^*::a^A0_3@G2026"] = 0.4e-02;
 
                 p["B->D^*::a^T1_0@G2026"] = 0.1e-02;
                 p["B->D^*::a^T1_1@G2026"] = 0.2e-02;
@@ -171,13 +171,13 @@ class G2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+1.0),  3.1657300, eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+4.0),  2.9555500, eps);
 
-                TEST_CHECK_NEARLY_EQUAL(ff.a_F2_0(),  5.8478e-3, 1.0e-7);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(-2.0),  0.2546860, eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+1.0),  0.2803997, eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+4.0),  0.3115880, eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.a_A0_0(),  5.8478e-3, 1.0e-7);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(-2.0),  0.2546860, eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+1.0),  0.2803997, eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+4.0),  0.3115880, eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(t_m), (mB - mV) * ff.f(t_m),  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(0.0), F2factor  * ff.F1(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(0.0), A0factor  * ff.F1(0.0), eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(-2.0),  0.0869380, eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(+1.0),  0.0928776, eps);
@@ -212,10 +212,10 @@ class G2026FormFactorsTest :
                 p["B->D^*::a^F1_2@G2026"] = 0.2e-02;
                 p["B->D^*::a^F1_3@G2026"] = 0.1e-02;
 
-                /* F2_0 parameter determined by identity between F2 and F1 at q2 = 0 */
-                p["B->D^*::a^F2_1@G2026"] = 0.3e-02;
-                p["B->D^*::a^F2_2@G2026"] = 0.2e-02;
-                p["B->D^*::a^F2_3@G2026"] = 0.1e-02;
+                /* A0_0 parameter determined by identity between A0 and F1 at q2 = 0 */
+                p["B->D^*::a^A0_1@G2026"] = 0.3e-02;
+                p["B->D^*::a^A0_2@G2026"] = 0.2e-02;
+                p["B->D^*::a^A0_3@G2026"] = 0.1e-02;
 
                 p["B->D^*::a^T1_0@G2026"] = 0.4e-02;
                 p["B->D^*::a^T1_1@G2026"] = 0.3e-02;
@@ -245,13 +245,13 @@ class G2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+1.0), 9.8358614, eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+4.0), 9.8422500, eps);
 
-                TEST_CHECK_NEARLY_EQUAL(ff.a_F2_0(), 1.789e-2,  2.0e-6);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(-2.0), 0.773754,  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+1.0), 0.854227,  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+4.0), 0.951860,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.a_A0_0(), 1.789e-2,  2.0e-6);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(-2.0), 0.773754,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+1.0), 0.854227,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+4.0), 0.951860,  eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(t_m), (mB - mV) * ff.f(t_m),  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(0.0), F2factor  * ff.F1(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(0.0), A0factor  * ff.F1(0.0), eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(-2.0),  0.331549, eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(+1.0),  0.360687, eps);
@@ -395,7 +395,7 @@ class G2026FormFactorsTest :
                 const double mV(BToDstar::m_V);
                 const double t_m = (mB - mV) * (mB - mV);
                 const double r   = mV / mB, wmax = (mB * mB + mV * mV) / (2.0 * mB * mV);
-                const double F2factor = (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * mB * mB);
+                const double A0factor = (1.0 + r) / ((1.0 - r) * (1.0 + wmax) * r * mB * mB);
                 G2026FormFactors<BToDstar, PToV> ff(p, Options{ });
 
                 p["mass::B_c^*@BSZ2015"] = 6.329;
@@ -433,10 +433,10 @@ class G2026FormFactorsTest :
                 p["B->D^*::a^F1_2@G2026"] = 0.3e-02;
                 p["B->D^*::a^F1_3@G2026"] = 0.4e-02;
 
-                /* F2_0 parameter determined by identity between F2 and F1 at q2 = 0 */
-                p["B->D^*::a^F2_1@G2026"] = 0.2e-02;
-                p["B->D^*::a^F2_2@G2026"] = 0.3e-02;
-                p["B->D^*::a^F2_3@G2026"] = 0.4e-02;
+                /* A0_0 parameter determined by identity between A0 and F1 at q2 = 0 */
+                p["B->D^*::a^A0_1@G2026"] = 0.2e-02;
+                p["B->D^*::a^A0_2@G2026"] = 0.3e-02;
+                p["B->D^*::a^A0_3@G2026"] = 0.4e-02;
 
                 p["B->D^*::a^T1_0@G2026"] = 0.1e-02;
                 p["B->D^*::a^T1_1@G2026"] = 0.2e-02;
@@ -466,13 +466,13 @@ class G2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+1.0), 3.3807000,  eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+4.0), 3.1500100,  eps);
 
-                TEST_CHECK_NEARLY_EQUAL(ff.a_F2_0(), 6.1959e-3,  1.0e-7);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(-2.0), 0.2720690,  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+1.0), 0.2996300,  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+4.0), 0.3330650,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.a_A0_0(), 6.1959e-3,  1.0e-7);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(-2.0), 0.2720690,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+1.0), 0.2996300,  eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+4.0), 0.3330650,  eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(t_m), (mB - mV) * ff.f(t_m),  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(0.0), F2factor  * ff.F1(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(0.0), A0factor  * ff.F1(0.0), eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(-2.0), 0.0920823,  eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(+1.0), 0.0983392,  eps);
@@ -507,10 +507,10 @@ class G2026FormFactorsTest :
                 p["B->D^*::a^F1_2@G2026"] = 0.2e-02;
                 p["B->D^*::a^F1_3@G2026"] = 0.1e-02;
 
-                /* F2_0 parameter determined by identity between F2 and F1 at q2 = 0 */
-                p["B->D^*::a^F2_1@G2026"] = 0.3e-02;
-                p["B->D^*::a^F2_2@G2026"] = 0.2e-02;
-                p["B->D^*::a^F2_3@G2026"] = 0.1e-02;
+                /* A0_0 parameter determined by identity between A0 and F1 at q2 = 0 */
+                p["B->D^*::a^A0_1@G2026"] = 0.3e-02;
+                p["B->D^*::a^A0_2@G2026"] = 0.2e-02;
+                p["B->D^*::a^A0_3@G2026"] = 0.1e-02;
 
                 p["B->D^*::a^T1_0@G2026"] = 0.4e-02;
                 p["B->D^*::a^T1_1@G2026"] = 0.3e-02;
@@ -540,13 +540,13 @@ class G2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+1.0), 10.063300,  10*eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(+4.0), 10.066900,  10*eps);
 
-                TEST_CHECK_NEARLY_EQUAL(ff.a_F2_0(), 1.8241e-2,  2.0e-6);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(-2.0), 0.791514,   eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+1.0), 0.874152,   eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(+4.0), 0.974439,   eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.a_A0_0(), 1.8241e-2,  2.0e-6);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(-2.0), 0.791514,   eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+1.0), 0.874152,   eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(+4.0), 0.974439,   eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.F1(t_m), (mB - mV) * ff.f(t_m),  eps);
-                TEST_CHECK_NEARLY_EQUAL(ff.F2(0.0), F2factor  * ff.F1(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL(ff.A0(0.0), A0factor  * ff.F1(0.0), eps);
 
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(-2.0), 0.338307,  eps);
                 TEST_CHECK_NEARLY_EQUAL(ff.t_1(+1.0), 0.368130,  eps);

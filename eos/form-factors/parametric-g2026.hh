@@ -1,10 +1,7 @@
 /* vim: set sw=4 sts=4 et tw=120 foldmethod=syntax : */
 
 /*
- * Copyright (c) 2020-2025 Danny van Dyk
- * Copyright (c) 2020      Nico Gubernari
- * Copyright (c) 2020      Christoph Bobeth
- * Copyright (c) 2025      Maximilian Hoverath
+ * Copyright (c) 2026 Nico Gubernari
  *
  * This file is part of the EOS project. EOS is free software;
  * you can redistribute it and/or modify it under the terms of the GNU General
@@ -269,7 +266,7 @@ namespace eos
     {
         private:
             std::array<UsedParameter, 4> _a_g, _a_f;
-            std::array<UsedParameter, 3> _a_F1, _a_F2;
+            std::array<UsedParameter, 3> _a_F1, _a_A0;
             std::array<UsedParameter, 4> _a_T1;
             std::array<UsedParameter, 3> _a_T2, _a_T23;
 
@@ -292,10 +289,10 @@ namespace eos
             double g(const double & s) const;
             double f(const double & s) const;
             double F1(const double & s) const;
-            double F2(const double & s) const;
+            double A0(const double & s) const;
 
             double a_F1_0() const;
-            double a_F2_0() const;
+            double a_A0_0() const;
             double a_T2_0() const;
             double a_T23_0() const;
 
