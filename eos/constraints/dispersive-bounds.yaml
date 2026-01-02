@@ -105,6 +105,38 @@ b->c::Bound[1^-]BGL:
     bound: 1.0
     # same relative uncertainty as for 1^+, cf. [BG:2016A], eq. (2.8), p.5
     uncertainty: 0.0093549
+b->c::Bound[0^+]G:
+    type: UniformBound
+    observables: [ 'b->c::Bound[0^+]@G' ]
+    kinematics: [ {} ]
+    options: [ {} ]
+    bound: 1.0
+    # cf. [BG:2016A], eq. (2.8), p.5
+    uncertainty: 0.0130561
+b->c::Bound[0^-]G:
+    type: UniformBound
+    observables: [ 'b->c::Bound[0^-]@G' ]
+    kinematics: [ {} ]
+    options: [ {} ]
+    bound: 1.0
+    # using the same relative uncertainty as for 0^+, cf. [BG:2016A], eq. (2.8), p.5
+    uncertainty: 0.0130561
+b->c::Bound[1^+]G:
+    type: UniformBound
+    observables: [ 'b->c::Bound[1^+]@G' ]
+    kinematics: [ {} ]
+    options: [ {} ]
+    bound: 1.0
+    # cf. [BG:2016A], eq. (2.8), p.5
+    uncertainty: 0.0093549
+b->c::Bound[1^-]G:
+    type: UniformBound
+    observables: [ 'b->c::Bound[1^-]@G' ]
+    kinematics: [ {} ]
+    options: [ {} ]
+    bound: 1.0
+    # same relative uncertainty as for 1^+, cf. [BG:2016A], eq. (2.8), p.5
+    uncertainty: 0.0093549
 # }}}
 
 ###########################
