@@ -2445,6 +2445,22 @@ namespace eos
                         Unit::None(),
                         &BGLUnitarityBounds::bound_1m),
 
+                make_observable("b->c::Bound[0^+]@G", R"(B^{b\to c}_{0^+})",
+                        Unit::None(),
+                        &GUnitarityBounds::bound_0p),
+
+                make_observable("b->c::Bound[0^-]@G", R"(B^{b\to c}_{0^-})",
+                        Unit::None(),
+                        &GUnitarityBounds::bound_0m),
+
+                make_observable("b->c::Bound[1^+]@G", R"(B^{b\to c}_{1^+})",
+                        Unit::None(),
+                        &GUnitarityBounds::bound_1p),
+
+                make_observable("b->c::Bound[1^-]@G", R"(B^{b\to c}_{1^-})",
+                        Unit::None(),
+                        &GUnitarityBounds::bound_1m),
+
                 // cf. [BMRvD:2021A] eq. (31-33)
                 // sb states
                 make_expression_observable("B_s0::Saturation[0^+_V]", R"(\textrm{Saturation}_{B_{s,0}}[0^+_V])",

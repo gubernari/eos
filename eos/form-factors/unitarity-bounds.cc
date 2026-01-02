@@ -3108,10 +3108,6 @@ namespace eos
 
     template <> struct Implementation<BGLUnitarityBounds>
     {
-
-        // choose which parametrisation to read (BGL1997 or G2026)
-        RestrictedOption opt_form_factors;
-
         // B->D^* parameters
         std::array<UsedParameter, 4> _a_g, _a_f, _a_F1, _a_F2;
         // B->D parameters
@@ -3126,18 +3122,17 @@ namespace eos
 
         static const std::vector<OptionSpecification> options;
 
-        std::string _par_name_dstar(const std::string & ff_name) const
+        std::string _par_name_dstar(const std::string & ff_name)
         {
-            return "B->D^*::a^" + ff_name + "@" + opt_form_factors.value();
+            return std::string("B->D^*") + std::string("::a^") + ff_name + std::string("@BGL1997");
         }
 
-        std::string _par_name_d(const std::string & ff_name) const
+        std::string _par_name_d(const std::string & ff_name)
         {
-            return "B->D::a^" + ff_name + "@" + opt_form_factors.value();
+            return std::string("B->D") + std::string("::a^") + ff_name + std::string("@BGL1997");
         }
 
         Implementation(const Parameters & p, const Options & o, ParameterUser & u) :
-            opt_form_factors(o, options, "form-factors"_ok),
             // B->D^*
             _a_g{{   UsedParameter(p[_par_name_dstar("g_0")],  u),
                      UsedParameter(p[_par_name_dstar("g_1")],  u),
@@ -3170,7 +3165,7 @@ namespace eos
                      UsedParameter(p[_par_name_d("fT_3")], u) }},
             // further parameters
             opt_zorder_bound(o, "z-order-bound"_ok, { "1", "2" }, "2"),
-            nf(p["B(*)->D(*)::n_f@" + opt_form_factors.value()], u)
+            nf(p["B(*)->D(*)::n_f@BGL1997"], u)
         {
             if ("1" == opt_zorder_bound.value())
             {
@@ -3245,8 +3240,7 @@ namespace eos
     const std::vector<OptionSpecification>
     Implementation<BGLUnitarityBounds>::options
     {
-        { "z-order-bound"_ok, { "1"s, "2"s }, "2"s },
-        { "form-factors"_ok, { "BGL1997"s, "G2026"s }, "BGL1997"s }
+        { "z-order-bound"_ok, { "1"s, "2"s }, "2"s }
     };
 
     BGLUnitarityBounds::BGLUnitarityBounds(const Parameters & p, const Options & o) :
@@ -3295,5 +3289,190 @@ namespace eos
     BGLUnitarityBounds::end_options()
     {
         return Implementation<BGLUnitarityBounds>::options.cend();
+    }
+
+    template <> struct Implementation<GUnitarityBounds>
+    {
+        // B->D^* parameters
+        std::array<UsedParameter, 4> _a_g, _a_f, _a_F1, _a_A0;
+        // B->D parameters
+        std::array<UsedParameter, 4> _a_f_p, _a_f_0, _a_f_t;
+
+        // option to determine if we use z^3 terms in the leading-power IW function
+        SwitchOption opt_zorder_bound;
+        unsigned zorder_bound;
+
+        // number of light flavor multiplets
+        UsedParameter nf;
+
+        static const std::vector<OptionSpecification> options;
+
+        std::string _par_name_dstar(const std::string & ff_name)
+        {
+            return std::string("B->D^*") + std::string("::a^") + ff_name + std::string("@G2026");
+        }
+
+        std::string _par_name_d(const std::string & ff_name)
+        {
+            return std::string("B->D") + std::string("::a^") + ff_name + std::string("@G2026");
+        }
+
+        Implementation(const Parameters & p, const Options & o, ParameterUser & u) :
+            // B->D^*
+            _a_g{{   UsedParameter(p[_par_name_dstar("g_0")],  u),
+                     UsedParameter(p[_par_name_dstar("g_1")],  u),
+                     UsedParameter(p[_par_name_dstar("g_2")],  u),
+                     UsedParameter(p[_par_name_dstar("g_3")],  u) }},
+            _a_f{{   UsedParameter(p[_par_name_dstar("f_0")],  u),
+                     UsedParameter(p[_par_name_dstar("f_1")],  u),
+                     UsedParameter(p[_par_name_dstar("f_2")],  u),
+                     UsedParameter(p[_par_name_dstar("f_3")],  u) }},
+            _a_F1{{  UsedParameter(p[_par_name_dstar("F1_0")], u),
+                     UsedParameter(p[_par_name_dstar("F1_1")], u),
+                     UsedParameter(p[_par_name_dstar("F1_2")], u),
+                     UsedParameter(p[_par_name_dstar("F1_3")], u) }},
+            _a_A0{{  UsedParameter(p[_par_name_dstar("A0_0")], u),
+                     UsedParameter(p[_par_name_dstar("A0_1")], u),
+                     UsedParameter(p[_par_name_dstar("A0_2")], u),
+                     UsedParameter(p[_par_name_dstar("A0_3")], u) }},
+            // B->D
+            _a_f_p{{ UsedParameter(p[_par_name_d("f+_0")], u),
+                     UsedParameter(p[_par_name_d("f+_1")], u),
+                     UsedParameter(p[_par_name_d("f+_2")], u),
+                     UsedParameter(p[_par_name_d("f+_3")], u) }},
+            _a_f_0{{ UsedParameter(p[_par_name_d("f0_0")], u),
+                     UsedParameter(p[_par_name_d("f0_1")], u),
+                     UsedParameter(p[_par_name_d("f0_2")], u),
+                     UsedParameter(p[_par_name_d("f0_3")], u) }},
+            _a_f_t{{ UsedParameter(p[_par_name_d("fT_0")], u),
+                     UsedParameter(p[_par_name_d("fT_1")], u),
+                     UsedParameter(p[_par_name_d("fT_2")], u),
+                     UsedParameter(p[_par_name_d("fT_3")], u) }},
+            // further parameters
+            opt_zorder_bound(o, "z-order-bound"_ok, { "1", "2" }, "2"),
+            nf(p["B(*)->D(*)::n_f@G2026"], u)
+        {
+            if ("1" == opt_zorder_bound.value())
+            {
+                zorder_bound = 1;
+            }
+            else if ("2" == opt_zorder_bound.value())
+            {
+                zorder_bound = 2;
+            }
+            else
+            {
+                throw InternalError("Only z-order-bound=2 is presently supported");
+            }
+        }
+
+        ~Implementation() = default;
+
+        // bounds up to z^2
+        // {{{
+        double bound_0p() const
+        {
+            double result = 0.0;
+
+            for (unsigned i = 0 ; i <= zorder_bound ; ++i)
+            {
+                result += power_of<2>(_a_f_0[i]) * nf; // to account for flavor symmetry
+            }
+
+            return result;
+        }
+
+        double bound_0m() const
+        {
+            double result = 0.0;
+
+            for (unsigned i = 0 ; i <= zorder_bound ; ++i)
+            {
+                result += power_of<2>(_a_A0[i]) * nf; // to account for flavor symmetry
+            }
+
+            return result;
+        }
+
+        double bound_1p() const
+        {
+            double result = 0.0;
+
+            for (unsigned i = 0 ; i <= zorder_bound ; ++i)
+            {
+                result += power_of<2>(_a_f[i]) * nf; // to account for flavor symmetry
+                result += power_of<2>(_a_F1[i]) * nf; // to account for flavor symmetry
+            }
+
+            return result;
+        }
+
+        double bound_1m() const
+        {
+            double result = 0.0;
+
+            for (unsigned i = 0 ; i <= zorder_bound ; ++i)
+            {
+                result += power_of<2>(_a_f_p[i]) * nf; // to account for flavor symmetry
+                result += power_of<2>(_a_g[i]) * nf; // to account for flavor symmetry
+            }
+
+            return result;
+        }
+        // }}}
+    };
+
+    const std::vector<OptionSpecification>
+    Implementation<GUnitarityBounds>::options
+    {
+        { "z-order-bound"_ok, { "1"s, "2"s }, "2"s }
+    };
+
+    GUnitarityBounds::GUnitarityBounds(const Parameters & p, const Options & o) :
+        PrivateImplementationPattern<GUnitarityBounds>(new Implementation<GUnitarityBounds>(p, o, *this))
+    {
+    }
+
+    GUnitarityBounds::~GUnitarityBounds() = default;
+
+    double
+    GUnitarityBounds::bound_0p() const
+    {
+        return _imp->bound_0p();
+    }
+
+    double
+    GUnitarityBounds::bound_0m() const
+    {
+        return _imp->bound_0m();
+    }
+
+    double
+    GUnitarityBounds::bound_1p() const
+    {
+        return _imp->bound_1p();
+    }
+
+    double
+    GUnitarityBounds::bound_1m() const
+    {
+        return _imp->bound_1m();
+    }
+
+    const std::set<ReferenceName>
+    GUnitarityBounds::references
+    {
+    };
+
+    std::vector<OptionSpecification>::const_iterator
+    GUnitarityBounds::begin_options()
+    {
+        return Implementation<GUnitarityBounds>::options.cbegin();
+    }
+
+    std::vector<OptionSpecification>::const_iterator
+    GUnitarityBounds::end_options()
+    {
+        return Implementation<GUnitarityBounds>::options.cend();
     }
 }

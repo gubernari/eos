@@ -437,4 +437,34 @@ namespace eos
             static std::vector<OptionSpecification>::const_iterator begin_options();
             static std::vector<OptionSpecification>::const_iterator end_options();
     };
+
+    /* Unitarity bound implemented as discussed in [G:2026A] */
+    class GUnitarityBounds :
+        public virtual ParameterUser,
+        public PrivateImplementationPattern<GUnitarityBounds>
+    {
+        public:
+            GUnitarityBounds(const Parameters &, const Options &);
+            ~GUnitarityBounds();
+
+            // unitarity bounds as pseudo observables
+            double bound_0p() const;
+
+            double bound_0m() const;
+
+            double bound_1p() const;
+
+            double bound_1m() const;
+
+            /*!
+             * References used in the computation of our observables.
+             */
+            static const std::set<ReferenceName> references;
+
+            /*!
+             * Options used in the computation of our observables.
+             */
+            static std::vector<OptionSpecification>::const_iterator begin_options();
+            static std::vector<OptionSpecification>::const_iterator end_options();
+    };
 }
