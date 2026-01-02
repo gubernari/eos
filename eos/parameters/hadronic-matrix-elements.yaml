@@ -2334,29 +2334,29 @@ groups:
           max:     0.0
           latex:    '$a_{F_1,3}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
-      'B->D^*::a^F2_0@G2026' :
+      'B->D^*::a^A0_0@G2026' :
           central: 0.0
           min:     0.0
           max:     0.0
-          latex:    '$a_{F_2,0}^{B\to D^*,\mathrm{G26}}$'
+          latex:    '$a_{A_0,0}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
-      'B->D^*::a^F2_1@G2026' :
+      'B->D^*::a^A0_1@G2026' :
           central: 0.0
           min:     0.0
           max:     0.0
-          latex:    '$a_{F_2,1}^{B\to D^*,\mathrm{G26}}$'
+          latex:    '$a_{A_0,1}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
-      'B->D^*::a^F2_2@G2026' :
+      'B->D^*::a^A0_2@G2026' :
           central: 0.0
           min:     0.0
           max:     0.0
-          latex:    '$a_{F_2,2}^{B\to D^*,\mathrm{G26}}$'
+          latex:    '$a_{A_0,2}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
-      'B->D^*::a^F2_3@G2026' :
+      'B->D^*::a^A0_3@G2026' :
           central: 0.0
           min:     0.0
           max:     0.0
-          latex:    '$a_{F_2,3}^{B\to D^*,\mathrm{G26}}$'
+          latex:    '$a_{A_0,3}^{B\to D^*,\mathrm{G26}}$'
           unit:     '1'
       'B->D^*::a^T1_0@G2026' :
           central: 0.0
