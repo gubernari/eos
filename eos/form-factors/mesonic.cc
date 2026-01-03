@@ -4,7 +4,7 @@
  * Copyright (c) 2010-2025 Danny van Dyk
  * Copyright (c) 2015      Christoph Bobeth
  * Copyright (c) 2018      Ahmet Kokulu
- * Copyright (c) 2019      Nico Gubernari
+ * Copyright (c) 2019-2026 Nico Gubernari
  * Copyright (c) 2024      Matthew J. Kirk
  * Copyright (c) 2025      Florian Herren
  *
@@ -30,6 +30,7 @@
 #include <eos/form-factors/form-factors.hh>
 #include <eos/form-factors/parametric-bcl2008.hh>
 #include <eos/form-factors/parametric-bfw2010.hh>
+#include <eos/form-factors/parametric-g2026.hh>
 #include <eos/form-factors/parametric-bgl1997.hh>
 #include <eos/form-factors/parametric-bgjvd2019.hh>
 #include <eos/form-factors/parametric-bsz2015.hh>
@@ -64,6 +65,7 @@ namespace eos
         { "B->K^*::KMPW2010",     &KMPW2010FormFactors<PToV>::make                    },
         { "B->K^*::BSZ2015",      &BSZ2015FormFactors<BToKstar,   PToV>::make         },
         { "B->K^*::BFW2010",      &BFW2010FormFactors<BToKstar,   PToV>::make         },
+        { "B->K^*::G2026",        &G2026FormFactors<BToKstar,     PToV>::make         },
         { "B->D^*::BSZ2015",      &BSZ2015FormFactors<BToDstar,   PToV>::make         },
         { "B->D^*::BGJvD2019",    &HQETFormFactors<BToDstar,      PToV>::make         },
         { "B->D^*::BGL1997",      &BGL1997FormFactors<BToDstar,   PToV>::make         },
@@ -342,6 +344,7 @@ namespace eos
         { "B->K::KMPW2010",          &KMPW2010FormFactors<PToP>::make                                                                                             },
         { "B->K::BSZ2015",           &BSZ2015FormFactors<BToK,    PToP>::make                                                                                     },
         { "B->K::BFW2010",           &BFW2010FormFactors<BToK,    PToP>::make                                                                                     },
+        { "B->K::G2026",             &G2026FormFactors<BToK, PToP>::make                                                                                          },
         { "B_s->eta::BSZ2015",       &BSZ2015FormFactors<BsToEta, PToP>::make                                                                                     },
         { "B_s->eta::BFW2010",       &BFW2010FormFactors<BsToEta, PToP>::make                                                                                     },
         { "B_s->eta_prime::BSZ2015", &BSZ2015FormFactors<BsToEtaPrime, PToP>::make                                                                                },
