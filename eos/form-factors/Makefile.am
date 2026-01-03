@@ -43,6 +43,7 @@ libeosformfactors_la_SOURCES = \
 	parametric-dkmr2017.hh parametric-dkmr2017-impl.hh parametric-dkmr2017.cc \
 	parametric-dm2016.hh parametric-dm2016-impl.hh parametric-dm2016.cc \
 	parametric-fvdv2018.hh parametric-fvdv2018-impl.hh parametric-fvdv2018.cc \
+	parametric-g2026.hh parametric-g2026-impl.hh parametric-g2026.cc \
 	parametric-hkvt2025.hh parametric-hkvt2025-impl.hh parametric-hkvt2025.cc \
 	parametric-kkrvd2024.hh parametric-kkrvd2024.cc \
 	parametric-kkvdz2022.hh parametric-kkvdz2022.cc \
@@ -79,6 +80,7 @@ include_eos_rarebdecays_HEADERS = \
 	parametric-bfw2010.hh \
 	parametric-bfvd2014.hh \
 	parametric-bgl1997.hh \
+	parametric-g2026.hh \
 	parametric-bgjvd2019.hh \
 	parametric-bsz2015.hh \
 	parametric-dkmr2017.hh \
@@ -114,6 +116,7 @@ TESTS = \
 	parametric-bfvd2014_TEST \
 	parametric-bfw2010_TEST \
 	parametric-bgl1997_TEST \
+	parametric-g2026_TEST \
 	parametric-bgjvd2019_TEST \
 	parametric-bmrvd2022_TEST \
 	parametric-bsz2015_TEST \
@@ -182,6 +185,8 @@ parametric_bfvd2014_TEST_SOURCES = parametric-bfvd2014_TEST.cc
 parametric_bfw2010_TEST_SOURCES = parametric-bfw2010_TEST.cc
 
 parametric_bgl1997_TEST_SOURCES = parametric-bgl1997_TEST.cc
+
+parametric_g2026_TEST_SOURCES = parametric-g2026_TEST.cc
 
 parametric_bgjvd2019_TEST_SOURCES = parametric-bgjvd2019_TEST.cc
 

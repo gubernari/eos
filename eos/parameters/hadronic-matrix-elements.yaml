@@ -924,6 +924,54 @@ groups:
           latex:    '$t_+^{B_s\to K^*}$'
           comment:  '(mBs + mK)^2'
           unit:     'GeV^2'
+      # form factor parameters for B_s->K for [G:2026A] parametrization
+      'B_s->K::a^%1%_%2%@G2026' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B_s \to K,\mathrm{G2026}}$'
+          matrix:
+            - ["f+", "f0", "fT"]
+            - [0, 1, 2, 3, 4]
+      'B_s->K::sV@G2026' :
+          central:  29.311396
+          min:      29.311396
+          max:      29.311396
+          latex:    '$s_V^{B_s\to K}$'
+          comment:  '(mBu + mpi)^2'
+          unit:     'GeV^2'
+      'B_s->K::s0V@G2026' :
+          central:  16.539327
+          min:      16.539327
+          max:      16.539327
+          latex:    '$s_{0,V}^{B_s\to K}$'
+          comment:  's0opt = s_th * (1 - sqrt(1 - s_- / s_th))'
+          unit:     'GeV^2'
+      'B_s->K::Q2@G2026' :
+          central:  0.0
+          min:      0.0
+          max:      0.0
+          latex:    '$Q^2_{B_s\to K}$'
+          unit:     'GeV^2'
+      'B_s->K::tchi_V0@G2026' :
+          central:  0.015090504
+          min:      0.015090504
+          max:      0.015090504
+          latex:    '$\tilde{\chi}_V^0$'
+          unit:     '1'
+      'B_s->K::tchi_V1@G2026' :
+          central:  0.0005826598
+          min:      0.0005826598
+          max:      0.0005826598
+          latex:    '$\tilde{\chi}_V^1$'
+          unit:     'GeV^-2'
+      'B_s->K::tchi_T1@G2026' :
+          central:  0.00041208157
+          min:      0.00041208157
+          max:      0.00041208157
+          latex:    '$\tilde{\chi}_T^1$'
+          unit:     'GeV^-2'
       # form factor parameters for B->D from [BIvD:2016A] for [BCL:2008A] parametrization
       'B->D::f_+(0)@BCL2008' :
           central: +0.66
@@ -1758,6 +1806,80 @@ groups:
           matrix:
             - ["g", "f", "F1", "F2", "T1", "T2", "T23"]
             - [0, 1, 2, 3]
+      # form factor parameters for B_s->D_s^* for [G:2026A] parametrization
+      'B_s->D_s^*::a^%1%_%2%@G2026' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B_s \to D_s^*,\mathrm{G2026}}$'
+          matrix:
+            - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
+            - [0, 1, 2, 3, 4]
+      'B_s->D_s^*::sV@G2026' :
+          central:  41.075281
+          min:      41.075281
+          max:      41.075281
+          latex:    '$s_V^{B_s\to D_s^*}$'
+          comment:  '(mBc + mpi)^2'
+          unit:     'GeV^2'
+      'B_s->D_s^*::sA@G2026' :
+          central:  41.770369
+          min:      41.770369
+          max:      41.770369
+          latex:    '$s_A^{B_s\to D_s^*}$'
+          comment:  '(mBc* + mpi)^2'
+          unit:     'GeV^2'
+      'B_s->D_s^*::s0V@G2026' :
+          central:  5.6918798
+          min:      5.6918798
+          max:      5.6918798
+          latex:    '$s_{0,V}^{B_s\to D_s^*}$'
+          comment:  's0opt = s_th * (1 - sqrt(1 - s_- / s_th))'
+          unit:     'GeV^2'
+      'B_s->D_s^*::s0A@G2026' :
+          central:  5.6842827
+          min:      5.6842827
+          max:      5.6842827
+          latex:    '$s_{0,A}^{B_s\to D_s^*}$'
+          comment:  's0opt = s_th * (1 - sqrt(1 - s_- / s_th))'
+          unit:     'GeV^2'
+      'B_s->D_s^*::Q2@G2026' :
+          central:  0.0
+          min:      0.0
+          max:      0.0
+          latex:    '$Q^2_{B_s\to D_s^*}$'
+          unit:     'GeV^2'
+      'B_s->D_s^*::tchi_A0@G2026' :
+          central:  0.023568069
+          min:      0.023568069
+          max:      0.023568069
+          latex:    '$\tilde{\chi}_A^0$'
+          unit:     '1'
+      'B_s->D_s^*::tchi_V1@G2026' :
+          central:  0.0006432721
+          min:      0.0006432721
+          max:      0.0006432721
+          latex:    '$\tilde{\chi}_V^1$'
+          unit:     'GeV^-2'
+      'B_s->D_s^*::tchi_A1@G2026' :
+          central:  0.00041228331
+          min:      0.00041228331
+          max:      0.00041228331
+          latex:    '$\tilde{\chi}_A^1$'
+          unit:     'GeV^-2'
+      'B_s->D_s^*::tchi_T1@G2026' :
+          central:  0.00048495245
+          min:      0.00048495245
+          max:      0.00048495245
+          latex:    '$\tilde{\chi}_T^1$'
+          unit:     'GeV^-2'
+      'B_s->D_s^*::tchi_AT1@G2026' :
+          central:  0.00025084584
+          min:      0.00025084584
+          max:      0.00025084584
+          latex:    '$\tilde{\chi}_T^1$'
+          unit:     'GeV^-2'
       # form factor parameters for B->gamma* according to [KKvDZ:2022A], Table 3, p. 10
       # inspired by [BSZ:2015A]
       'B->gamma^*::N^omega_1_0@KKvDZ2022' :

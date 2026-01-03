@@ -3,6 +3,7 @@
 /*
  * Copyright (c) 2020-2025 Danny van Dyk
  * Copyright (c) 2025      Florian Herren
+ * Copyright (c) 2026      Nico Gubernari
  *
  * This file is part of the EOS project. EOS is free software;
  * you can redistribute it and/or modify it under the terms of the GNU General
@@ -60,6 +61,8 @@ namespace eos
         static constexpr const double mR2_1m = 5.325 * 5.325; // B_{u,d}^*
         static constexpr const double mR2_0p = 5.540 * 5.540; // B_{u,d} scalar: M(B_s scalar) - M(B_s^*) + M(B_{u,d}^*)
         static constexpr const bool uses_tensor_form_factors = true;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 3.0 / 2.0;
     };
 
     struct BToEta {
@@ -150,6 +153,8 @@ namespace eos
         static constexpr const double mR2_0p = 6.420 * 6.420; // B_c scalar
         static constexpr const bool uses_tensor_form_factors = true;
         static constexpr const char * hqe_prefix = "B(*)->D(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 2.0;
     };
 
     struct BsToDs {
@@ -166,6 +171,8 @@ namespace eos
         static constexpr const double tp = (m_B + m_P) * (m_B + m_P);
         static constexpr const bool uses_tensor_form_factors = true;
         static constexpr const char * hqe_prefix = "B_s(*)->D_s(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     struct DToPi {
@@ -279,6 +286,8 @@ namespace eos
         static constexpr double mR2_1m = (m_Bc + 0.056) * (m_Bc + 0.056);
         static constexpr double mR2_1p = (m_Bc + 0.492) * (m_Bc + 0.492);
         static constexpr const char * hqe_prefix = "B(*)->D(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 2.0;
     };
 
     struct BsToDsstar {
@@ -294,6 +303,8 @@ namespace eos
         static constexpr double mR2_1m = (m_Bc + 0.056) * (m_Bc + 0.056);
         static constexpr double mR2_1p = (m_Bc + 0.492) * (m_Bc + 0.492);
         static constexpr const char * hqe_prefix = "B_s(*)->D_s(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     struct BToKstar {
@@ -348,6 +359,8 @@ namespace eos
         static constexpr double mR2_0m = 5.279 * 5.279;
         static constexpr double mR2_1m = 5.325 * 5.325;
         static constexpr double mR2_1p = 5.724 * 5.724;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 3.0 / 2.0;
     };
 
     struct BcToJpsi {
@@ -397,6 +410,8 @@ namespace eos
         static constexpr double mR2_0m = 5.279 * 5.279;
         static constexpr double mR2_1m = 5.325 * 5.325;
         static constexpr double mR2_1p = 5.723 * 5.723;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     /* P -> PP Processes */
