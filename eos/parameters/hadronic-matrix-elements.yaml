@@ -682,6 +682,29 @@ groups:
           max:      14.7
           latex:   '$t_0^{B\to K}$'
           unit:     'GeV'
+      # form factor parameters for B->K for [G:2026A] parametrization
+      'B->K::a^%1%_%2%@G2026' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B \to K,\mathrm{G2026}}$'
+          matrix:
+            - ["f+", "f0", "fT"]
+            - [0, 1, 2, 3, 4]
+      'B->K::tp@G2026' :
+          central:  33.304441
+          min:      33.304441
+          max:      33.304441
+          latex:    '$t_+^{B\to K}$'
+          comment:  '(mB + mK)^2'
+          unit:     'GeV'
+      'B->K::t0@G2026' :
+          central:  14.7
+          min:      14.7
+          max:      14.7
+          latex:   '$t_0^{B\to K}$'
+          unit:     'GeV'
       # form factor parameters for B->K for [BCL:2008A] parametrization
       'B->K::f_+(0)' :
           alias_of: [ 'B_d->K_d::f_+(0)', 'B_d->Kbar_d::f_+(0)', 'B_d->K_S::f_+(0)', 'B_d->K_u::f_+(0)','B_d->Kbar_u::f_+(0)', 'B_u->K_d::f_+(0)', 'B_u->Kbar_d::f_+(0)', 'B_u->K_S::f_+(0)', 'B_u->K_u::f_+(0)','B_u->Kbar_u::f_+(0)' ]
@@ -1729,6 +1752,36 @@ groups:
           comment:  '(mB + mK)^2'
           unit:     'GeV'
       'B->K^*::t0@BFW2010' :
+          central:  11.5
+          min:      11.5
+          max:      11.5
+          latex:    '$t_0^{B\to K^*}$'
+          unit:     'GeV'
+      # form factor parameters for B->K^* for [G:2026A] parametrization
+      'B->K^*::a^%1%_%2%@G2026' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B \to K^*,\mathrm{G2026}}$'
+          matrix:
+            - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
+            - [0, 1, 2, 3, 4]
+      'B->K^*::tp_a@G2026' :
+          central:  34.880836
+          min:      34.880836
+          max:      34.880836
+          latex:    '$t_+^{A, B\to K^*}$'
+          comment:  '(mB + mK + mpi)^2'
+          unit:     'GeV'
+      'B->K^*::tp_v@G2026' :
+          central:  33.304441
+          min:      33.304441
+          max:      33.304441
+          latex:    '$t_+^{V, B\to K^*}$'
+          comment:  '(mB + mK)^2'
+          unit:     'GeV'
+      'B->K^*::t0@G2026' :
           central:  11.5
           min:      11.5
           max:      11.5
