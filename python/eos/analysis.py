@@ -249,7 +249,12 @@ class Analysis:
 
         used_but_unvaried = used_parameter_names - varied_parameter_names - fixed_parameter_names
         if (len(used_but_unvaried) > 0):
-            eos.info(f'likelihood probably depends on {len(used_but_unvaried)} parameter(s) that do not appear in the prior; check prior?')
+            params = "\n  - ".join(sorted(used_but_unvaried))
+            eos.info(
+                "likelihood probably depends on the following parameter(s) "
+                "that do not appear in the prior:\n"
+                f"  - {params}"
+            )
         for n in used_but_unvaried:
             eos.debug(f'used, but not included in any prior: \'{n}\'')
         for n in varied_parameter_names - used_parameter_names:
