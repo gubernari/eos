@@ -23,7 +23,6 @@
 #include <eos/form-factors/mesonic.hh>
 #include <eos/form-factors/mesonic-processes.hh>
 #include <eos/maths/power-of.hh>
-#include <eos/maths/szego-polynomial.hh>
 #include <eos/utils/kinematic.hh>
 #include <eos/utils/diagnostics.hh>
 #include <eos/utils/options.hh>
@@ -46,10 +45,10 @@ namespace eos
     {
         public:
             // The following parameters are part of the parameterization and should match the
-            // the ones used for the extraction of the coefficients of the z-expension
+            // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_V;
             UsedParameter m_R_0m, m_R_1m, m_R_1p;
-            UsedParameter tp_a, tp_v, t0;
+            UsedParameter sV, sA, s0, Q2;
 
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_0m_names;
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_1m_names;
@@ -61,13 +60,14 @@ namespace eos
                 m_R_0m(UsedParameter(p[resonance_0m_names.at(Process_::partonic_transition)], *this)),
                 m_R_1m(UsedParameter(p[resonance_1m_names.at(Process_::partonic_transition)], *this)),
                 m_R_1p(UsedParameter(p[resonance_1p_names.at(Process_::partonic_transition)], *this)),
-                tp_a(UsedParameter(p[std::string(Process_::label) + "::tp_a@G2026"], *this)),
-                tp_v(UsedParameter(p[std::string(Process_::label) + "::tp_v@G2026"], *this)),
-                t0(UsedParameter(p[std::string(Process_::label) + "::t0@G2026"], *this))
+                sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
+                sA(UsedParameter(p[std::string(Process_::label) + "::sA@G2026"], *this)),
+                s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
+                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this))
             {
             }
 
-            double tm() const
+            double sm() const
             {
                 return power_of<2>(m_B - m_V);
             }
@@ -85,20 +85,14 @@ namespace eos
                 return real(calc_z(complex<double>(s, 0.0), complex<double>(sp, 0.0), complex<double>(s0, 0.0)));
             }
 
-            std::array<double, 6> orthonormal_polynomials_v(const double & z) const
+            std::array<double, 6> monomials_v(const double & z) const
             {
-                const double measure = 2 * std::arg(calc_z(complex<double>(power_of<2>(m_B + m_V)), complex<double>(tp_v), complex<double>(t0)));
-                const SzegoPolynomial<5> polynomials_set(SzegoPolynomial<5>::FlatMeasure(measure));
-
-                return polynomials_set(z);
+                return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
 
-            std::array<double, 6> orthonormal_polynomials_a(const double & z) const
+            std::array<double, 6> monomials_a(const double & z) const
             {
-                const double measure = 2 * std::arg(calc_z(complex<double>(power_of<2>(m_B + m_V)), complex<double>(tp_a), complex<double>(t0)));
-                const SzegoPolynomial<5> polynomials_set(SzegoPolynomial<5>::FlatMeasure(measure));
-
-                return polynomials_set(z);
+                return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
     };
 
@@ -116,9 +110,21 @@ namespace eos
             const UsedParameter & _mB, _mV;
 
             QualifiedName _par_name(const std::string & ff_name, unsigned idx) const;
-            double _phi(const double & t, const double & t_p, const double & chi,
-                        const int & A, const unsigned B, const unsigned C, const unsigned k,
-                        const unsigned p, const unsigned n, const unsigned m) const;
+
+            double _phi(
+                const double & s,
+                const double & sG,
+                const double & chi,
+                const unsigned Kn,
+                const int Ksp,
+                const int Ksm,
+                const int Kspm,
+                const unsigned a,
+                const unsigned b,
+                const unsigned c,
+                const unsigned d,
+                const unsigned e
+            ) const;
 
             inline double _phi_v(const double & q2) const;
             inline double _phi_a_0(const double & q2) const;
@@ -141,22 +147,23 @@ namespace eos
 
             static FormFactors<PToV> * make(const Parameters & parameters, const Options & options);
 
-            virtual double v(const double & s) const;
-            virtual double a_0(const double & s) const;
-            virtual double a_1(const double & s) const;
-            virtual double a_12(const double & s) const;
-            virtual double a_2(const double & s) const;
-            virtual double t_1(const double & s) const;
-            virtual double t_2(const double & s) const;
-            virtual double t_23(const double & s) const;
-            virtual double t_3(const double & s) const;
+            virtual double v(const double & q2) const;
+            virtual double a_0(const double & q2) const;
+            virtual double a_1(const double & q2) const;
+            virtual double a_12(const double & q2) const;
+            virtual double a_2(const double & q2) const;
+            virtual double t_1(const double & q2) const;
+            virtual double t_2(const double & q2) const;
+            virtual double t_23(const double & q2) const;
+            virtual double t_3(const double & q2) const;
 
-            virtual double f_perp(const double & s) const;
-            virtual double f_para(const double & s) const;
-            virtual double f_long(const double & s) const;
-            virtual double f_perp_T(const double & s) const;
-            virtual double f_para_T(const double & s) const;
-            virtual double f_long_T(const double & s) const;
+            // Unused but needed to satisfy the FormFactors interface
+            virtual double f_perp(const double & q2) const;
+            virtual double f_para(const double & q2) const;
+            virtual double f_long(const double & q2) const;
+            virtual double f_perp_T(const double & q2) const;
+            virtual double f_para_T(const double & q2) const;
+            virtual double f_long_T(const double & q2) const;
 
             // Saturations of the dispersive bounds
             // J = 0
@@ -172,21 +179,21 @@ namespace eos
 
 
             // Auxilliary functions: series and derivative of the series
-            double v_series(const double & s) const;
-            double a_0_series(const double & s) const;
-            double a_1_series(const double & s) const;
-            double a_12_series(const double & s) const;
-            double t_1_series(const double & s) const;
-            double t_2_series(const double & s) const;
-            double t_23_series(const double & s) const;
+            double v_series(const double & q2) const;
+            double a_0_series(const double & q2) const;
+            double a_1_series(const double & q2) const;
+            double a_12_series(const double & q2) const;
+            double t_1_series(const double & q2) const;
+            double t_2_series(const double & q2) const;
+            double t_23_series(const double & q2) const;
 
-            double v_series_prime(const double & s) const;
-            double a_0_series_prime(const double & s) const;
-            double a_1_series_prime(const double & s) const;
-            double a_12_series_prime(const double & s) const;
-            double t_1_series_prime(const double & s) const;
-            double t_2_series_prime(const double & s) const;
-            double t_23_series_prime(const double & s) const;
+            double v_series_prime(const double & q2) const;
+            double a_0_series_prime(const double & q2) const;
+            double a_1_series_prime(const double & q2) const;
+            double a_12_series_prime(const double & q2) const;
+            double t_1_series_prime(const double & q2) const;
+            double t_2_series_prime(const double & q2) const;
+            double t_23_series_prime(const double & q2) const;
 
             /*!
              * References used in the computation of our observables.
@@ -212,10 +219,10 @@ namespace eos
     {
         public:
             // The following parameters are part of the parameterization and should match the
-            // the ones used for the extraction of the coefficients of the z-expension
+            // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_P;
             UsedParameter m_R_0p, m_R_1m;
-            UsedParameter tp, t0;
+            UsedParameter sV, s0, Q2;
 
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_0p_names;
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_1m_names;
@@ -225,12 +232,13 @@ namespace eos
                 m_P(UsedParameter(p[std::string(Process_::name_P) + "@BSZ2015"], *this)),
                 m_R_0p(UsedParameter(p[resonance_0p_names.at(Process_::partonic_transition)], *this)),
                 m_R_1m(UsedParameter(p[resonance_1m_names.at(Process_::partonic_transition)], *this)),
-                tp(UsedParameter(p[std::string(Process_::label) + "::tp@G2026"], *this)),
-                t0(UsedParameter(p[std::string(Process_::label) + "::t0@G2026"], *this))
+                sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
+                s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
+                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this))
             {
             }
 
-            double tm() const
+            double sm() const
             {
                 return power_of<2>(m_B - m_P);
             }
@@ -248,28 +256,25 @@ namespace eos
                 return real(calc_z(complex<double>(s, 0.0), complex<double>(sp, 0.0), complex<double>(s0, 0.0)));
             }
 
-            std::array<double, 6> orthonormal_polynomials(const double & z) const
+            std::array<double, 6> monomials(const double & z) const
             {
-                const double measure = 2 * std::arg(calc_z(complex<double>(power_of<2>(m_B + m_P)), complex<double>(tp), complex<double>(t0)));
-                const SzegoPolynomial<5> polynomials_set(SzegoPolynomial<5>::FlatMeasure(measure));
-
-                return polynomials_set(z);
+                return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
 
-            std::array<complex<double>, 6> orthonormal_polynomials(const complex<double> & z) const
+            std::array<complex<double>, 6> monomials(const complex<double> & z) const
             {
-                const double measure = 2 * std::arg(calc_z(complex<double>(power_of<2>(m_B + m_P)), complex<double>(tp), complex<double>(t0)));
-                const SzegoPolynomial<5> polynomials_set(SzegoPolynomial<5>::FlatMeasure(measure));
-
-                return polynomials_set(z);
+                return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
 
-            std::array<complex<double>, 6> orthonormal_polynomials_derivatives(const complex<double> & z) const
+            std::array<complex<double>, 6> monomials_derivatives(const complex<double> & z) const
             {
-                const double measure = 2 * std::arg(calc_z(complex<double>(power_of<2>(m_B + m_P)), complex<double>(tp), complex<double>(t0)));
-                const SzegoPolynomial<5> polynomials_set(SzegoPolynomial<5>::FlatMeasure(measure));
-
-                return polynomials_set.derivatives(z);
+                return {
+                    complex<double>(0.0, 0.0), 1.0,
+                    2.0 * z,
+                    3.0 * power_of<2>(z),
+                    4.0 * power_of<3>(z),
+                    5.0 * power_of<4>(z)
+                };
             }
     };
 
@@ -288,9 +293,20 @@ namespace eos
 
             QualifiedName _par_name(const std::string & ff_name, unsigned idx) const;
 
-            double _phi(const double & s, const double & t_p, const double & chi,
-                        const int & A, const unsigned B, const unsigned C, const unsigned k,
-                        const unsigned p, const unsigned n, const unsigned m) const;
+            double _phi(
+                const double & s,
+                const double & sG,
+                const double & chi,
+                const unsigned Kn,
+                const int Ksp,
+                const int Ksm,
+                const int Kspm,
+                const unsigned a,
+                const unsigned b,
+                const unsigned c,
+                const unsigned d,
+                const unsigned e
+            ) const;
 
             inline double _phi_f_p(const double & q2) const;
             inline double _phi_f_0(const double & q2) const;
@@ -306,11 +322,12 @@ namespace eos
 
             static FormFactors<PToP> * make(const Parameters & parameters, const Options & options);
 
-            virtual double f_p(const double & s) const;
-            virtual double f_0(const double & s) const;
-            virtual double f_t(const double & s) const;
+            virtual double f_p(const double & q2) const;
+            virtual double f_0(const double & q2) const;
+            virtual double f_t(const double & q2) const;
 
-            virtual double f_plus_T(const double & s) const;
+            // Unused but needed to satisfy the FormFactors interface
+            virtual double f_plus_T(const double & q2) const;
 
             // Saturations of the dispersive bounds
             // J = 0
@@ -325,13 +342,13 @@ namespace eos
             Diagnostics diagnostics() const;
 
             // Auxilliary functions: series and derivative of the series
-            double f_p_series(const double & s) const;
-            double f_0_series(const double & s) const;
-            double f_t_series(const double & s) const;
+            double f_p_series(const double & q2) const;
+            double f_0_series(const double & q2) const;
+            double f_t_series(const double & q2) const;
 
-            double f_p_series_prime(const double & s) const;
-            double f_0_series_prime(const double & s) const;
-            double f_t_series_prime(const double & s) const;
+            double f_p_series_prime(const double & q2) const;
+            double f_0_series_prime(const double & q2) const;
+            double f_t_series_prime(const double & q2) const;
 
             /*!
              * References used in the computation of our observables.

@@ -38,21 +38,23 @@ class BToKG2026FormFactorsTest :
 
             {
                 Parameters p = Parameters::Defaults();
-                p["B->K::a^f+_0@G2026"]     =  0.01;
-                p["B->K::a^f+_1@G2026"]     = -0.02;
-                p["B->K::a^fT_0@G2026"]     =  0.03;
-                p["B->K::a^fT_1@G2026"]     = -0.04;
-                p["B->K::a^f0_1@G2026"]     =  0.05;
+                p["B->K::a^f+_0@G2026"]  =  0.01;
+                p["B->K::a^f+_1@G2026"]  = -0.02;
+                p["B->K::a^fT_0@G2026"]  =  0.03;
+                p["B->K::a^fT_1@G2026"]  = -0.04;
+                p["B->K::a^f0_1@G2026"]  =  0.05;
 
-                p["mass::B_d@BSZ2015"]        =  5.279;
-                p["mass::K_d@BSZ2015"]        =  0.492;
-                p["mass::B_s@BSZ2015"]        =  5.367;
-                p["mass::B_s^*@BSZ2015"]      =  5.416;
-                p["mass::B_s,0@BSZ2015"]      =  5.711;
-                p["mass::B_s,1@BSZ2015"]      =  5.750;
+                p["mass::B_d@BSZ2015"]   =  5.279;
+                p["mass::K_d@BSZ2015"]   =  0.494;
+                p["mass::B_s@BSZ2015"]   =  5.367;
+                p["mass::B_s^*@BSZ2015"] =  5.416;
+                p["mass::B_s,0@BSZ2015"] =  5.711;
+                p["mass::B_s,1@BSZ2015"] =  5.750;
 
-                // Optimized t0 = (mB + mK) * (sqrt(mB) - sqrt(mK))^2
-                p["B->K::t0@G2026"]         =  14.703305673;
+                // Optimized s0 = (mB + mK) * (sqrt(mB) - sqrt(mK))^2
+                p["B->K::s0@G2026"]      =  14.682165;
+                p["B->K::sV@G2026"]      =  30.272004;
+                p["B->K::Q2@G2026"]      =  0.0;
 
 
                 G2026FormFactors<BToK, PToP> ff(p, Options{ });
@@ -60,12 +62,31 @@ class BToKG2026FormFactorsTest :
                 Diagnostics diagnostics = ff.diagnostics();
                 static const std::vector<std::pair<double, double>> reference
                 {
-                    std::make_pair(  0.144596,  eps), // z(q2 =  0)
-                    std::make_pair(  0.0562957, eps), // z(q2 = 10)
-                    std::make_pair(  0.398942,  eps), // p_0(z = 0.0)
-                    std::make_pair(  0,         eps), // p_1(z = 0.0)
-                    std::make_pair(  0.398942,  eps), // p_0(z = z(q2 = 10))
-                    std::make_pair(  0.0224588, eps), // p_1(z = z(q2 = 10))
+                    std::make_pair(  0.16439553,  eps), // z(q2 =  0)
+                    std::make_pair(  0.052958941, eps), // z(q2 = 11)
+                    std::make_pair( -0.059753422, eps), // z(q2 = 18)
+                    std::make_pair(  0.18728718,  eps), // z(q2 = -3)
+
+                    std::make_pair(  1.0,           eps), // z_0(z = 0.0)
+                    std::make_pair(  0.16439553,    eps), // z_1(z = 0.0)
+                    std::make_pair(  0.027025890,   eps), // z_2(z = 0.0)
+                    std::make_pair(  0.0044429356,  eps), // z_3(z = 0.0)
+                    std::make_pair(  0.00073039876, eps), // z_4(z = 0.0)
+                    std::make_pair(  0.00012007429, eps), // z_5(z = 0.0)
+
+                    std::make_pair(  1.0,            eps), // z_0(z = z(q2 = 19))
+                    std::make_pair( -0.080897132,    eps), // z_1(z = z(q2 = 19))
+                    std::make_pair(  0.0065443460,   eps), // z_2(z = z(q2 = 19))
+                    std::make_pair( -0.00052941882,  eps), // z_3(z = z(q2 = 19))
+                    std::make_pair(  0.000042828465, eps), // z_4(z = z(q2 = 19))
+                    std::make_pair( -0.0000034647,   eps), // z_5(z = z(q2 = 19))
+
+                    std::make_pair(  1.0,           eps), // z_0(z = z(q2 = -3))
+                    std::make_pair(  0.18728718,    eps), // z_1(z = z(q2 = -3))
+                    std::make_pair(  0.035076488,   eps), // z_2(z = z(q2 = -3))
+                    std::make_pair(  0.0065693766,  eps), // z_3(z = z(q2 = -3))
+                    std::make_pair(  0.0012303600,  eps), // z_4(z = z(q2 = -3))
+                    std::make_pair(  0.00023043066, eps), // z_5(z = z(q2 = -3))
 
                     std::make_pair(  0.0386505, eps), // phi_f_p(z = z(q2 = -2))
                     std::make_pair(  0.0369224, eps), // phi_f_p(z = z(q2 =  1))
@@ -185,10 +206,11 @@ class BToKstarG2026FormFactorsTest :
                 p["mass::B_s,0@BSZ2015"]      =  5.711;
                 p["mass::B_s,1@BSZ2015"]      =  5.750;
 
-                // Optimized t0 = (mB + mK*) * (sqrt(mB) - sqrt(mK*))^2
-                p["B->K^*::t0@G2026"]       =  11.271194912;
-                p["B->K^*::tp_v@G2026"]     =  30.261001;
-                p["B->K^*::tp_a@G2026"]     =  31.764496;
+                // Optimized s0 = (mB + mK*) * (sqrt(mB) - sqrt(mK*))^2
+                p["B->K^*::s0@G2026"]       =  11.271194912;
+                p["B->K^*::sV@G2026"]       =  30.261001;
+                p["B->K^*::sA@G2026"]       =  31.764496;
+                p["B->K^*::Q2@G2026"]       =  0.0;
 
                 G2026FormFactors<BToKstar, PToV> ff(p, Options{ });
 
