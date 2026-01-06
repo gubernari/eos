@@ -56,6 +56,9 @@ class BToKG2026FormFactorsTest :
                 p["B->K::sV@G2026"]      =  30.272004;
                 p["B->K::Q2@G2026"]      =  0.0;
 
+                p["B->K::tchi_V0@G2026"]  =  1.42e-2;
+                p["B->K::tchi_V1@G2026"]  =  6.80e-4;
+                p["B->K::tchi_T1@G2026"]  =  4.55e-4;
 
                 G2026FormFactors<BToK, PToP> ff(p, Options{ });
 
@@ -119,12 +122,12 @@ class BToKG2026FormFactorsTest :
                 TEST_CHECK_RELATIVE_ERROR( ff.f_t(  4.0), 0.2649,    eps);
                 TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 2.87453,   eps);
 
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_0p_v(),       0.00283240578, eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_0m_a(),       0,             eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1m_v(),       0.0005,        eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1p_a(),       0,             eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1m_t(),       0.0025,        eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1p_t5(),      0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.00283240578, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.0005,        eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0025,        eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0,             eps);
 
                 // Test everything for tp smaller than the scalar resonance B_s0
                 p["B->K::tp@G2026"]         =  30.261001;
@@ -307,12 +310,12 @@ class BToKstarG2026FormFactorsTest :
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23(  4.0),  0.647415,  eps);
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  1.11061,   eps);
 
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_0p_v(),       0,            eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_0m_a(),       0.0025,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1m_v(),       0.0005,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1p_a(),       0.0166056,    eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1m_t(),       0.0113,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_1p_t5(),      0.0280612,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0,            eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0.0025,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.0005,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0166056,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0113,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0.0280612,    eps);
             }
         }
 } b_to_kstar_g2026_form_factors_test;

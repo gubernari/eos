@@ -287,22 +287,22 @@ namespace eos
                         &BFW2010FormFactors<BToK, PToP>::saturation_1p_t5),
 
                 make_observable("B->K::Saturation[0^+_V]@G", R"(\textrm{Saturation}[0^+_V])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_0p_v),
+                        &G2026FormFactors<BToK, PToP>::saturation_V0),
 
                 make_observable("B->K::Saturation[0^-_A]@G", R"(\textrm{Saturation}[0^-_A])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_0m_a),
+                        &G2026FormFactors<BToK, PToP>::saturation_A0),
 
                 make_observable("B->K::Saturation[1^-_V]@G", R"(\textrm{Saturation}[1^-_V])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_1m_v),
+                        &G2026FormFactors<BToK, PToP>::saturation_V1),
 
                 make_observable("B->K::Saturation[1^+_A]@G", R"(\textrm{Saturation}[1^+_A])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_1p_a),
+                        &G2026FormFactors<BToK, PToP>::saturation_A1),
 
                 make_observable("B->K::Saturation[1^-_T]@G", R"(\textrm{Saturation}[1^-_T])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_1m_t),
+                        &G2026FormFactors<BToK, PToP>::saturation_T1),
 
                 make_observable("B->K::Saturation[1^+_T5]@G", R"(\textrm{Saturation}[1^+_{T5}])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_1p_t5),
+                        &G2026FormFactors<BToK, PToP>::saturation_AT1),
 
                 // Auxiliary functions for [BFW:2010A]
                 make_observable("B->K::f_+_series(q2)@BFW2010", R"(\hat{f}_+^{B\to K}(q^2))", Unit::None(),

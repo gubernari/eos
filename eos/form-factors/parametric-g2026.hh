@@ -47,23 +47,29 @@ namespace eos
             // The following parameters are part of the parameterization and should match the
             // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_V;
-            UsedParameter m_R_0m, m_R_1m, m_R_1p;
+            UsedParameter m_R_A0, m_R_V1, m_R_A1;
             UsedParameter sV, sA, s0, Q2;
+            UsedParameter tchi_A0, tchi_A1, tchi_V1, tchi_T1, tchi_AT1; //tchi_1m_v, tchi_0m_a, tchi_1p_a, tchi_1m_t, tchi_1p_t5;
 
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_0m_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_1m_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_1p_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_A0_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V1_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_A1_names;
 
             G2026FormFactorTraits(const Parameters & p) :
                 m_B(UsedParameter(p[std::string(Process_::name_B) + "@BSZ2015"], *this)),
                 m_V(UsedParameter(p[std::string(Process_::name_V) + "@BSZ2015"], *this)),
-                m_R_0m(UsedParameter(p[resonance_0m_names.at(Process_::partonic_transition)], *this)),
-                m_R_1m(UsedParameter(p[resonance_1m_names.at(Process_::partonic_transition)], *this)),
-                m_R_1p(UsedParameter(p[resonance_1p_names.at(Process_::partonic_transition)], *this)),
+                m_R_A0(UsedParameter(p[resonance_A0_names.at(Process_::partonic_transition)], *this)),
+                m_R_V1(UsedParameter(p[resonance_V1_names.at(Process_::partonic_transition)], *this)),
+                m_R_A1(UsedParameter(p[resonance_A1_names.at(Process_::partonic_transition)], *this)),
                 sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
                 sA(UsedParameter(p[std::string(Process_::label) + "::sA@G2026"], *this)),
                 s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
-                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this))
+                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this)),
+                tchi_A0(UsedParameter(p[std::string(Process_::label) + "::tchi_A0@G2026"], *this)),
+                tchi_A1(UsedParameter(p[std::string(Process_::label) + "::tchi_A1@G2026"], *this)),
+                tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
+                tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this)),
+                tchi_AT1(UsedParameter(p[std::string(Process_::label) + "::tchi_AT1@G2026"], *this))
             {
             }
 
@@ -114,7 +120,8 @@ namespace eos
             double _phi(
                 const double & s,
                 const double & sG,
-                const double & chi,
+                const double & Mres,
+                const double & tchi,
                 const unsigned Kn,
                 const int Ksp,
                 const int Ksm,
@@ -167,13 +174,13 @@ namespace eos
 
             // Saturations of the dispersive bounds
             // J = 0
-            double saturation_0p_v() const;
-            double saturation_0m_a() const;
+            double saturation_V0() const;
+            double saturation_A0() const;
             // J = 1
-            double saturation_1m_v() const;
-            double saturation_1p_a() const;
-            double saturation_1m_t() const;
-            double saturation_1p_t5() const;
+            double saturation_V1() const;
+            double saturation_A1() const;
+            double saturation_T1() const;
+            double saturation_AT1() const;
 
             Diagnostics diagnostics() const;
 
@@ -221,20 +228,24 @@ namespace eos
             // The following parameters are part of the parameterization and should match the
             // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_P;
-            UsedParameter m_R_0p, m_R_1m;
+            UsedParameter m_R_V0, m_R_V1;
             UsedParameter sV, s0, Q2;
+            UsedParameter tchi_V0, tchi_V1, tchi_T1; // tchi_1m_v, tchi_0p_v, tchi_1m_t
 
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_0p_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_1m_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V0_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V1_names;
 
             G2026FormFactorTraits(const Parameters & p) :
                 m_B(UsedParameter(p[std::string(Process_::name_B) + "@BSZ2015"], *this)),
                 m_P(UsedParameter(p[std::string(Process_::name_P) + "@BSZ2015"], *this)),
-                m_R_0p(UsedParameter(p[resonance_0p_names.at(Process_::partonic_transition)], *this)),
-                m_R_1m(UsedParameter(p[resonance_1m_names.at(Process_::partonic_transition)], *this)),
+                m_R_V0(UsedParameter(p[resonance_V0_names.at(Process_::partonic_transition)], *this)),
+                m_R_V1(UsedParameter(p[resonance_V1_names.at(Process_::partonic_transition)], *this)),
                 sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
                 s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
-                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this))
+                Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this)),
+                tchi_V0(UsedParameter(p[std::string(Process_::label) + "::tchi_V0@G2026"], *this)),
+                tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
+                tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this))
             {
             }
 
@@ -296,7 +307,8 @@ namespace eos
             double _phi(
                 const double & s,
                 const double & sG,
-                const double & chi,
+                const double & Mres,
+                const double & tchi,
                 const unsigned Kn,
                 const int Ksp,
                 const int Ksm,
@@ -331,13 +343,13 @@ namespace eos
 
             // Saturations of the dispersive bounds
             // J = 0
-            double saturation_0p_v() const;
-            double saturation_0m_a() const;
+            double saturation_V0() const;
+            double saturation_A0() const;
             // J = 1
-            double saturation_1m_v() const;
-            double saturation_1p_a() const;
-            double saturation_1m_t() const;
-            double saturation_1p_t5() const;
+            double saturation_V1() const;
+            double saturation_A1() const;
+            double saturation_T1() const;
+            double saturation_AT1() const;
 
             Diagnostics diagnostics() const;
 

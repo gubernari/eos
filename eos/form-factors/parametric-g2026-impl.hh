@@ -30,7 +30,7 @@ namespace eos
 {
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
-    G2026FormFactorTraits<Process_, PToV>::resonance_0m_names
+    G2026FormFactorTraits<Process_, PToV>::resonance_A0_names
     {
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u@BSZ2015" },
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d@BSZ2015" },
@@ -41,7 +41,7 @@ namespace eos
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
-    G2026FormFactorTraits<Process_, PToV>::resonance_1m_names
+    G2026FormFactorTraits<Process_, PToV>::resonance_V1_names
     {
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u^*@BSZ2015" },
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d^*@BSZ2015" },
@@ -52,7 +52,7 @@ namespace eos
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
-    G2026FormFactorTraits<Process_, PToV>::resonance_1p_names
+    G2026FormFactorTraits<Process_, PToV>::resonance_A1_names
     {
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,1@BSZ2015" },
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,1@BSZ2015" },
@@ -126,7 +126,7 @@ namespace eos
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::_phi(const double & s, const double & sG, const double & chi,
+    G2026FormFactors<Process_, PToV>::_phi(const double & s, const double & sG, const double & Mres, const double & tchi,
                                              const unsigned Kn, const int Ksp, const int Ksm, const int Kspm,
                                              const unsigned a, const unsigned b, const unsigned c, const unsigned d, const unsigned e) const
     {
@@ -134,7 +134,7 @@ namespace eos
         const double z = _traits.calc_z(s, sG, _traits.s0),
             sp = power_of<2>(_mB + _mV);
         const double norm = std::sqrt(Process_::eta * Kn * pow(sp, Ksp) * pow(_traits.sm(), Ksm)
-                                * pow(4 * _mB * _mV, Kspm) / 96 / M_PI / M_PI / chi);
+                                * pow(4 * _mB * _mV, Kspm) / 96 / M_PI / M_PI / tchi);
 
         // set Q^2 to 0
         const double invt = 1 / ( 2.0 * (std::sqrt(sG) * std::sqrt(sG - s) + sG) - s); // simplification of -_traits.calc_z(s, sG, 0) / s
@@ -148,58 +148,58 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToV>::_phi_v(const double & q2) const
     {
-        return _phi(q2, _traits.sV, Process_::chi_1m_v, -1, 0, 0, 2, 1, 2, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_V1, -1, 0, 0, 2, 1, 2, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_0(const double & q2) const
     {
-        return _phi(q2, _traits.sA, Process_::chi_0m_a, 0, 0, 0, 3, 2, 1, 3, 0, 0);
+        return _phi(q2, _traits.sA, _traits.m_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_1(const double & q2) const
     {
-        return _phi(q2, _traits.sA, Process_::chi_1p_a, 1, 0, 0, 2, 1, 2, 1, 0, 0);
+        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_12(const double & q2) const
     {
-        return _phi(q2, _traits.sA, Process_::chi_1p_a, 0, 0, 2, 4, 2, 2, 1, 0, 0);
+        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_1(const double & q2) const
     {
-        return _phi(q2, _traits.sV, Process_::chi_1m_t, 0, 0, 0, 2, 1, 3, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_2(const double & q2) const
     {
-        return _phi(q2, _traits.sA, Process_::chi_1p_t5, 1, 1, 0, 2, 1, 3, 1, 0, 0);
+        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_23(const double & q2) const
     {
-        return _phi(q2, _traits.sA, Process_::chi_1p_t5, -1, 0, 2, 1, 0, 3, 1, 0, 0);
+        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0, 0);
     }
 
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToV>::_a_A12_0() const
     {
-        const double x_A12 = _phi_a_12(0.0) * (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0)
+        const double x_A12 = _phi_a_12(0.0) * (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0)
                              * (power_of<2>(_mB) - power_of<2>(_mV)) / 8.0 / _mB / _mV;
-        const double x_A0  = _phi_a_0(0.0) * (power_of<2>(_traits.m_R_0m) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_0m)) : 1.0);
+        const double x_A0  = _phi_a_0(0.0) * (power_of<2>(_traits.m_R_A0) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_A0)) : 1.0);
         std::array<double, 5> a;
         a[0] = x_A12 * this->_a_A0[0];
         for (unsigned i = 1 ; i < a.size() ; ++i)
@@ -214,8 +214,8 @@ namespace eos
     double
     G2026FormFactors<Process_, PToV>::_a_T2_0() const
     {
-        const double x_T2 = _phi_t_2(0.0) * (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0);
-        const double x_T1 = _phi_t_1(0.0) * (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double x_T2 = _phi_t_2(0.0) * (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
+        const double x_T1 = _phi_t_1(0.0) * (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const auto polynomials_T2 = _traits.monomials_a(_traits.calc_z(0.0, _traits.sA, _traits.s0));
         const auto polynomials_T1 = _traits.monomials_v(_traits.calc_z(0.0, _traits.sV, _traits.s0));
 
@@ -267,7 +267,7 @@ namespace eos
         std::array<double, 5> coefficients;
         std::copy(_a_V.begin(), _a_V.end(), coefficients.begin());
         // resonances for 1^m
-        const double blaschke     = (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_v(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
         const auto   polynomials  = _traits.monomials_v(z);
@@ -283,7 +283,7 @@ namespace eos
         std::array<double, 5> coefficients;
         std::copy(_a_A0.begin(), _a_A0.end(), coefficients.begin());
         // resonances for 0^m
-        const double blaschke     = (power_of<2>(_traits.m_R_0m) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_0m)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_A0) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A0)) : 1.0);
         const double phi          = _phi_a_0(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
         const auto   polynomials  = _traits.monomials_a(z);
@@ -300,7 +300,7 @@ namespace eos
         coefficients[0] = _a_A1_0();
         std::copy(_a_A1.begin(), _a_A1.end(), coefficients.begin() + 1);
         // resonances for 1^p
-        const double blaschke     = (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_a_1(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
         const auto   polynomials  = _traits.monomials_a(z);
@@ -317,7 +317,7 @@ namespace eos
         coefficients[0] = _a_A12_0();
         std::copy(_a_A12.begin(), _a_A12.end(), coefficients.begin() + 1);
         // resonances for 1^p
-        const double blaschke     = (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_a_12(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
         const auto   polynomials  = _traits.monomials_a(z);
@@ -333,7 +333,7 @@ namespace eos
         std::array<double, 5> coefficients;
         std::copy(_a_T1.begin(), _a_T1.end(), coefficients.begin());
         // resonances for T (1^m state)
-        const double blaschke     = (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_t_1(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
         const auto   polynomials  = _traits.monomials_v(z);
@@ -350,7 +350,7 @@ namespace eos
         coefficients[0] = _a_T2_0();
         std::copy(_a_T2.begin(), _a_T2.end(), coefficients.begin() + 1);
         // resonances for T5 (1^p state)
-        const double blaschke     = (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_t_2(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
         const auto   polynomials  = _traits.monomials_a(z);
@@ -367,7 +367,7 @@ namespace eos
         coefficients[0] = _a_T23_0();
         std::copy(_a_T23.begin(), _a_T23.end(), coefficients.begin() + 1);
         // resonances for T (1^p state)
-        const double blaschke     = (power_of<2>(_traits.m_R_1p) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_1p)) : 1.0);
+        const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_t_23(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
         const auto   polynomials  = _traits.monomials_a(z);
@@ -406,28 +406,28 @@ namespace eos
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_0p_v() const
+    G2026FormFactors<Process_, PToV>::saturation_V0() const
     {
         return 0.0;
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_0m_a() const
+    G2026FormFactors<Process_, PToV>::saturation_A0() const
     {
         return std::inner_product(_a_A0.begin(), _a_A0.end(), _a_A0.begin(), 0.0);
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_1m_v() const
+    G2026FormFactors<Process_, PToV>::saturation_V1() const
     {
         return std::inner_product(_a_V.begin(), _a_V.end(), _a_V.begin(), 0.0);
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_1p_a() const
+    G2026FormFactors<Process_, PToV>::saturation_A1() const
     {
         std::array<double, 5> coefficients_A12;
         coefficients_A12[0] = _a_A12_0();
@@ -444,14 +444,14 @@ namespace eos
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_1m_t() const
+    G2026FormFactors<Process_, PToV>::saturation_T1() const
     {
         return std::inner_product(_a_T1.begin(), _a_T1.end(), _a_T1.begin(), 0.0);
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToV>::saturation_1p_t5() const
+    G2026FormFactors<Process_, PToV>::saturation_AT1() const
     {
         std::array<double, 5> coefficients_T2;
         coefficients_T2[0] = _a_T2_0();
@@ -565,7 +565,7 @@ namespace eos
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
-    G2026FormFactorTraits<Process_, PToP>::resonance_0p_names
+    G2026FormFactorTraits<Process_, PToP>::resonance_V0_names
     {
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,0@BSZ2015" },
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,0@BSZ2015" },
@@ -576,7 +576,7 @@ namespace eos
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
-    G2026FormFactorTraits<Process_, PToP>::resonance_1m_names
+    G2026FormFactorTraits<Process_, PToP>::resonance_V1_names
     {
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u^*@BSZ2015" },
         { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d^*@BSZ2015" },
@@ -629,7 +629,7 @@ namespace eos
 
 //    template<typename Process_>
 //    double
-//    G2026FormFactors<Process_, PToP>::_phi(const double & s, const double & sG, const double & chi,
+//    G2026FormFactors<Process_, PToP>::_phi(const double & s, const double & sG, const double & tchi,
 //                                             const unsigned Kn, const int Ksp, const int Ksm, const int Kspm,
 //                                             const unsigned a, const unsigned b, const unsigned c) const
 //    {
@@ -638,7 +638,7 @@ namespace eos
 //            sp = power_of<2>(_mB + _mP);
 //
 //        const double norm = std::sqrt(Process_::eta * Kn * pow(sp, Ksp) * pow(_traits.sm(), Ksm)
-//                                * pow(4 * _mB * _mP, Kspm) / 96 / M_PI / M_PI / chi);
+//                                * pow(4 * _mB * _mP, Kspm) / 96 / M_PI / M_PI / tchi);
 //
 //        // set Q^2 to 0
 //        const double invt = 1 / ( 2.0 * (std::sqrt(sG) * std::sqrt(sG - s) + sG) - s); // simplification of -_z(s, t_p, 0) / s
@@ -653,10 +653,12 @@ namespace eos
     G2026FormFactors<Process_, PToP>::_phi(
         const double & s,
         const double & sG,
-        const double & chi,
+        const double & Mres,
+        const double & tchi,
         const unsigned Kn,
         const int Ksp,
-        const int Ksm, const int Kspm,
+        const int Ksm,
+        const int Kspm,
         const unsigned a,
         const unsigned b,
         const unsigned c,
@@ -677,7 +679,7 @@ namespace eos
         // Overall normalization
         const double norm = std::sqrt(
             Process_::eta / (
-                Kn * pow(sp, Ksp) * pow(sm, Ksm) * pow(sp - sm, Kspm) * M_PI * chi
+                Kn * pow(sp, Ksp) * pow(sm, Ksm) * pow(sp - sm, Kspm) * M_PI * tchi
             )
         );
 
@@ -696,9 +698,14 @@ namespace eos
             std::pow(sqrt_sG_s + sqrt_sG, -(c + 3.0));
 
         const double factor_d =
-            std::pow((sqrt_sG_s + sqrt_sG) / (sqrt_sG_s + sqrt_sG_Q2), d); // Placeholder for Q2 dependence if needed in future
+            std::pow((sqrt_sG_s + sqrt_sG) / (sqrt_sG_s + sqrt_sG_Q2), d);
 
-        const double factor_e = 1.0; // Placeholder for additional factors if needed in future
+        const double factor_e =
+            std::pow(
+                (power_of<2>(Mres) - s)
+                / power_of<2>(sqrt_sG_s + sqrt_sG),
+                e
+            );
 
         return norm
              * factor_const
@@ -713,29 +720,29 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_p(const double & q2) const
     {
-        return _phi(q2, _traits.sV, Process_::chi_1m_v, 0, 0, 0, 1, 2, 2, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_V1, 0, 0, 0, 1, 2, 2, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_0(const double & q2) const
     {
-        return _phi(q2, _traits.sV, Process_::chi_0p_v, 1, 1, 0, 3, 2, 1, 1, 0, 0);
+        return _phi(q2, _traits.sV, _traits.m_R_V0, _traits.tchi_V0, 1, 1, 0, 3, 2, 1, 1, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_t(const double & q2) const
     {
-        return _phi(q2, _traits.sV, Process_::chi_1m_t, -1, 0, 0, 1, 0, 3, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0, 0);
     }
 
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToP>::_a_f0_0() const
     {
-        const double x_f0 = _phi_f_0(0.0) * (power_of<2>(_traits.m_R_0p) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_0p)) : 1.0);
-        const double x_fp = _phi_f_p(0.0) * (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double x_f0 = _phi_f_0(0.0) * (power_of<2>(_traits.m_R_V0) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_V0)) : 1.0);
+        const double x_fp = _phi_f_p(0.0) * (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         std::array<double, 5> a;
         a[0] = x_f0 * this->_a_fp[0];
         for (unsigned i = 1 ; i < a.size() ; ++i)
@@ -753,7 +760,7 @@ namespace eos
         std::array<double, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         // resonances for 1^m
-        const double blaschke = (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double blaschke = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_f_p(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
         const auto   polynomials  = _traits.monomials(z);
@@ -770,7 +777,7 @@ namespace eos
         coefficients[0] = _a_f0_0();
         std::copy(_a_f0.begin(), _a_f0.end(), coefficients.begin() + 1);
         // resonances for 0^p
-        const double blaschke = (power_of<2>(_traits.m_R_0p) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_0p)) : 1.0);
+        const double blaschke = (power_of<2>(_traits.m_R_V0) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V0)) : 1.0);
         const double phi          = _phi_f_0(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
         const auto   polynomials  = _traits.monomials(z);
@@ -786,7 +793,7 @@ namespace eos
         std::array<double, 5> coefficients;
         std::copy(_a_ft.begin(), _a_ft.end(), coefficients.begin());
         // resonances for 1^m
-        const double blaschke = (power_of<2>(_traits.m_R_1m) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_1m)) : 1.0);
+        const double blaschke = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_f_t(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
         const auto   polynomials  = _traits.monomials(z);
@@ -878,7 +885,7 @@ namespace eos
 
     template <typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_0p_v() const
+    G2026FormFactors<Process_, PToP>::saturation_V0() const
     {
         std::array<double, 5> coefficients;
         coefficients[0] = _a_f0_0();
@@ -889,35 +896,35 @@ namespace eos
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_0m_a() const
+    G2026FormFactors<Process_, PToP>::saturation_A0() const
     {
         return 0.;
     }
 
     template <typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_1m_v() const
+    G2026FormFactors<Process_, PToP>::saturation_V1() const
     {
         return std::inner_product(_a_fp.begin(), _a_fp.end(), _a_fp.begin(), 0.0);
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_1p_a() const
+    G2026FormFactors<Process_, PToP>::saturation_A1() const
     {
         return 0.;
     }
 
     template <typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_1m_t() const
+    G2026FormFactors<Process_, PToP>::saturation_T1() const
     {
         return std::inner_product(_a_ft.begin(), _a_ft.end(), _a_ft.begin(), 0.0);
     }
 
     template<typename Process_>
     double
-    G2026FormFactors<Process_, PToP>::saturation_1p_t5() const
+    G2026FormFactors<Process_, PToP>::saturation_AT1() const
     {
         return 0.;
     }
