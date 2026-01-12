@@ -30,35 +30,68 @@ namespace eos
 {
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
+    G2026FormFactorTraits<Process_, PToV>::pole_A0_names
+    {
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,A^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,A^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,A^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,A^0@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,A^0@G2026" }
+    };
+
+    template <typename Process_>
+    const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
+    G2026FormFactorTraits<Process_, PToV>::pole_V1_names
+    {
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^1@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^1@G2026" }
+    };
+
+    template <typename Process_>
+    const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
+    G2026FormFactorTraits<Process_, PToV>::pole_A1_names
+    {
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,A^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,A^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,A^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,A^1@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,A^1@G2026" }
+    };
+
+    template <typename Process_>
+    const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
     G2026FormFactorTraits<Process_, PToV>::resonance_A0_names
     {
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s@BSZ2015" }
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,A^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,A^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,A^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,A^0*@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,A^0*@G2026" }
     };
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
     G2026FormFactorTraits<Process_, PToV>::resonance_V1_names
     {
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s^*@BSZ2015" }
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^1*@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^1*@G2026" }
     };
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
     G2026FormFactorTraits<Process_, PToV>::resonance_A1_names
     {
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,1@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,1@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,1@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,1@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,1@BSZ2015" }
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,A^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,A^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,A^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,A^1*@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,A^1*@G2026" }
     };
 
     template<typename Process_>
@@ -148,49 +181,49 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToV>::_phi_v(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_V1, -1, 0, 0, 2, 1, 2, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1, -1, 0, 0, 2, 1, 2, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_0(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_1(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_12(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_1(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_2(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_23(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0, 0);
     }
 
     template <typename Process_>
@@ -565,24 +598,46 @@ namespace eos
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
+    G2026FormFactorTraits<Process_, PToP>::pole_V0_names
+    {
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^0@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^0@G2026" },
+        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^0@G2026" }
+    };
+
+    template <typename Process_>
+    const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
+    G2026FormFactorTraits<Process_, PToP>::pole_V1_names
+    {
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^1@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^1@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^1@G2026" }
+    };
+
+    template <typename Process_>
+    const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
     G2026FormFactorTraits<Process_, PToP>::resonance_V0_names
     {
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,0@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,0@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,0@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,0@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,0@BSZ2015" }
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^0*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^0*@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^0*@G2026" }
     };
 
     template <typename Process_>
     const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string>
     G2026FormFactorTraits<Process_, PToP>::resonance_V1_names
     {
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c^*@BSZ2015" },
-        { std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s^*@BSZ2015" }
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::up), "mass::B_u,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::down), "mass::B_d,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::strange), "mass::B_s,V^1*@G2026" },
+        { std::make_tuple(QuarkFlavor::bottom, QuarkFlavor::charm), "mass::B_c,V^1*@G2026" },
+        //{ std::make_tuple(QuarkFlavor::charm,  QuarkFlavor::strange), "mass::D_s,V^1*@G2026" }
     };
 
     template<typename Process_>
@@ -700,12 +755,15 @@ namespace eos
         const double factor_d =
             std::pow((sqrt_sG_s + sqrt_sG) / (sqrt_sG_s + sqrt_sG_Q2), d);
 
-        const double factor_e =
-            std::pow(
-                (power_of<2>(Mres) - s)
+        const double Mres2 = power_of<2>(Mres);
+        const bool include_factor_e = (Mres2 > sG) && (Mres2 < sm);
+        const double factor_e = include_factor_e
+            ? std::pow(
+                (Mres2 - s)
                 / power_of<2>(sqrt_sG_s + sqrt_sG),
                 e
-            );
+            )
+            : 1.0;
 
         return norm
              * factor_const
@@ -720,21 +778,21 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_p(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_V1, 0, 0, 0, 1, 2, 2, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1, 0, 0, 0, 1, 2, 2, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_0(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V0, _traits.tchi_V0, 1, 1, 0, 3, 2, 1, 1, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V0, _traits.tchi_V0, 1, 1, 0, 3, 2, 1, 1, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_t(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0, 0);
     }
 
     template <typename Process_>
