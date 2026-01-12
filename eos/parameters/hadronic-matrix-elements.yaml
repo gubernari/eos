@@ -355,6 +355,121 @@ groups:
           unit:     'GeV'
   # }}}
 
+  # Masses used in the G2026 form factor parametrization
+  # All masses can be found in [G:2026A]
+  # {{{
+  - title: 'Masses used in the G2026 form factor parametrization'
+    description: ''
+    parameters:
+      # b-> u,d
+      'mass::B_u,A^0@G2026' :
+          central: +5.279
+          min:     +5.279
+          max:     +5.279
+          latex:    '$m_A^0$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_u}$'
+      'mass::B_u,V^1@G2026' :
+          central: +5.325
+          min:     +5.325
+          max:     +5.325
+          latex:    '$m_V^1$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_u^*}$'
+      'mass::B_u,A^1*@G2026' :
+          central: +5.726
+          min:     +5.726
+          max:     +5.726
+          latex:    '$m_A^{1*}$'
+          unit:     'GeV'
+      'mass::B_d,A^0@G2026' :
+          central: +5.279
+          min:     +5.279
+          max:     +5.279
+          latex:    '$m_A^0$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_d}$'
+      'mass::B_d,V^1@G2026' :
+          central: +5.325
+          min:     +5.325
+          max:     +5.325
+          latex:    '$m_V^1$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_d^*}$'
+      'mass::B_d,A^1*@G2026' :
+          central: +5.726
+          min:     +5.726
+          max:     +5.726
+          latex:    '$m_A^{1*}$'
+          unit:     'GeV'
+      # b-> s
+      'mass::B_s,A^0@G2026' :
+          central: +5.367
+          min:     +5.367
+          max:     +5.367
+          latex:    '$m_A^0$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_s}$'
+      'mass::B_s,V^0*@G2026' :
+          central: +5.711
+          min:     +5.711
+          max:     +5.711
+          latex:    '$m_V^{0*}$'
+          unit:     'GeV'
+      'mass::B_s,V^1@G2026' :
+          central: +5.415
+          min:     +5.415
+          max:     +5.415
+          latex:    '$m_V^1$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_s^*}$'
+      'mass::B_s,A^1*@G2026' :
+          central: +5.829
+          min:     +5.829
+          max:     +5.829
+          latex:    '$m_A^{1*}$'
+          unit:     'GeV'
+      # b-> c
+      'mass::B_c,A^0@G2026' :
+          central: +6.274
+          min:     +6.274
+          max:     +6.274
+          latex:    '$m_A^0$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_c}$'
+      'mass::B_c,A^0*@G2026' :
+          central: +6.871
+          min:     +6.871
+          max:     +6.871
+          latex:    '$m_A^{0*}$'
+          unit:     'GeV'
+      'mass::B_c,V^0*@G2026' :
+          central: +6.707
+          min:     +6.707
+          max:     +6.707
+          latex:    '$m_V^{0*}$'
+          unit:     'GeV'
+      'mass::B_c,V^1@G2026' :
+          central: +6.328
+          min:     +6.328
+          max:     +6.328
+          latex:    '$m_V^1$'
+          unit:     'GeV'
+          comments: 'also known as $m_{B_c^*}$'
+      'mass::B_c,V^1*@G2026' :
+          central: +6.922
+          min:     +6.922
+          max:     +6.922
+          latex:    '$m_V^{1*}$'
+          unit:     'GeV'
+      'mass::B_c,A^1*@G2026' :
+          central: +6.739
+          min:     +6.739
+          max:     +6.739
+          latex:    '$m_A^{1*}$'
+          unit:     'GeV'
+  # }}}
+
   # Parameters in B -> P Form Factor Parametrizations
   # {{{
   - title: 'Parameters in $B\to P$ Form Factor Parametrizations'
