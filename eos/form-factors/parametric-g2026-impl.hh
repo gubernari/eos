@@ -161,7 +161,7 @@ namespace eos
     double
     G2026FormFactors<Process_, PToV>::_phi(const double & s, const double & sG, const double & Mres, const double & tchi,
                                              const unsigned Kn, const int Ksp, const int Ksm, const int Kspm,
-                                             const unsigned a, const unsigned b, const unsigned c, const unsigned d, const unsigned e) const
+                                             const unsigned a, const unsigned b, const unsigned c, const unsigned d) const
     {
         // [GvDV:2022B]
         const double z = _traits.calc_z(s, sG, _traits.s0),
@@ -181,49 +181,49 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToV>::_phi_v(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1, -1, 0, 0, 2, 1, 2, 3, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1, -1, 0, 0, 2, 1, 2, 3, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_0(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.ms_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_1(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_12(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_1(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_2(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0);
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_23(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0, 0);
+        return _phi(q2, _traits.sA, _traits.ms_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0);
     }
 
     template <typename Process_>
@@ -717,8 +717,7 @@ namespace eos
         const unsigned a,
         const unsigned b,
         const unsigned c,
-        const unsigned d,
-        const unsigned e
+        const unsigned d
     ) const
     {
         // Common kinematic invariants
@@ -756,43 +755,47 @@ namespace eos
             std::pow((sqrt_sG_s + sqrt_sG) / (sqrt_sG_s + sqrt_sG_Q2), d);
 
         const double Mres2 = power_of<2>(Mres);
-        const bool include_factor_e = (Mres2 > sG) && (Mres2 < sm);
-        const double factor_e = include_factor_e
-            ? std::pow(
-                (Mres2 - s)
-                / power_of<2>(sqrt_sG_s + sqrt_sG),
-                e
-            )
+        const bool include_factor_Mres = (Mres2 > sG) && (Mres2 < sp);
+        const double factor_Mres = include_factor_Mres
+            ? (Mres2 - s) / power_of<2>(sqrt_sG_s + sqrt_sG)
             : 1.0;
 
         return norm
-             * factor_const
-             * factor_a
-             * factor_b
-             * factor_c
-             * factor_d
-             * factor_e;
+            * factor_const
+            * factor_a
+            * factor_b
+            * factor_c
+            * factor_d
+            * factor_Mres;
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_p(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1, 0, 0, 0, 1, 2, 2, 3, 0, 0);
+        return _phi(
+            q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_V1,
+            48 /*Kn*/, 0 /*Ksp*/, 0 /*Ksm*/, 0 /*Kspm*/,
+            3 /*a*/, 3 /*b*/, 2 /*c*/, 3 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_0(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V0, _traits.tchi_V0, 1, 1, 0, 3, 2, 1, 1, 0, 0);
+        return _phi(
+            q2, _traits.sV, _traits.ms_R_V0, _traits.tchi_V0,
+            16 /*Kn*/, -1 /*Ksp*/, -1 /*Ksm*/, 0 /*Kspm*/,
+            1 /*a*/, 1 /*b*/, 1 /*c*/, 2 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_t(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0, 0);
+        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0);
     }
 
     template <typename Process_>
@@ -1029,9 +1032,9 @@ namespace eos
         }
 
         {
-            results.add({ _phi_f_p(-2.0),   "phi_f_p(q2 = -2)" });
-            results.add({ _phi_f_p( 1.0),   "phi_f_p(q2 =  1)" });
-            results.add({ _phi_f_p( 4.0),   "phi_f_p(q2 =  4)" });
+            //results.add({ _phi_f_p(-2.0),   "phi_f_p(q2 = -2)" });
+            //results.add({ _phi_f_p( 1.0),   "phi_f_p(q2 =  1)" });
+            //results.add({ _phi_f_p( 4.0),   "phi_f_p(q2 =  4)" });
 
             results.add({ _phi_f_0(-2.0),   "phi_f_0(q2 = -2)" });
             results.add({ _phi_f_0( 1.0),   "phi_f_0(q2 =  1)" });

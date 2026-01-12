@@ -47,10 +47,11 @@ namespace eos
             // The following parameters are part of the parameterization and should match the
             // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_V;
-            UsedParameter m_R_A0, m_R_V1, m_R_A1;
-            UsedParameter ms_R_A0, ms_R_V1, ms_R_A1;
             UsedParameter sV, sA, s0, Q2;
             UsedParameter tchi_A0, tchi_A1, tchi_V1, tchi_T1, tchi_AT1; //tchi_1m_v, tchi_0m_a, tchi_1p_a, tchi_1m_t, tchi_1p_t5;
+
+            double m_R_A0, m_R_V1, m_R_A1;
+            double ms_R_A0, ms_R_V1, ms_R_A1;
 
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_A0_names;
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V1_names;
@@ -63,12 +64,6 @@ namespace eos
             G2026FormFactorTraits(const Parameters & p) :
                 m_B(UsedParameter(p[std::string(Process_::name_B) + "@BSZ2015"], *this)),
                 m_V(UsedParameter(p[std::string(Process_::name_V) + "@BSZ2015"], *this)),
-                m_R_A0(UsedParameter(p[pole_A0_names.at(Process_::partonic_transition)], *this)),
-                m_R_V1(UsedParameter(p[pole_V1_names.at(Process_::partonic_transition)], *this)),
-                m_R_A1(UsedParameter(p[pole_A1_names.at(Process_::partonic_transition)], *this)),
-                ms_R_A0(UsedParameter(p[resonance_A0_names.at(Process_::partonic_transition)], *this)),
-                ms_R_V1(UsedParameter(p[resonance_V1_names.at(Process_::partonic_transition)], *this)),
-                ms_R_A1(UsedParameter(p[resonance_A1_names.at(Process_::partonic_transition)], *this)),
                 sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
                 sA(UsedParameter(p[std::string(Process_::label) + "::sA@G2026"], *this)),
                 s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
@@ -77,7 +72,13 @@ namespace eos
                 tchi_A1(UsedParameter(p[std::string(Process_::label) + "::tchi_A1@G2026"], *this)),
                 tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
                 tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this)),
-                tchi_AT1(UsedParameter(p[std::string(Process_::label) + "::tchi_AT1@G2026"], *this))
+                tchi_AT1(UsedParameter(p[std::string(Process_::label) + "::tchi_AT1@G2026"], *this)),
+                m_R_A0(_resonance_mass_or_placeholder(p, pole_A0_names, Process_::partonic_transition)),
+                m_R_V1(_resonance_mass_or_placeholder(p, pole_V1_names, Process_::partonic_transition)),
+                m_R_A1(_resonance_mass_or_placeholder(p, pole_A1_names, Process_::partonic_transition)),
+                ms_R_A0(_resonance_mass_or_placeholder(p, resonance_A0_names, Process_::partonic_transition)),
+                ms_R_V1(_resonance_mass_or_placeholder(p, resonance_V1_names, Process_::partonic_transition)),
+                ms_R_A1(_resonance_mass_or_placeholder(p, resonance_A1_names, Process_::partonic_transition))
             {
             }
 
@@ -108,6 +109,21 @@ namespace eos
             {
                 return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
+
+        private:
+            static double _resonance_mass_or_placeholder(
+                const Parameters & p,
+                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> & names,
+                const std::tuple<QuarkFlavor, QuarkFlavor> & key)
+            {
+                const auto it = names.find(key);
+                if (it == names.end())
+                    return power_of<6>(10.0);
+
+                return const_cast<Parameters &>(p).has(it->second)
+                    ? p[it->second].evaluate()
+                    : power_of<6>(10.0);
+            }
     };
 
     template <typename Process_> class G2026FormFactors<Process_, PToV> :
@@ -137,8 +153,7 @@ namespace eos
                 const unsigned a,
                 const unsigned b,
                 const unsigned c,
-                const unsigned d,
-                const unsigned e
+                const unsigned d
             ) const;
 
             inline double _phi_v(const double & q2) const;
@@ -236,10 +251,11 @@ namespace eos
             // The following parameters are part of the parameterization and should match the
             // the ones used for the extraction of the coefficients of the z-expansion
             UsedParameter m_B, m_P;
-            UsedParameter m_R_V0, m_R_V1;
-            UsedParameter ms_R_V0, ms_R_V1;
             UsedParameter sV, s0, Q2;
             UsedParameter tchi_V0, tchi_V1, tchi_T1; // tchi_1m_v, tchi_0p_v, tchi_1m_t
+
+            double m_R_V0, m_R_V1;
+            double ms_R_V0, ms_R_V1;
 
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V0_names;
             static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V1_names;
@@ -249,16 +265,16 @@ namespace eos
             G2026FormFactorTraits(const Parameters & p) :
                 m_B(UsedParameter(p[std::string(Process_::name_B) + "@BSZ2015"], *this)),
                 m_P(UsedParameter(p[std::string(Process_::name_P) + "@BSZ2015"], *this)),
-                m_R_V0(UsedParameter(p[pole_V0_names.at(Process_::partonic_transition)], *this)),
-                m_R_V1(UsedParameter(p[pole_V1_names.at(Process_::partonic_transition)], *this)),
-                ms_R_V0(UsedParameter(p[resonance_V0_names.at(Process_::partonic_transition)], *this)),
-                ms_R_V1(UsedParameter(p[resonance_V1_names.at(Process_::partonic_transition)], *this)),
                 sV(UsedParameter(p[std::string(Process_::label) + "::sV@G2026"], *this)),
                 s0(UsedParameter(p[std::string(Process_::label) + "::s0@G2026"], *this)),
                 Q2(UsedParameter(p[std::string(Process_::label) + "::Q2@G2026"], *this)),
                 tchi_V0(UsedParameter(p[std::string(Process_::label) + "::tchi_V0@G2026"], *this)),
                 tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
-                tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this))
+                tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this)),
+                m_R_V0(_resonance_mass_or_placeholder(p, pole_V0_names, Process_::partonic_transition)),
+                m_R_V1(_resonance_mass_or_placeholder(p, pole_V1_names, Process_::partonic_transition)),
+                ms_R_V0(_resonance_mass_or_placeholder(p, resonance_V0_names, Process_::partonic_transition)),
+                ms_R_V1(_resonance_mass_or_placeholder(p, resonance_V1_names, Process_::partonic_transition))
             {
             }
 
@@ -300,6 +316,21 @@ namespace eos
                     5.0 * power_of<4>(z)
                 };
             }
+
+        private:
+            static double _resonance_mass_or_placeholder(
+                const Parameters & p,
+                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> & names,
+                const std::tuple<QuarkFlavor, QuarkFlavor> & key)
+            {
+                const auto it = names.find(key);
+                if (it == names.end())
+                    return power_of<6>(10.0);
+
+                return const_cast<Parameters &>(p).has(it->second)
+                    ? p[it->second].evaluate()
+                    : power_of<6>(10.0);
+            }
     };
 
     template <typename Process_> class G2026FormFactors<Process_, PToP> :
@@ -329,8 +360,7 @@ namespace eos
                 const unsigned a,
                 const unsigned b,
                 const unsigned c,
-                const unsigned d,
-                const unsigned e
+                const unsigned d
             ) const;
 
             inline double _phi_f_p(const double & q2) const;

@@ -44,12 +44,13 @@ class BToKG2026FormFactorsTest :
                 p["B->K::a^fT_1@G2026"]  = -0.04;
                 p["B->K::a^f0_1@G2026"]  =  0.05;
 
-                p["mass::B_u,A^0@G2026"]   =  5.279;
-                //p["mass::K_d@BSZ2015"]   =  0.494;
+                p["mass::B_d@BSZ2015"]   =  5.279;
+                p["mass::K_d@BSZ2015"]   =  0.494;
                 //p["mass::B_s@BSZ2015"]   =  5.367;
                 //p["mass::B_s^*@BSZ2015"] =  5.416;
                 //p["mass::B_s,0@BSZ2015"] =  5.711;
                 //p["mass::B_s,1@BSZ2015"] =  5.750;
+                p["mass::B_u,A^0@G2026"]   =  5.279;
 
                 // Optimized s0 = (mB + mK) * (sqrt(mB) - sqrt(mK))^2
                 p["B->K::s0@G2026"]      =  14.682165;
@@ -57,7 +58,7 @@ class BToKG2026FormFactorsTest :
                 p["B->K::Q2@G2026"]      =  0.0;
 
                 p["B->K::tchi_V0@G2026"]  =  1.42e-2;
-                p["B->K::tchi_V1@G2026"]  =  6.80e-4;
+                p["B->K::tchi_V1@G2026"]  =  7.30e-4;
                 p["B->K::tchi_T1@G2026"]  =  4.55e-4;
 
                 G2026FormFactors<BToK, PToP> ff(p, Options{ });
@@ -91,49 +92,49 @@ class BToKG2026FormFactorsTest :
                     std::make_pair(  0.0012303600,  eps), // z_4(z = z(q2 = -3))
                     std::make_pair(  0.00023043066, eps), // z_5(z = z(q2 = -3))
 
-                    //std::make_pair(  0.0386505, eps), // phi_f_p(z = z(q2 = -2))
-                    //std::make_pair(  0.0369224, eps), // phi_f_p(z = z(q2 =  1))
-                    //std::make_pair(  0.0350622, eps), // phi_f_p(z = z(q2 =  4))
-                    //std::make_pair(  0.0870644, eps), // phi_f_0(z = z(q2 = -2))
-                    //std::make_pair(  0.0874959, eps), // phi_f_0(z = z(q2 =  1))
-                    //std::make_pair(  0.0878445, eps), // phi_f_0(z = z(q2 =  4))
-                    //std::make_pair(  0.0958949, eps), // phi_f_t(z = z(q2 = -2))
-                    //std::make_pair(  0.0895891, eps), // phi_f_t(z = z(q2 =  1))
-                    //std::make_pair(  0.0830676, eps), // phi_f_t(z = z(q2 =  4))
+                    //std::make_pair(  0.09925017, eps), // phi_f_p(z = z(q2 = -2))
+                    //std::make_pair(  0.09477547, eps), // phi_f_p(z = z(q2 =  1))
+                    //std::make_pair(  0.08994813, eps), // phi_f_p(z = z(q2 =  4))
+                    std::make_pair(  0.0870644, eps), // phi_f_0(z = z(q2 = -2))
+                    std::make_pair(  0.0874959, eps), // phi_f_0(z = z(q2 =  1))
+                    std::make_pair(  0.0878445, eps), // phi_f_0(z = z(q2 =  4))
+                    std::make_pair(  0.0958949, eps), // phi_f_t(z = z(q2 = -2))
+                    std::make_pair(  0.0895891, eps), // phi_f_t(z = z(q2 =  1))
+                    std::make_pair(  0.0830676, eps), // phi_f_t(z = z(q2 =  4))
 
-                    //std::make_pair(  0.018232,  eps), // a_f0_0
+                    std::make_pair(  0.018232,  eps), // a_f0_0
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
                 // Test end-point relations
-                //TEST_CHECK_NEARLY_EQUAL( ff.f_0(0.0),           ff.f_p(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.f_0(0.0),           ff.f_p(0.0), eps);
 
                 // Test against Nico's implementation
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_0( -1.0), 0.157128,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_0(  1.0), 0.153515,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_0(  4.0), 0.147786,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0), 0.0736626, eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_p( -1.0), 0.148165,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_p(  1.0), 0.163096,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_p(  4.0), 0.190614,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 1.9403,    eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_t( -1.0), 0.206692,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_t(  1.0), 0.227051,  eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_t(  4.0), 0.2649,    eps);
-                //TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 2.87453,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0( -1.0), 0.157128,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  1.0), 0.153515,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  4.0), 0.147786,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0), 0.0736626, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p( -1.0), 0.148165,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  1.0), 0.163096,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  4.0), 0.190614,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 1.9403,    eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t( -1.0), 0.206692,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  1.0), 0.227051,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  4.0), 0.2649,    eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 2.87453,   eps);
 
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.00283240578, eps);
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,             eps);
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.0005,        eps);
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0,             eps);
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0025,        eps);
-                //TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.00283240578, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.0005,        eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0,             eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0025,        eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0,             eps);
 
                 // Test everything for tp smaller than the scalar resonance B_s0
                 p["B->K::tp@G2026"]         =  30.261001;
 
                 G2026FormFactors<BToK, PToP> ff2(p, Options{ });
-/*
+
                 diagnostics = ff2.diagnostics();
                 static const std::vector<std::pair<double, double>> reference2
                 {
@@ -172,7 +173,7 @@ class BToKG2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL( ff2.f_t(  1.0), 0.2723,   eps);
                 TEST_CHECK_NEARLY_EQUAL( ff2.f_t(  4.0), 0.309838, eps);
                 TEST_CHECK_NEARLY_EQUAL( ff2.f_t( 25.0), 2.36706,  eps);
-*/
+
             }
         }
 } b_to_k_g2026_form_factors_test;
