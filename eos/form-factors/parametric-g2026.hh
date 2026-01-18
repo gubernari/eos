@@ -29,6 +29,7 @@
 #include <eos/utils/reference-name.hh>
 
 #include <array>
+#include <vector>
 
 namespace eos
 {
@@ -50,15 +51,11 @@ namespace eos
             UsedParameter sV, sA, s0, Q2;
             UsedParameter tchi_A0, tchi_A1, tchi_V1, tchi_T1, tchi_AT1; //tchi_1m_v, tchi_0m_a, tchi_1p_a, tchi_1m_t, tchi_1p_t5;
 
-            double m_R_A0, m_R_V1, m_R_A1;
-            double ms_R_A0, ms_R_V1, ms_R_A1;
+            std::vector<double> m_R_A0, m_R_V1, m_R_A1;
 
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_A0_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V1_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_A1_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_A0_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V1_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_A1_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> pole_A0_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> pole_V1_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> pole_A1_names;
 
 
             G2026FormFactorTraits(const Parameters & p) :
@@ -73,12 +70,9 @@ namespace eos
                 tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
                 tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this)),
                 tchi_AT1(UsedParameter(p[std::string(Process_::label) + "::tchi_AT1@G2026"], *this)),
-                m_R_A0(_resonance_mass_or_placeholder(p, pole_A0_names, Process_::partonic_transition)),
-                m_R_V1(_resonance_mass_or_placeholder(p, pole_V1_names, Process_::partonic_transition)),
-                m_R_A1(_resonance_mass_or_placeholder(p, pole_A1_names, Process_::partonic_transition)),
-                ms_R_A0(_resonance_mass_or_placeholder(p, resonance_A0_names, Process_::partonic_transition)),
-                ms_R_V1(_resonance_mass_or_placeholder(p, resonance_V1_names, Process_::partonic_transition)),
-                ms_R_A1(_resonance_mass_or_placeholder(p, resonance_A1_names, Process_::partonic_transition))
+                m_R_A0(_resonance_masses_or_empty(p, pole_A0_names, Process_::partonic_transition)),
+                m_R_V1(_resonance_masses_or_empty(p, pole_V1_names, Process_::partonic_transition)),
+                m_R_A1(_resonance_masses_or_empty(p, pole_A1_names, Process_::partonic_transition))
             {
             }
 
@@ -110,19 +104,34 @@ namespace eos
                 return { 1.0, z, power_of<2>(z), power_of<3>(z), power_of<4>(z), power_of<5>(z) };
             }
 
+            double blaschke_product(const double & q2, const double & sG, const std::vector<double> & masses) const
+            {
+                double product = 1.0;
+                for (const auto & m : masses)
+                {
+                    if (power_of<2>(m) < sG)
+                        product *= calc_z(q2, sG, power_of<2>(m));
+                }
+                return product;
+            }
+
         private:
-            static double _resonance_mass_or_placeholder(
+            static std::vector<double> _resonance_masses_or_empty(
                 const Parameters & p,
-                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> & names,
+                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> & names,
                 const std::tuple<QuarkFlavor, QuarkFlavor> & key)
             {
                 const auto it = names.find(key);
                 if (it == names.end())
-                    return power_of<6>(10.0);
+                    return {};
 
-                return const_cast<Parameters &>(p).has(it->second)
-                    ? p[it->second].evaluate()
-                    : power_of<6>(10.0);
+                std::vector<double> result;
+                for (const auto & name : it->second)
+                {
+                    if (const_cast<Parameters &>(p).has(name))
+                        result.push_back(p[name].evaluate());
+                }
+                return result;
             }
     };
 
@@ -144,7 +153,7 @@ namespace eos
             double _phi(
                 const double & s,
                 const double & sG,
-                const double & Mres,
+                const std::vector<double> & Mres,
                 const double & tchi,
                 const unsigned Kn,
                 const int Ksp,
@@ -254,13 +263,10 @@ namespace eos
             UsedParameter sV, s0, Q2;
             UsedParameter tchi_V0, tchi_V1, tchi_T1; // tchi_1m_v, tchi_0p_v, tchi_1m_t
 
-            double m_R_V0, m_R_V1;
-            double ms_R_V0, ms_R_V1;
+            std::vector<double> m_R_V0, m_R_V1;
 
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V0_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> pole_V1_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V0_names;
-            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> resonance_V1_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> pole_V0_names;
+            static const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> pole_V1_names;
 
             G2026FormFactorTraits(const Parameters & p) :
                 m_B(UsedParameter(p[std::string(Process_::name_B) + "@BSZ2015"], *this)),
@@ -271,10 +277,8 @@ namespace eos
                 tchi_V0(UsedParameter(p[std::string(Process_::label) + "::tchi_V0@G2026"], *this)),
                 tchi_V1(UsedParameter(p[std::string(Process_::label) + "::tchi_V1@G2026"], *this)),
                 tchi_T1(UsedParameter(p[std::string(Process_::label) + "::tchi_T1@G2026"], *this)),
-                m_R_V0(_resonance_mass_or_placeholder(p, pole_V0_names, Process_::partonic_transition)),
-                m_R_V1(_resonance_mass_or_placeholder(p, pole_V1_names, Process_::partonic_transition)),
-                ms_R_V0(_resonance_mass_or_placeholder(p, resonance_V0_names, Process_::partonic_transition)),
-                ms_R_V1(_resonance_mass_or_placeholder(p, resonance_V1_names, Process_::partonic_transition))
+                m_R_V0(_resonance_masses_or_empty(p, pole_V0_names, Process_::partonic_transition)),
+                m_R_V1(_resonance_masses_or_empty(p, pole_V1_names, Process_::partonic_transition))
             {
             }
 
@@ -317,20 +321,36 @@ namespace eos
                 };
             }
 
+            double blaschke_product(const double & q2, const double & sG, const std::vector<double> & masses) const
+            {
+                double product = 1.0;
+                for (const auto & m : masses)
+                {
+                    if (power_of<2>(m) < sG)
+                        product *= calc_z(q2, sG, power_of<2>(m));
+                }
+                return product;
+            }
+
         private:
-            static double _resonance_mass_or_placeholder(
+            static std::vector<double> _resonance_masses_or_empty(
                 const Parameters & p,
-                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::string> & names,
+                const std::map<std::tuple<QuarkFlavor, QuarkFlavor>, std::vector<std::string>> & names,
                 const std::tuple<QuarkFlavor, QuarkFlavor> & key)
             {
                 const auto it = names.find(key);
                 if (it == names.end())
-                    return power_of<6>(10.0);
+                    return {};
 
-                return const_cast<Parameters &>(p).has(it->second)
-                    ? p[it->second].evaluate()
-                    : power_of<6>(10.0);
+                std::vector<double> result;
+                for (const auto & name : it->second)
+                {
+                    if (const_cast<Parameters &>(p).has(name))
+                        result.push_back(p[name].evaluate());
+                }
+                return result;
             }
+
     };
 
     template <typename Process_> class G2026FormFactors<Process_, PToP> :
@@ -351,7 +371,7 @@ namespace eos
             double _phi(
                 const double & s,
                 const double & sG,
-                const double & Mres,
+                const std::vector<double> & Mres,
                 const double & tchi,
                 const unsigned Kn,
                 const int Ksp,
