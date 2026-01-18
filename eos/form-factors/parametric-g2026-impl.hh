@@ -239,8 +239,8 @@ namespace eos
         {
             a[i] = x_A12 * this->_a_A0[i] - x_A0 * this->_a_A12[i - 1];
         }
-        const auto polynomials = _traits.monomials_a(_traits.calc_z(0.0, _traits.sA, _traits.s0));
-        return std::inner_product(a.begin(), a.end(), polynomials.begin(), 0.0) / (polynomials[0] * x_A0);
+        const auto monomials = _traits.monomials_a(_traits.calc_z(0.0, _traits.sA, _traits.s0));
+        return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_A0);
     }
 
     template <typename Process_>
@@ -249,16 +249,16 @@ namespace eos
     {
         const double x_T2 = _phi_t_2(0.0) * (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(0.0, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double x_T1 = _phi_t_1(0.0) * (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
-        const auto polynomials_T2 = _traits.monomials_a(_traits.calc_z(0.0, _traits.sA, _traits.s0));
-        const auto polynomials_T1 = _traits.monomials_v(_traits.calc_z(0.0, _traits.sV, _traits.s0));
+        const auto monomials_T2 = _traits.monomials_a(_traits.calc_z(0.0, _traits.sA, _traits.s0));
+        const auto monomials_T1 = _traits.monomials_v(_traits.calc_z(0.0, _traits.sV, _traits.s0));
 
-        double a_T2_0 = x_T2 * this->_a_T1[0] * polynomials_T1[0];
+        double a_T2_0 = x_T2 * this->_a_T1[0] * monomials_T1[0];
         for (unsigned i = 1 ; i < _a_T1.size() ; ++i)
         {
-            a_T2_0 += x_T2 * this->_a_T1[i] * polynomials_T1[i] - x_T1 * this->_a_T2[i - 1] * polynomials_T2[i];
+            a_T2_0 += x_T2 * this->_a_T1[i] * monomials_T1[i] - x_T1 * this->_a_T2[i - 1] * monomials_T2[i];
         }
 
-        return a_T2_0 / (polynomials_T2[0] * x_T1);
+        return a_T2_0 / (monomials_T2[0] * x_T1);
     }
 
     template <typename Process_>
@@ -273,8 +273,8 @@ namespace eos
         {
             a[i] = x_A1 * this->_a_A12[i - 1] - x_A12 * this->_a_A1[i - 1];
         }
-        const auto polynomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
-        return std::inner_product(a.begin(), a.end(), polynomials.begin(), 0.0) / (polynomials[0] * x_A12);
+        const auto monomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
+        return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_A12);
     }
 
     template <typename Process_>
@@ -289,8 +289,8 @@ namespace eos
         {
             a[i] = x_T23 * this->_a_T2[i - 1] - x_T2 * this->_a_T23[i - 1];
         }
-        const auto polynomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
-        return std::inner_product(a.begin(), a.end(), polynomials.begin(), 0.0) / (polynomials[0] * x_T2);
+        const auto monomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
+        return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_T2);
     }
 
     template <typename Process_>
@@ -303,8 +303,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_v(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
-        const auto   polynomials  = _traits.monomials_v(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_v(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -319,8 +319,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_A0) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A0)) : 1.0);
         const double phi          = _phi_a_0(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
-        const auto   polynomials  = _traits.monomials_a(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_a(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -336,8 +336,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_a_1(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
-        const auto   polynomials  = _traits.monomials_a(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_a(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -353,8 +353,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_a_12(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
-        const auto   polynomials  = _traits.monomials_a(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_a(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -369,8 +369,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_t_1(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
-        const auto   polynomials  = _traits.monomials_v(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_v(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -386,8 +386,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_t_2(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
-        const auto   polynomials  = _traits.monomials_a(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_a(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -403,8 +403,8 @@ namespace eos
         const double blaschke     = (power_of<2>(_traits.m_R_A1) < _traits.sA ? _traits.calc_z(q2, _traits.sA, power_of<2>(_traits.m_R_A1)) : 1.0);
         const double phi          = _phi_t_23(q2);
         const double z            = _traits.calc_z(q2, _traits.sA, _traits.s0);
-        const auto   polynomials  = _traits.monomials_a(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials_a(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -573,7 +573,7 @@ namespace eos
     template<typename Process_>
     const std::set<ReferenceName> G2026FormFactors<Process_, PToV>::references
     {
-        "BFW:2010A"_rn
+        "G:2026A"_rn
     };
 
     template<typename Process_>
@@ -795,9 +795,14 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToP>::_phi_f_t(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1, 0, 0, 1, 0, 3, 3, 0, 0);
+        return _phi(
+            q2, _traits.sV, _traits.ms_R_V1, _traits.tchi_T1,
+            48 /*Kn*/, 1 /*Ksp*/, 0 /*Ksm*/, 0 /*Kspm*/,
+            3 /*a*/, 3 /*b*/, 1 /*c*/, 4 /*d*/
+        );
     }
 
+    // Extra coefficient a_f0_0 calculated from the endpoint relation f_0(0) = f+(0)
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToP>::_a_f0_0() const
@@ -810,8 +815,9 @@ namespace eos
         {
             a[i] = x_f0 * this->_a_fp[i] - x_fp * this->_a_f0[i - 1];
         }
-        const auto polynomials = _traits.monomials(_traits.calc_z(0.0, _traits.sV, _traits.s0));
-        return std::inner_product(a.begin(), a.end(), polynomials.begin(), 0.0) / (polynomials[0] * x_fp);
+        const auto monomials = _traits.monomials(_traits.calc_z(0.0, _traits.sV, _traits.s0));
+        return (power_of<2>(_traits.m_R_V0) < _traits.sV ? _traits.calc_z(0.0, _traits.sV, power_of<2>(_traits.m_R_V0)) : 1.0);
+        //return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_fp);
     }
 
     template <typename Process_>
@@ -824,8 +830,8 @@ namespace eos
         const double blaschke = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_f_p(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
-        const auto   polynomials  = _traits.monomials(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -841,8 +847,8 @@ namespace eos
         const double blaschke = (power_of<2>(_traits.m_R_V0) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V0)) : 1.0);
         const double phi          = _phi_f_0(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
-        const auto   polynomials  = _traits.monomials(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -857,8 +863,8 @@ namespace eos
         const double blaschke = (power_of<2>(_traits.m_R_V1) < _traits.sV ? _traits.calc_z(q2, _traits.sV, power_of<2>(_traits.m_R_V1)) : 1.0);
         const double phi          = _phi_f_t(q2);
         const double z            = _traits.calc_z(q2, _traits.sV, _traits.s0);
-        const auto   polynomials  = _traits.monomials(z);
-        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), 0.0);
+        const auto   monomials  = _traits.monomials(z);
+        const double series       = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), 0.0);
 
         return series / phi / blaschke;
     }
@@ -870,8 +876,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials       = _traits.monomials(z);
-        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), complex<double>(0.0, 0.0));
+        const auto monomials       = _traits.monomials(z);
+        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), complex<double>(0.0, 0.0));
 
         return abs(series);
     }
@@ -883,8 +889,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials_prime = _traits.monomials_derivatives(z);
-        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), polynomials_prime.begin(), complex<double>(0.0, 0.0));
+        const auto monomials_prime = _traits.monomials_derivatives(z);
+        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), monomials_prime.begin(), complex<double>(0.0, 0.0));
 
         return abs(series_prime);
     }
@@ -896,8 +902,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials       = _traits.monomials(z);
-        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), complex<double>(0.0, 0.0));
+        const auto monomials       = _traits.monomials(z);
+        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), complex<double>(0.0, 0.0));
 
         return abs(series);
     }
@@ -909,8 +915,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials_prime = _traits.monomials_derivatives(z);
-        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), polynomials_prime.begin(), complex<double>(0.0, 0.0));
+        const auto monomials_prime = _traits.monomials_derivatives(z);
+        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), monomials_prime.begin(), complex<double>(0.0, 0.0));
 
         return abs(series_prime);
     }
@@ -922,8 +928,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials       = _traits.monomials(z);
-        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), polynomials.begin(), complex<double>(0.0, 0.0));
+        const auto monomials       = _traits.monomials(z);
+        const complex<double> series = std::inner_product(coefficients.begin(), coefficients.end(), monomials.begin(), complex<double>(0.0, 0.0));
 
         return abs(series);
     }
@@ -935,8 +941,8 @@ namespace eos
         std::array<complex<double>, 5> coefficients;
         std::copy(_a_fp.begin(), _a_fp.end(), coefficients.begin());
         const complex<double> z      = this->_traits.calc_z(complex<double>(q2, 0.0), complex<double>(_traits.sV, 0.0), complex<double>(_traits.s0, 0.0));
-        const auto polynomials_prime = _traits.monomials_derivatives(z);
-        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), polynomials_prime.begin(), complex<double>(0.0, 0.0));
+        const auto monomials_prime = _traits.monomials_derivatives(z);
+        const complex<double> series_prime = std::inner_product(coefficients.begin(), coefficients.end(), monomials_prime.begin(), complex<double>(0.0, 0.0));
 
         return abs(series_prime);
     }
@@ -1032,9 +1038,9 @@ namespace eos
         }
 
         {
-            //results.add({ _phi_f_p(-2.0),   "phi_f_p(q2 = -2)" });
-            //results.add({ _phi_f_p( 1.0),   "phi_f_p(q2 =  1)" });
-            //results.add({ _phi_f_p( 4.0),   "phi_f_p(q2 =  4)" });
+            results.add({ _phi_f_p(-2.0),   "phi_f_p(q2 = -2)" });
+            results.add({ _phi_f_p( 1.0),   "phi_f_p(q2 =  1)" });
+            results.add({ _phi_f_p( 4.0),   "phi_f_p(q2 =  4)" });
 
             results.add({ _phi_f_0(-2.0),   "phi_f_0(q2 = -2)" });
             results.add({ _phi_f_0( 1.0),   "phi_f_0(q2 =  1)" });
@@ -1055,7 +1061,7 @@ namespace eos
     template<typename Process_>
     const std::set<ReferenceName> G2026FormFactors<Process_, PToP>::references
     {
-        "BFW:2010A"_rn
+        "G:2026A"_rn
     };
 
     template<typename Process_>
