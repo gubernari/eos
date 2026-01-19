@@ -219,20 +219,7 @@ class BToKstarG2026FormFactorsTest :
                 p["B->K^*::a^T2_1@G2026"]    =  0.09;
                 p["B->K^*::a^T23_1@G2026"]   = -0.10;
 
-                p["mass::B_d@BSZ2015"]        =  5.279;
-                p["mass::K_d^*@BSZ2015"]      =  0.896;
-                p["mass::B_s@BSZ2015"]        =  5.367;
-                p["mass::B_s^*@BSZ2015"]      =  5.416;
-                p["mass::B_s,0@BSZ2015"]      =  5.711;
-                p["mass::B_s,1@BSZ2015"]      =  5.750;
-
-                // Optimized s0 = (mB + mK*) * (sqrt(mB) - sqrt(mK*))^2
-                p["B->K^*::s0@G2026"]       =  11.271194912;
-                p["B->K^*::sV@G2026"]       =  30.261001;
-                p["B->K^*::sA@G2026"]       =  31.764496;
-                p["B->K^*::Q2@G2026"]       =  0.0;
-
-                p["mass::B_d@BSZ2015"]   =  5.279;
+                p["mass::B_d@BSZ2015"]     =  5.279;
                 p["mass::K_d^*@BSZ2015"]   =  0.892;
 
                 p["mass::B_s,A^0[1]@G2026"] = 5.367;
@@ -260,70 +247,69 @@ class BToKstarG2026FormFactorsTest :
                     std::make_pair(  0.11627577,   eps), // z(q2 =  0, sV)
                     std::make_pair(  0.0039115965, eps), // z(q2 = 11, sV)
                     std::make_pair( -0.098769544,  eps), // z(q2 = 18, sA)
-                    std::make_pair(  0.13164137, eps), // z(q2 = -3, sA)
+                    std::make_pair(  0.13164137,   eps), // z(q2 = -3, sA)
 
-                    std::make_pair(  1.0,           eps), // z_0(z = 0, sV)
-                    std::make_pair(  0.11627577,    eps), // z_1(z = 0, sV)
-                    std::make_pair(  0.013520054,   eps), // z_2(z = 0, sV)
-                    std::make_pair(  0.0015720547,  eps), // z_3(z = 0, sV)
-                    std::make_pair(  0.00018279187, eps), // z_4(z = 0, sV)
-                    std::make_pair(  0.000021254265,eps), // z_5(z = 0, sV)
+                    std::make_pair(  1.0,            eps), // z_0(z = 0, sV)
+                    std::make_pair(  0.11627577,     eps), // z_1(z = 0, sV)
+                    std::make_pair(  0.013520054,    eps), // z_2(z = 0, sV)
+                    std::make_pair(  0.0015720547,   eps), // z_3(z = 0, sV)
+                    std::make_pair(  0.00018279187,  eps), // z_4(z = 0, sV)
+                    std::make_pair(  0.000021254265, eps), // z_5(z = 0, sV)
 
-                    std::make_pair(  1.0,           eps), // z_0(z = z(q2 = 19, sV))
-                    std::make_pair( -0.12944094,    eps), // z_1(z = z(q2 = 19, sV))
-                    std::make_pair(  0.016754956,   eps), // z_2(z = z(q2 = 19, sV))
-                    std::make_pair( -0.0021687773,  eps), // z_3(z = z(q2 = 19, sV))
-                    std::make_pair(  0.00028072856, eps), // z_4(z = z(q2 = 19, sV))
-                    std::make_pair( -0.000036337769,eps), // z_5(z = z(q2 = 19, sV))
+                    std::make_pair(  1.0,            eps), // z_0(z = z(q2 = 19, sV))
+                    std::make_pair( -0.12944094,     eps), // z_1(z = z(q2 = 19, sV))
+                    std::make_pair(  0.016754956,    eps), // z_2(z = z(q2 = 19, sV))
+                    std::make_pair( -0.0021687773,   eps), // z_3(z = z(q2 = 19, sV))
+                    std::make_pair(  0.00028072856,  eps), // z_4(z = z(q2 = 19, sV))
+                    std::make_pair( -0.000036337769, eps), // z_5(z = z(q2 = 19, sV))
 
-                    std::make_pair(  1.0,           eps), // z_0(z = z(q2 = -3, sA))
-                    std::make_pair(  0.13164137,    eps), // z_1(z = z(q2 = -3, sA))
-                    std::make_pair(  0.017329451,   eps), // z_2(z = z(q2 = -3, sA))
-                    std::make_pair(  0.0022812726,  eps), // z_3(z = z(q2 = -3, sA))
-                    std::make_pair(  0.00030030986, eps), // z_4(z = z(q2 = -3, sA))
-                    std::make_pair(  0.000039533201,eps), // z_5(z = z(q2 = -3, sA))
-
+                    std::make_pair(  1.0,            eps), // z_0(z = z(q2 = -3, sA))
+                    std::make_pair(  0.13164137,     eps), // z_1(z = z(q2 = -3, sA))
+                    std::make_pair(  0.017329451,    eps), // z_2(z = z(q2 = -3, sA))
+                    std::make_pair(  0.0022812726,   eps), // z_3(z = z(q2 = -3, sA))
+                    std::make_pair(  0.00030030986,  eps), // z_4(z = z(q2 = -3, sA))
+                    std::make_pair(  0.000039533201, eps), // z_5(z = z(q2 = -3, sA))
 
                     std::make_pair(  0.3152006,  eps), // phi_v(z = z(q2 = -2))
                     std::make_pair(  0.2974732,  eps), // phi_v(z = z(q2 =  1))
                     std::make_pair(  0.2790677,  eps), // phi_v(z = z(q2 =  4))
 
-                    std::make_pair(  0.08048612, eps), // phi_a_0(z = z(q2 = -2))
-                    std::make_pair(  0.07820156, eps), // phi_a_0(z = z(q2 =  1))
-                    std::make_pair(  0.07565912, eps), // phi_a_0(z = z(q2 =  4))
-                    std::make_pair(  0.09925017, eps), // phi_a_1(z = z(q2 = -2))
-                    std::make_pair(  0.09477547, eps), // phi_a_1(z = z(q2 =  1))
-                    std::make_pair(  0.08994813, eps), // phi_a_1(z = z(q2 =  4))
-                    std::make_pair(  0.2435218 , eps), // phi_a_12(z = z(q2 = -2))
-                    std::make_pair(  0.2269179 , eps), // phi_a_12(z = z(q2 =  1))
-                    std::make_pair(  0.2097406 , eps), // phi_a_12(z = z(q2 =  4))
+                    std::make_pair(  0.5025545, eps), // phi_a_0(z = z(q2 = -2))
+                    std::make_pair(  0.4746616, eps), // phi_a_0(z = z(q2 =  1))
+                    std::make_pair(  0.4457290, eps), // phi_a_0(z = z(q2 =  4))
+                    std::make_pair(  0.05659679, eps), // phi_a_1(z = z(q2 = -2))
+                    std::make_pair(  0.05492700, eps), // phi_a_1(z = z(q2 =  1))
+                    std::make_pair(  0.05304411, eps), // phi_a_1(z = z(q2 =  4))
+                    std::make_pair(  0.02133889, eps), // phi_a_12(z = z(q2 = -2))
+                    std::make_pair(  0.02119834, eps), // phi_a_12(z = z(q2 =  1))
+                    std::make_pair(  0.02099215, eps), // phi_a_12(z = z(q2 =  4))
 
-                    std::make_pair(  0.1986535 , eps), // phi_t_1(z = z(q2 = -2))
-                    std::make_pair(  0.1852172 , eps), // phi_t_1(z = z(q2 =  1))
-                    std::make_pair(  0.1712535 , eps), // phi_t_1(z = z(q2 =  4))
+                    std::make_pair(  0.2089456, eps), // phi_t_1(z = z(q2 = -2))
+                    std::make_pair(  0.2020819, eps), // phi_t_1(z = z(q2 =  1))
+                    std::make_pair(  0.1946578, eps), // phi_t_1(z = z(q2 =  4))
 
-                    std::make_pair(  0.2178211 , eps), // phi_t_2(z = z(q2 = -2))
-                    std::make_pair(  0.2029073 , eps), // phi_t_2(z = z(q2 =  1))
-                    std::make_pair(  0.1873666 , eps), // phi_t_2(z = z(q2 =  4))
-                    std::make_pair(  0.2868442 , eps), // phi_t_23(z = z(q2 = -2))
-                    std::make_pair(  0.2669395 , eps), // phi_t_23(z = z(q2 =  1))
-                    std::make_pair(  0.2462015 , eps), // phi_t_23(z = z(q2 =  4))
+                    std::make_pair(  0.02732397, eps), // phi_t_2(z = z(q2 = -2))
+                    std::make_pair(  0.02714399, eps), // phi_t_2(z = z(q2 =  1))
+                    std::make_pair(  0.02687998, eps), // phi_t_2(z = z(q2 =  4))
+                    std::make_pair(  0.02493920, eps), // phi_t_23(z = z(q2 = -2))
+                    std::make_pair(  0.02420341, eps), // phi_t_23(z = z(q2 =  1))
+                    std::make_pair(  0.02337372, eps), // phi_t_23(z = z(q2 =  4))
 
-                    std::make_pair(  0.10207 , eps), // a_A1_0
-                    std::make_pair( -0.009349, eps), // a_A12_0
-                    std::make_pair(  0.098888, eps), // a_T2_0
-                    std::make_pair(  0.013503, eps), // a_T23_0
+                    std::make_pair(  0.00808554091, eps), // a_A12_0
+                    std::make_pair(  0.05171365,    eps), // a_A1_0
+                    std::make_pair(  0.001710846,   eps), // a_T2_0
+                    std::make_pair(  -0.02595125,   eps), // a_T23_0
                 };
                 TEST_CHECK_DIAGNOSTICS(diagnostics, reference);
 
                 // Test end-point relations
-                const double tm = (BToKstar::m_B - BToKstar::m_V) * (BToKstar::m_B - BToKstar::m_V);
+                const double mB = p["mass::B_d@BSZ2015"];
+                const double mV = p["mass::K_d^*@BSZ2015"];
+                const double tm = (mB - mV) * (mB - mV);
 
-                const double factora12a0 = (BToKstar::m_B * BToKstar::m_B - BToKstar::m_V * BToKstar::m_V) / 8.0 / BToKstar::m_B / BToKstar::m_V;
-                const double factora12a1 = (BToKstar::m_B + BToKstar::m_V) * (BToKstar::m_B * BToKstar::m_B - BToKstar::m_V * BToKstar::m_V - tm)
-                                           / 16.0 / BToKstar::m_B / BToKstar::m_V / BToKstar::m_V;
-                const double factort23t2 = (BToKstar::m_B + BToKstar::m_V) * (BToKstar::m_B * BToKstar::m_B + 3.0 * BToKstar::m_V * BToKstar::m_V - tm)
-                                           / 8.0 / BToKstar::m_B / BToKstar::m_V / BToKstar::m_V;
+                const double factora12a0 = (mB * mB - mV * mV) / 8.0 / mB / mV;
+                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - tm) / 16.0 / mB / mV / mV;
+                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - tm) / 8.0 / mB / mV / mV;
 
                 TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
@@ -331,41 +317,37 @@ class BToKstarG2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL( ff.t_23(tm) , factort23t2 * ff.t_2(tm) , eps);
 
                 // Test against my Mathematica implementation
-                TEST_CHECK_RELATIVE_ERROR( ff.v   ( -1.0),  0.098866,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.v   (  1.0),  0.10623,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.v   (  4.0),  0.119471,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  0.688017,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( -1.0),  0.197014,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  1.0),  0.212504,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  4.0),  0.2407,    eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  1.80208,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( -1.0),  0.502886,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  1.0),  0.494491,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  4.0),  0.48148,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  0.361849,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_12( -1.0),  0.140285,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  1.0),  0.152292,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  4.0),  0.170921,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  0.362945,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( -1.0),  0.830824,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  1.0),  0.87265,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  4.0),  0.946545,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  3.62504,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( -1.0),  0.869941,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  1.0),  0.8321,    eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  4.0),  0.774239,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0),  0.2791,    eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_23( -1.0),  0.59847,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  1.0),  0.617008,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  4.0),  0.647415,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  1.11061,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.019856051, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (  3.0),  0.041885252, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  0.33524673,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (-15.0),  0.059631278, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  3.0),  0.11372013,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  1.0100095,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (-15.0),  0.99821129,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  3.0),  1.0420689,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  1.3310723,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(-15.0), -0.19263127,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  3.0),  0.14210536,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  1.6126605,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (-15.0),  0.30288816,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  3.0),  0.46431383,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  2.0639932,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (-15.0),  0.72944768,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  3.0),  0.34650161,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0), -1.1708205,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(-15.0), -1.6950877,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0), -1.4553959,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  0.080068039, eps);
 
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0,            eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0.0025,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.0005,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0166056,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.00883968,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0005,    eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0113,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0.0280612,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0.0187764,    eps);
             }
         }
 } b_to_kstar_g2026_form_factors_test;

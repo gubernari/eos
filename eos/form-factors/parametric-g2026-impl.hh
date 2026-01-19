@@ -254,44 +254,69 @@ namespace eos
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_0(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A0, _traits.tchi_A0, 0, 0, 3, 2, 1, 3, 0, 0);
+        return _phi(
+            q2, _traits.sA, _traits.m_R_A0, _traits.tchi_A0,
+            16 /*Kn*/, 0 /*Ksp*/, 0 /*Ksm*/, 0 /*Kspm*/,
+            3 /*a*/, 3 /*b*/, 1 /*c*/, 2 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_1(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 0, 2, 1, 2, 1, 0, 0);
+        return _phi(
+            q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1,
+            24 /*Kn*/, -1 /*Ksp*/, 0 /*Ksm*/, 0 /*Kspm*/,
+            1 /*a*/, 1 /*b*/, 1 /*c*/, 3 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_a_12(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1, 0, 2, 4, 2, 2, 1, 0, 0);
+        return _phi(
+            q2, _traits.sA, _traits.m_R_A1, _traits.tchi_A1,
+            12 /*Kn*/, 0 /*Ksp*/, 0 /*Ksm*/, -2 /*Kspm*/,
+            1 /*a*/, 1 /*b*/, 2 /*c*/, 3 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_1(const double & q2) const
     {
-        return _phi(q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1, 0, 0, 2, 1, 3, 3, 0, 0);
+        return _phi(
+            q2, _traits.sV, _traits.m_R_V1, _traits.tchi_T1,
+            24 /*Kn*/, 0 /*Ksp*/, 0 /*Ksm*/, 0 /*Kspm*/,
+            3 /*a*/, 3 /*b*/, 2 /*c*/, 4 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_2(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, 1, 0, 2, 1, 3, 1, 0, 0);
+        return _phi(
+            q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1,
+            24 /*Kn*/, -1 /*Ksp*/, -1 /*Ksm*/, 0 /*Kspm*/,
+            1 /*a*/, 1 /*b*/, 2 /*c*/, 4 /*d*/
+        );
     }
 
     template<typename Process_>
     inline double
     G2026FormFactors<Process_, PToV>::_phi_t_23(const double & q2) const
     {
-        return _phi(q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1, -1, 0, 2, 1, 3, 1, 0, 0);
+        return _phi(
+            q2, _traits.sA, _traits.m_R_A1, _traits.tchi_AT1,
+            48 /*Kn*/, 1 /*Ksp*/, 0 /*Ksm*/, -2 /*Kspm*/,
+            1 /*a*/, 1 /*b*/, 1 /*c*/, 4 /*d*/
+        );
     }
 
+    // Extra coefficient a_A12_0 calculated from the endpoint relation A_12(0) = (mB^2 - mV^2) / (8 mB mV) A_0(0)
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToV>::_a_A12_0() const
@@ -309,6 +334,24 @@ namespace eos
         return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_A0);
     }
 
+    // Extra coefficient a_A1_0 calculated from the endpoint relation A_12(sm) = (mB^2 - mV^2) / (8 mB mV) A_1(sm)
+    template <typename Process_>
+    double
+    G2026FormFactors<Process_, PToV>::_a_A1_0() const
+    {
+        const double x_A1  = _phi_a_1( _traits.sm()) * 16.0 * _mB * _mV * _mV / (_mB + _mV) / (_mB * _mB - _mV * _mV - _traits.sm());
+        const double x_A12 = _phi_a_12(_traits.sm());
+        std::array<double, 5> a;
+        a[0] = x_A1 * this->_a_A12_0();
+        for (unsigned i = 1 ; i < a.size() ; ++i)
+        {
+            a[i] = x_A1 * this->_a_A12[i - 1] - x_A12 * this->_a_A1[i - 1];
+        }
+        const auto monomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
+        return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_A12);
+    }
+
+    // Extra coefficient a_T2_0 calculated from the endpoint relation T_1(0) = T_2(0)
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToV>::_a_T2_0() const
@@ -327,22 +370,7 @@ namespace eos
         return a_T2_0 / (monomials_T2[0] * x_T1);
     }
 
-    template <typename Process_>
-    double
-    G2026FormFactors<Process_, PToV>::_a_A1_0() const
-    {
-        const double x_A1  = _phi_a_1( _traits.sm()) * 16.0 * _mB * _mV * _mV / (_mB + _mV) / (_mB * _mB - _mV * _mV - _traits.sm());
-        const double x_A12 = _phi_a_12(_traits.sm());
-        std::array<double, 5> a;
-        a[0] = x_A1 * this->_a_A12_0();
-        for (unsigned i = 1 ; i < a.size() ; ++i)
-        {
-            a[i] = x_A1 * this->_a_A12[i - 1] - x_A12 * this->_a_A1[i - 1];
-        }
-        const auto monomials = _traits.monomials_a(_traits.calc_z(_traits.sm(), _traits.sA, _traits.s0));
-        return std::inner_product(a.begin(), a.end(), monomials.begin(), 0.0) / (monomials[0] * x_A12);
-    }
-
+    // Extra coefficient a_T23_0 calculated from the endpoint relation T_23(sm) = (mB + mV)^2 / (4 mB mV) T_2(sm)
     template <typename Process_>
     double
     G2026FormFactors<Process_, PToV>::_a_T23_0() const
@@ -636,8 +664,8 @@ namespace eos
         }
 
         {
-            results.add({ _a_A1_0(),      "a_A1_0"  });
             results.add({ _a_A12_0(),     "a_A12_0" });
+            results.add({ _a_A1_0(),      "a_A1_0"  });
             results.add({ _a_T2_0(),      "a_T2_0"  });
             results.add({ _a_T23_0(),     "a_T23_0" });
         }
