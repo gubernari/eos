@@ -305,16 +305,16 @@ class BToKstarG2026FormFactorsTest :
                 // Test end-point relations
                 const double mB = p["mass::B_d@BSZ2015"];
                 const double mV = p["mass::K_d^*@BSZ2015"];
-                const double tm = (mB - mV) * (mB - mV);
+                const double sm = (mB - mV) * (mB - mV);
 
                 const double factora12a0 = (mB * mB - mV * mV) / 8.0 / mB / mV;
-                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - tm) / 16.0 / mB / mV / mV;
-                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - tm) / 8.0 / mB / mV / mV;
+                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - sm) / 16.0 / mB / mV / mV;
+                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - sm) / 8.0 / mB / mV / mV;
 
                 TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.a_12(tm) , factora12a1 * ff.a_1(tm) , eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.t_23(tm) , factort23t2 * ff.t_2(tm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(sm) , factora12a1 * ff.a_1(sm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(sm) , factort23t2 * ff.t_2(sm) , eps);
 
                 // Test against my Mathematica implementation
                 TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.019856051, eps);
@@ -359,8 +359,8 @@ class BToKstarG2026FormFactorsTest :
 
                 TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.a_12(tm) , factora12a1 * ff.a_1(tm) , eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.t_23(tm) , factort23t2 * ff.t_2(tm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(sm) , factora12a1 * ff.a_1(sm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(sm) , factort23t2 * ff.t_2(sm) , eps);
 
                 // Test against my Mathematica implementation
                 TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.060354646, eps);
@@ -388,7 +388,6 @@ class BToKstarG2026FormFactorsTest :
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0),  1.0230491,   eps);
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  2.8515852,   eps);
 
-
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,          eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.0025,     eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.00969611, eps);
@@ -398,3 +397,108 @@ class BToKstarG2026FormFactorsTest :
             }
         }
 } b_to_kstar_g2026_form_factors_test;
+
+class BsToPhiG2026FormFactorsTest :
+    public TestCase
+{
+    public:
+        BsToPhiG2026FormFactorsTest() :
+            TestCase("b_s_to_phi_g2026_form_factors_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["B_s->phi::a^V_0@G2026"]     =  0.01;
+                p["B_s->phi::a^V_1@G2026"]     = -0.02;
+                p["B_s->phi::a^V_2@G2026"]     = -0.03;
+                p["B_s->phi::a^A0_0@G2026"]    =  0.03;
+                p["B_s->phi::a^A0_1@G2026"]    = -0.04;
+                p["B_s->phi::a^A0_2@G2026"]    = -0.05;
+                p["B_s->phi::a^A1_1@G2026"]    =  0.05;
+                p["B_s->phi::a^A1_2@G2026"]    =  0.06;
+                p["B_s->phi::a^A12_1@G2026"]   = -0.06;
+                p["B_s->phi::a^A12_2@G2026"]   = -0.07;
+                p["B_s->phi::a^T1_0@G2026"]    =  0.07;
+                p["B_s->phi::a^T1_1@G2026"]    = -0.08;
+                p["B_s->phi::a^T1_2@G2026"]    = -0.09;
+                p["B_s->phi::a^T2_1@G2026"]    =  0.09;
+                p["B_s->phi::a^T2_2@G2026"]    =  0.10;
+                p["B_s->phi::a^T23_1@G2026"]   = -0.10;
+                p["B_s->phi::a^T23_2@G2026"]   = -0.11;
+
+                p["mass::B_s@BSZ2015"]       =  5.367;
+                p["mass::phi@BSZ2015"]       =  1.020;
+
+                p["mass::B_s,A^0[1]@G2026"] = 5.367;
+                p["mass::B_s,V^0[1]@G2026"] = 5.711;
+                p["mass::B_s,V^1[1]@G2026"] = 5.415;
+                p["mass::B_s,A^1[1]@G2026"] = 5.829;
+
+                // Optimized s0 = (mB + mV) * (sqrt(mB) - sqrt(mV))^2
+                p["B_s->phi::s0@G2026"]      =  10.906048;
+                p["B_s->phi::sV@G2026"]      =  30.272004;
+                p["B_s->phi::sA@G2026"]      =  31.775769;
+                p["B_s->phi::Q2@G2026"]      =  0.0;
+
+                p["B_s->phi::tchi_A0@G2026"]  =  1.52e-2;
+                p["B_s->phi::tchi_V1@G2026"]  =  6.97e-4;
+                p["B_s->phi::tchi_A1@G2026"]  =  6.54e-4;
+                p["B_s->phi::tchi_T1@G2026"]  =  4.83e-4;
+                p["B_s->phi::tchi_AT1@G2026"] =  4.12e-4;
+
+                G2026FormFactors<BsToPhi, PToV> ff(p, Options{ });
+
+                // Test end-point relations
+                const double mB = p["mass::B_s@BSZ2015"];
+                const double mV = p["mass::phi@BSZ2015"];
+                const double sm = (mB - mV) * (mB - mV);
+
+                const double factora12a0 = (mB * mB - mV * mV) / 8.0 / mB / mV;
+                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - sm) / 16.0 / mB / mV / mV;
+                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - sm) / 8.0 / mB / mV / mV;
+
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(sm) , factora12a1 * ff.a_1(sm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(sm) , factort23t2 * ff.t_2(sm) , eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.021904674, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (  3.0),  0.056655476, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  0.34513055,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (-15.0),  0.074096030, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  3.0),  0.15014971,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  1.1164464,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (-15.0),  1.3401280,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  3.0),  1.3386879,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  1.8119204,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(-15.0), -0.34618089,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  3.0),  0.18490812,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  1.5125224,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (-15.0),  0.38239900,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  3.0),  0.61315297,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  2.2710191,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (-15.0),  1.1193157,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  3.0),  0.42963852,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0), -1.1156022,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(-15.0), -2.1654880,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0), -1.6727656,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0), -0.40022028,  eps);
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,         eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.005,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.0171064, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),  0.0014,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),  0.0194,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(), 0.0407473, eps);
+            }
+        }
+} b_s_to_phi_g2026_form_factors_test;
