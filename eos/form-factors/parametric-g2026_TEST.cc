@@ -274,9 +274,9 @@ class BToKstarG2026FormFactorsTest :
                     std::make_pair(  0.2974732,  eps), // phi_v(z = z(q2 =  1))
                     std::make_pair(  0.2790677,  eps), // phi_v(z = z(q2 =  4))
 
-                    std::make_pair(  0.5025545, eps), // phi_a_0(z = z(q2 = -2))
-                    std::make_pair(  0.4746616, eps), // phi_a_0(z = z(q2 =  1))
-                    std::make_pair(  0.4457290, eps), // phi_a_0(z = z(q2 =  4))
+                    std::make_pair(  0.5025545,  eps), // phi_a_0(z = z(q2 = -2))
+                    std::make_pair(  0.4746616,  eps), // phi_a_0(z = z(q2 =  1))
+                    std::make_pair(  0.4457290,  eps), // phi_a_0(z = z(q2 =  4))
                     std::make_pair(  0.05659679, eps), // phi_a_1(z = z(q2 = -2))
                     std::make_pair(  0.05492700, eps), // phi_a_1(z = z(q2 =  1))
                     std::make_pair(  0.05304411, eps), // phi_a_1(z = z(q2 =  4))
@@ -342,12 +342,59 @@ class BToKstarG2026FormFactorsTest :
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0), -1.4553959,   eps);
                 TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  0.080068039, eps);
 
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0,            eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0.0025,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0.00883968,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0005,    eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0113,       eps);
-                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0.0187764,    eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,          eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.0025,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.00883968, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),  0.0005,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),  0.0113,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(), 0.0187764,  eps);
+
+
+                // Test everything for different s0 and sV
+                p["B->K^*::s0@G2026"] = -4.0;
+                p["B->K^*::sV@G2026"] =  38.081241;
+                p["B->K^*::sA@G2026"] =  38.081241;
+
+                // Test end-point relations
+
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(tm) , factora12a1 * ff.a_1(tm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(tm) , factort23t2 * ff.t_2(tm) , eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.060354646, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (  3.0),  0.12451300,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  1.2368289,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (-15.0),  0.12014397,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  3.0),  0.23335484,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  2.3503654,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (-15.0),  0.69051914,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  3.0),  0.69204300,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  0.93515203,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(-15.0), -0.021451283, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  3.0),  0.18777326,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  0.92333822,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (-15.0),  0.81003891,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  3.0),  1.3711616,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  9.6563017,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (-15.0),  1.4521739,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  3.0),  1.1807589,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0),  0.85018484,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(-15.0),  0.67859760,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0),  1.0230491,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  2.8515852,   eps);
+
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,          eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.0025,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.00969611, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),  0.0005,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),  0.0113,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(), 0.0215922,  eps);
             }
         }
 } b_to_kstar_g2026_form_factors_test;
