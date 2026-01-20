@@ -1964,6 +1964,73 @@ groups:
           max:      4.24e-4
           latex:    '$\tilde{\chi}_T^1$'
           unit:     'GeV^{-2}'
+      # form factor parameters for B_s->phi for [G:2026A] parametrization
+      'B_s->phi::a^%1%_%2%@G2026' :
+          central:  0.
+          min:     -1.0
+          max:     +1.0
+          unit:     '1'
+          latex:    '$a_%2%^{%1%,B_s \to \phi,\mathrm{G2026}}$'
+          matrix:
+            - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
+            - [0, 1, 2, 3, 4]
+      'B_s->phi::sV@G2026' :
+          central:  30.270428
+          min:      30.270428
+          max:      30.270428
+          latex:    '$s_V^{B_s \to \phi}$'
+          comment:  '(mBs + mpi)^2'
+          unit:     'GeV^2'
+      'B_s->phi::sA@G2026' :
+          central:  31.773893
+          min:      31.773893
+          max:      31.773893
+          latex:    '$s_A^{B_s \to \phi}$'
+          comment:  '(mBs + 2*mpi)^2'
+          unit:     'GeV^2'
+      'B_s->phi::s0@G2026' :
+          central:  11.277888
+          min:      11.277888
+          max:      11.277888
+          latex:    '$s_0^{B_s \to \phi}$'
+          comment:  's0opt = sp * (1 - sqrt(1 - sm / sp))'
+          unit:     'GeV^2'
+      'B_s->phi::Q2@G2026' :
+          central:  0.0
+          min:      0.0
+          max:      0.0
+          latex:    '$Q^2_{B_s \to \phi}$'
+          unit:     'GeV^2'
+      'B_s->phi::tchi_A0@G2026' :
+          central:  1.57e-2
+          min:      1.57e-2
+          max:      1.57e-2
+          latex:    '$\tilde{\chi}_A^0$'
+          unit:     '1'
+      'B_s->phi::tchi_V1@G2026' :
+          central:  6.80e-4
+          min:      6.80e-4
+          max:      6.80e-4
+          latex:    '$\tilde{\chi}_V^1$'
+          unit:     'GeV^{-2}'
+      'B_s->phi::tchi_A1@G2026' :
+          central:  6.40e-4
+          min:      6.40e-4
+          max:      6.40e-4
+          latex:    '$\tilde{\chi}_A^1$'
+          unit:     'GeV^{-2}'
+      'B_s->phi::tchi_T1@G2026' :
+          central:  4.55e-4
+          min:      4.55e-4
+          max:      4.55e-4
+          latex:    '$\tilde{\chi}_T^1$'
+          unit:     'GeV^{-2}'
+      'B_s->phi::tchi_AT1@G2026' :
+          central:  4.24e-4
+          min:      4.24e-4
+          max:      4.24e-4
+          latex:    '$\tilde{\chi}_T^1$'
+          unit:     'GeV^{-2}'
        # form factor parameters for B_s->phi inspired by [BSZ:2015A]
       'B_s->phi::alpha^A0_0@BSZ2015' :
           central:  0.388675
