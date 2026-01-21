@@ -2,7 +2,7 @@
 title: 'Hadronic Matrix Element Parameters'
 description: ''
 groups:
-# Parameters in B_q <-> Bbar_q Meson Mixing
+  # Parameters in B_q <-> Bbar_q Meson Mixing
   # {{{
   - title: 'Parameters in $B_q \leftrightarrow \bar{B}_q$ Meson Mixing'
     description: ''
@@ -808,16 +808,16 @@ groups:
             - ["f+", "f0", "fT"]
             - [0, 1, 2, 3, 4]
       'B->K::sV@G2026' :
-          central:  30.270428
-          min:      30.270428
-          max:      30.270428
+          central:  30.261001
+          min:      30.261001
+          max:      30.261001
           latex:    '$s_V^{B\to K}$'
           comment:  '(mBs + mpi)^2'
           unit:     'GeV^2'
       'B->K::s0@G2026' :
-          central:  14.648394
-          min:      14.648394
-          max:      14.648394
+          central:  14.703306
+          min:      14.703306
+          max:      14.703306
           latex:    '$s_0^{B\to K}$'
           comment:  's0opt = sp * (1 - sqrt(1 - sm / sp))'
           unit:     'GeV^2'
@@ -1908,23 +1908,23 @@ groups:
             - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
             - [0, 1, 2, 3, 4]
       'B->K^*::sV@G2026' :
-          central:  30.270428
-          min:      30.270428
-          max:      30.270428
+          central:  30.261001
+          min:      30.261001
+          max:      30.261001
           latex:    '$s_V^{B\to K^*}$'
           comment:  '(mBs + mpi)^2'
           unit:     'GeV^2'
       'B->K^*::sA@G2026' :
-          central:  31.773893
-          min:      31.773893
-          max:      31.773893
+          central:  30.802500
+          min:      30.802500
+          max:      30.802500
           latex:    '$s_A^{B\to K^*}$'
-          comment:  '(mBs + 2*mpi)^2'
+          comment:  '(mBs* + mpi)^2'
           unit:     'GeV^2'
       'B->K^*::s0@G2026' :
-          central:  11.277888
-          min:      11.277888
-          max:      11.277888
+          central:  11.271195
+          min:      11.271195
+          max:      11.271195
           latex:    '$s_0^{B\to K^*}$'
           comment:  's0opt = sp * (1 - sqrt(1 - sm / sp))'
           unit:     'GeV^2'
@@ -1975,23 +1975,23 @@ groups:
             - ["V", "A0", "A1", "A12", "T1", "T2", "T23"]
             - [0, 1, 2, 3, 4]
       'B_s->phi::sV@G2026' :
-          central:  30.270428
-          min:      30.270428
-          max:      30.270428
+          central:  30.261001
+          min:      30.261001
+          max:      30.261001
           latex:    '$s_V^{B_s \to \phi}$'
           comment:  '(mBs + mpi)^2'
           unit:     'GeV^2'
       'B_s->phi::sA@G2026' :
-          central:  31.773893
-          min:      31.773893
-          max:      31.773893
+          central:  30.802500
+          min:      30.802500
+          max:      30.802500
           latex:    '$s_A^{B_s \to \phi}$'
-          comment:  '(mBs + 2*mpi)^2'
+          comment:  '(mBs* + mpi)^2'
           unit:     'GeV^2'
       'B_s->phi::s0@G2026' :
-          central:  11.277888
-          min:      11.277888
-          max:      11.277888
+          central:  10.900739
+          min:      10.900739
+          max:      10.900739
           latex:    '$s_0^{B_s \to \phi}$'
           comment:  's0opt = sp * (1 - sqrt(1 - sm / sp))'
           unit:     'GeV^2'
