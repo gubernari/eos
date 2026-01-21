@@ -150,6 +150,8 @@ namespace eos
         static constexpr const double mR2_0p = 6.420 * 6.420; // B_c scalar
         static constexpr const bool uses_tensor_form_factors = true;
         static constexpr const char * hqe_prefix = "B(*)->D(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 2.0;
     };
 
     struct BsToDs {
@@ -166,6 +168,8 @@ namespace eos
         static constexpr const double tp = (m_B + m_P) * (m_B + m_P);
         static constexpr const bool uses_tensor_form_factors = true;
         static constexpr const char * hqe_prefix = "B_s(*)->D_s(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     struct DToPi {
@@ -279,6 +283,8 @@ namespace eos
         static constexpr double mR2_1m = (m_Bc + 0.056) * (m_Bc + 0.056);
         static constexpr double mR2_1p = (m_Bc + 0.492) * (m_Bc + 0.492);
         static constexpr const char * hqe_prefix = "B(*)->D(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 2.0;
     };
 
     struct BsToDsstar {
@@ -294,6 +300,8 @@ namespace eos
         static constexpr double mR2_1m = (m_Bc + 0.056) * (m_Bc + 0.056);
         static constexpr double mR2_1p = (m_Bc + 0.492) * (m_Bc + 0.492);
         static constexpr const char * hqe_prefix = "B_s(*)->D_s(*)";
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     struct BToKstar {

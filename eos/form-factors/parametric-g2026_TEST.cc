@@ -193,6 +193,136 @@ class BToKG2026FormFactorsTest :
         }
 } b_to_k_g2026_form_factors_test;
 
+class BToDG2026FormFactorsTest :
+    public TestCase
+{
+    public:
+        BToDG2026FormFactorsTest() :
+            TestCase("b_to_d_g2026_form_factors_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["B->D::a^f+_0@G2026"]  =  0.01;
+                p["B->D::a^f+_1@G2026"]  = -0.02;
+                p["B->D::a^f0_1@G2026"]  =  0.05;
+                p["B->D::a^fT_0@G2026"]  =  0.03;
+                p["B->D::a^fT_1@G2026"]  = -0.04;
+
+                p["mass::B_d@BSZ2015"]   =  5.279;
+                p["mass::D_u@BSZ2015"]   =  1.865;
+
+                p["mass::B_c,A^0[1]@G2026"] = 6.274;
+                p["mass::B_c,A^0[2]@G2026"] = 6.871;
+                p["mass::B_c,V^0[1]@G2026"] = 6.707;
+                p["mass::B_c,V^1[1]@G2026"] = 6.328;
+                p["mass::B_c,V^1[2]@G2026"] = 6.922;
+                p["mass::B_c,A^1[1]@G2026"] = 6.739;
+
+                p["B->D::s0@G2026"]      =  6.2048829;
+                p["B->D::sV@G2026"]      =  41.075281;
+                p["B->D::Q2@G2026"]      =  0.0;
+
+                p["B->D::tchi_V0@G2026"]  =  6.5e-3;
+                p["B->D::tchi_V1@G2026"]  =  5.3e-4;
+                p["B->D::tchi_T1@G2026"]  =  4.7e-4;
+
+                G2026FormFactors<BToD, PToP> ff(p, Options{ });
+
+                // Test end-point relations
+                TEST_CHECK_NEARLY_EQUAL( ff.f_0(0.0),           ff.f_p(0.0), eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(-15.0), 0.19686877, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  3.0), 0.33253391, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 0.98858265, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(-15.0), 0.32941156, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  3.0), 0.29342209, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0), 0.18895608, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(-15.0), 0.31540983, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  3.0), 0.54169034, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 1.7384875,  eps);
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.0028941315, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,            eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0,            eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0005,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0025,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0,            eps);
+            }
+        }
+} b_to_d_g2026_form_factors_test;
+
+class BsToDsG2026FormFactorsTest :
+    public TestCase
+{
+    public:
+        BsToDsG2026FormFactorsTest() :
+            TestCase("b_s_to_d_s_g2026_form_factors_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["B_s->D_s::a^f+_0@G2026"]  =  0.01;
+                p["B_s->D_s::a^f+_1@G2026"]  = -0.02;
+                p["B_s->D_s::a^f0_1@G2026"]  =  0.05;
+                p["B_s->D_s::a^fT_0@G2026"]  =  0.03;
+                p["B_s->D_s::a^fT_1@G2026"]  = -0.04;
+
+                p["mass::B_s@BSZ2015"]   =  5.367;
+                p["mass::D_s@BSZ2015"]   =  1.968;
+
+                p["mass::B_c,A^0[1]@G2026"] = 6.274;
+                p["mass::B_c,A^0[2]@G2026"] = 6.871;
+                p["mass::B_c,V^0[1]@G2026"] = 6.707;
+                p["mass::B_c,V^1[1]@G2026"] = 6.328;
+                p["mass::B_c,V^1[2]@G2026"] = 6.922;
+                p["mass::B_c,A^1[1]@G2026"] = 6.739;
+
+                p["B_s->D_s::s0@G2026"]      =  6.1252757;
+                p["B_s->D_s::sV@G2026"]      =  41.075281;
+                p["B_s->D_s::Q2@G2026"]      =  0.0;
+
+                p["B_s->D_s::tchi_V0@G2026"]  =  6.5e-3;
+                p["B_s->D_s::tchi_V1@G2026"]  =  5.3e-4;
+                p["B_s->D_s::tchi_T1@G2026"]  =  4.7e-4;
+
+                G2026FormFactors<BsToDs, PToP> ff(p, Options{ });
+
+                // Test end-point relations
+                TEST_CHECK_NEARLY_EQUAL( ff.f_0(0.0),           ff.f_p(0.0), eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(-15.0), 0.27009881, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  3.0), 0.45093416, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 1.2950788,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(-15.0), 0.44943919, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  3.0), 0.39848725, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0), 0.25260665, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(-15.0), 0.44404500, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  3.0), 0.75389239, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 2.3378782,  eps);
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.0028840563, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,            eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),       0,            eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),       0.0005,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),       0.0025,       eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(),      0,            eps);
+            }
+        }
+} b_s_to_d_s_g2026_form_factors_test;
+
 class BToKstarG2026FormFactorsTest :
     public TestCase
 {
@@ -502,3 +632,200 @@ class BsToPhiG2026FormFactorsTest :
             }
         }
 } b_s_to_phi_g2026_form_factors_test;
+
+class BToDstarG2026FormFactorsTest :
+    public TestCase
+{
+    public:
+        BToDstarG2026FormFactorsTest() :
+            TestCase("b_to_dstar_g2026_form_factors_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["B->D^*::a^V_0@G2026"]     =  0.01;
+                p["B->D^*::a^V_1@G2026"]     = -0.02;
+                p["B->D^*::a^A0_0@G2026"]    =  0.03;
+                p["B->D^*::a^A0_1@G2026"]    = -0.04;
+                p["B->D^*::a^A1_1@G2026"]    =  0.05;
+                p["B->D^*::a^A12_1@G2026"]   = -0.06;
+                p["B->D^*::a^T1_0@G2026"]    =  0.07;
+                p["B->D^*::a^T1_1@G2026"]    = -0.08;
+                p["B->D^*::a^T2_1@G2026"]    =  0.09;
+                p["B->D^*::a^T23_1@G2026"]   = -0.10;
+
+                p["mass::B_d@BSZ2015"]     =  5.279;
+                p["mass::D_u^*@BSZ2015"]   =  2.007;
+
+                p["mass::B_c,A^0[1]@G2026"] = 6.274;
+                p["mass::B_c,A^0[2]@G2026"] = 6.871;
+                p["mass::B_c,V^0[1]@G2026"] = 6.707;
+                p["mass::B_c,V^1[1]@G2026"] = 6.328;
+                p["mass::B_c,V^1[2]@G2026"] = 6.922;
+                p["mass::B_c,A^1[1]@G2026"] = 6.739;
+
+                p["B->D^*::s0@G2026"]       =  5.6540972;
+                p["B->D^*::sV@G2026"]       =  41.075281;
+                p["B->D^*::sA@G2026"]       =  41.770369;
+                p["B->D^*::Q2@G2026"]       =  0.0;
+
+                p["B->D^*::tchi_A0@G2026"]  =  1.7e-2;
+                p["B->D^*::tchi_V1@G2026"]  =  5.3e-4;
+                p["B->D^*::tchi_A1@G2026"]  =  3.9e-4;
+                p["B->D^*::tchi_T1@G2026"]  =  4.7e-4;
+                p["B->D^*::tchi_AT1@G2026"] =  2.2e-4;
+
+                G2026FormFactors<BToDstar, PToV> ff(p, Options{ });
+                // Test end-point relations
+                const double mB = p["mass::B_d@BSZ2015"];
+                const double mV = p["mass::D_u^*@BSZ2015"];
+                const double sm = (mB - mV) * (mB - mV);
+
+                const double factora12a0 = (mB * mB - mV * mV) / 8.0 / mB / mV;
+                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - sm) / 16.0 / mB / mV / mV;
+                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - sm) / 8.0 / mB / mV / mV;
+
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(sm) , factora12a1 * ff.a_1(sm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(sm) , factort23t2 * ff.t_2(sm) , eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.071362907, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (  3.0),  0.13160062,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  0.45769644,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (-15.0),  0.17937997,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  3.0),  0.31649092,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  1.1115797,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (-15.0),  0.64762210,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  3.0),  0.64128635,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  0.64672796,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(-15.0), -0.021963829, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  3.0),  0.10456170,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  0.41609745,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (-15.0),  1.0112868,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  3.0),  1.5218151,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  3.7954573,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (-15.0),  1.7051950,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  3.0),  1.3357433,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0),  0.60563906,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(-15.0),  0.95933568,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0),  1.2327428,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  2.1412154,   eps);
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,          eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.0025,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.00804022, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),  0.0005,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),  0.0113,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(), 0.0233911,  eps);
+            }
+        }
+} b_to_dstar_g2026_form_factors_test;
+
+class BsToDsstarG2026FormFactorsTest :
+    public TestCase
+{
+    public:
+        BsToDsstarG2026FormFactorsTest() :
+            TestCase("b_s_to_d_sstar_g2026_form_factors_test")
+        {
+        }
+
+        virtual void run() const
+        {
+            static const double eps = 1e-5;
+
+            {
+                Parameters p = Parameters::Defaults();
+                p["B_s->D_s^*::a^V_0@G2026"]     =  0.01;
+                p["B_s->D_s^*::a^V_1@G2026"]     = -0.02;
+                p["B_s->D_s^*::a^A0_0@G2026"]    =  0.03;
+                p["B_s->D_s^*::a^A0_1@G2026"]    = -0.04;
+                p["B_s->D_s^*::a^A1_1@G2026"]    =  0.05;
+                p["B_s->D_s^*::a^A12_1@G2026"]   = -0.06;
+                p["B_s->D_s^*::a^T1_0@G2026"]    =  0.07;
+                p["B_s->D_s^*::a^T1_1@G2026"]    = -0.08;
+                p["B_s->D_s^*::a^T2_1@G2026"]    =  0.09;
+                p["B_s->D_s^*::a^T23_1@G2026"]   = -0.10;
+
+                p["mass::B_s@BSZ2015"]     =  5.367;
+                p["mass::D_s^*@BSZ2015"]   =  2.112;
+
+                p["mass::B_c,A^0[1]@G2026"] = 6.274;
+                p["mass::B_c,A^0[2]@G2026"] = 6.871;
+                p["mass::B_c,V^0[1]@G2026"] = 6.707;
+                p["mass::B_c,V^1[1]@G2026"] = 6.328;
+                p["mass::B_c,V^1[2]@G2026"] = 6.922;
+                p["mass::B_c,A^1[1]@G2026"] = 6.739;
+
+                p["B_s->D_s^*::s0@G2026"]   =  5.5753758;
+                p["B_s->D_s^*::sV@G2026"]   =  41.075281;
+                p["B_s->D_s^*::sA@G2026"]   =  41.770369;
+                p["B_s->D_s^*::Q2@G2026"]   =  0.0;
+
+                p["B_s->D_s^*::tchi_A0@G2026"]  =  1.7e-2;
+                p["B_s->D_s^*::tchi_V1@G2026"]  =  5.3e-4;
+                p["B_s->D_s^*::tchi_A1@G2026"]  =  3.9e-4;
+                p["B_s->D_s^*::tchi_T1@G2026"]  =  4.7e-4;
+                p["B_s->D_s^*::tchi_AT1@G2026"] =  2.2e-4;
+
+                G2026FormFactors<BsToDsstar, PToV> ff(p, Options{ });
+
+                // Test end-point relations
+                const double mB = p["mass::B_s@BSZ2015"];
+                const double mV = p["mass::D_s^*@BSZ2015"];
+                const double sm = (mB - mV) * (mB - mV);
+
+                const double factora12a0 = (mB * mB - mV * mV) / 8.0 / mB / mV;
+                const double factora12a1 = (mB + mV) * (mB * mB - mV * mV - sm) / 16.0 / mB / mV / mV;
+                const double factort23t2 = (mB + mV) * (mB * mB + 3.0 * mV * mV - sm) / 8.0 / mB / mV / mV;
+
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(0.0), factora12a0 * ff.a_0(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_1(0.0) ,               ff.t_2(0.0), eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.a_12(sm) , factora12a1 * ff.a_1(sm) , eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.t_23(sm) , factort23t2 * ff.t_2(sm) , eps);
+
+                // Test against my Mathematica implementation
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (-15.0),  0.10049093, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   (  3.0),  0.18325111, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.v   ( 25.0),  0.61740229, eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (-15.0),  0.24594183,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 (  3.0),  0.42917085,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_0 ( 25.0),  1.4605161,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (-15.0),  0.87982219,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 (  3.0),  0.86769133,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_1 ( 25.0),  0.86490672,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(-15.0), -0.029291323, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12(  3.0),  0.13571614,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.a_12( 25.0),  0.53593903,  eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (-15.0),  1.3863425,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 (  3.0),  2.0633724,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_1 ( 25.0),  4.9863597,   eps);
+
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (-15.0),  2.3263090,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 (  3.0),  1.8133843,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_2 ( 25.0),  0.80715380,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(-15.0),  1.2938586,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23(  3.0),  1.6554173,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.t_23( 25.0),  2.8425204,   eps);
+
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),  0,          eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),  0.0025,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_A1(),  0.00802717, eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_V1(),  0.0005,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_T1(),  0.0113,     eps);
+                TEST_CHECK_NEARLY_EQUAL( ff.saturation_AT1(), 0.0234089,  eps);
+            }
+        }
+} b_s_to_d_sstar_g2026_form_factors_test;

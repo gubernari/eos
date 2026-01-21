@@ -69,9 +69,11 @@ namespace eos
         { "B->D^*::BSZ2015",      &BSZ2015FormFactors<BToDstar,   PToV>::make         },
         { "B->D^*::BGJvD2019",    &HQETFormFactors<BToDstar,      PToV>::make         },
         { "B->D^*::BGL1997",      &BGL1997FormFactors<BToDstar,   PToV>::make         },
+        { "B->D^*::G2026",        &G2026FormFactors<BToDstar,     PToV>::make         },
         { "B_s->K^*::BSZ2015",    &BSZ2015FormFactors<BsToKstar,  PToV>::make         },
         { "B_s->D_s^*::BSZ2015",  &BSZ2015FormFactors<BsToDsstar, PToV>::make         },
         { "B_s->D_s^*::BGJvD2019",&HQETFormFactors<BsToDsstar,    PToV>::make         },
+        { "B_s->D_s^*::G2026",    &G2026FormFactors<BsToDsstar,   PToV>::make         },
         { "B_s->phi::BSZ2015",    &BSZ2015FormFactors<BsToPhi,    PToV>::make         },
         { "B_s->phi::BFW2010",    &BFW2010FormFactors<BsToPhi,    PToV>::make         },
         // analytic computations
@@ -365,8 +367,10 @@ namespace eos
         { "B->D::BSZ2015",           &BSZ2015FormFactors<BToD,   PToP>::make                                                                                      },
         { "B->D::BGJvD2019",         &HQETFormFactors<BToD,      PToP>::make                                                                                      },
         { "B->D::BGL1997",           &BGL1997FormFactors<BToD,   PToP>::make                                                                                      },
+        { "B->D::G2026",             &G2026FormFactors<BToD,     PToP>::make                                                                                      },
         { "B_s->D_s::BSZ2015",       &BSZ2015FormFactors<BsToDs, PToP>::make                                                                                      },
         { "B_s->D_s::BGJvD2019",     &HQETFormFactors<BsToDs,    PToP>::make                                                                                      },
+        { "B_s->D_s::G2026",         &G2026FormFactors<BsToDs,   PToP>::make                                                                                      },
         // c -> d
         { "D->eta::BSZ2015",         &BSZ2015FormFactors<DToEta,      PToP>::make                                                                                 },
         { "D->eta_prime::BSZ2015",   &BSZ2015FormFactors<DToEtaPrime, PToP>::make                                                                                 },

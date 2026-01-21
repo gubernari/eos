@@ -247,8 +247,10 @@ namespace eos
             static const std::vector<OptionSpecification> options;
     };
 
-    extern template class G2026FormFactors<BToKstar, PToV>;
-    extern template class G2026FormFactors<BsToPhi, PToV>;
+    extern template class G2026FormFactors<BToKstar,   PToV>;
+    extern template class G2026FormFactors<BToDstar,   PToV>;
+    extern template class G2026FormFactors<BsToPhi,    PToV>;
+    extern template class G2026FormFactors<BsToDsstar, PToV>;
 
 
     // P -> P
@@ -438,15 +440,10 @@ namespace eos
             static const std::vector<OptionSpecification> options;
     };
 
-    extern template class G2026FormFactors<DToK,  PToP>;
-    extern template class G2026FormFactors<BToK,  PToP>;
-    extern template class G2026FormFactors<BsToK, PToP>;
-    extern template class G2026FormFactors<BToEta, PToP>;
-    extern template class G2026FormFactors<BToEtaPrime, PToP>;
-    extern template class G2026FormFactors<BsToEta, PToP>;
-    extern template class G2026FormFactors<BsToEtaPrime, PToP>;
-    extern template class G2026FormFactors<DsToEta, PToP>;
-    extern template class G2026FormFactors<DsToEtaPrime, PToP>;
+    extern template class G2026FormFactors<BToK,   PToP>;
+    extern template class G2026FormFactors<BsToK,  PToP>;
+    extern template class G2026FormFactors<BToD,   PToP>;
+    extern template class G2026FormFactors<BsToDs, PToP>;
 }
 
 #endif
