@@ -22,16 +22,14 @@
 namespace eos
 {
     // b -> u,d
-    //template class G2026FormFactors<BToEta, PToP>;
-    //template class G2026FormFactors<BToEtaPrime, PToP>;
+    template class G2026FormFactors<BToPi, PToP>;
     template class G2026FormFactors<BsToK, PToP>;
+    template class G2026FormFactors<BsToKstar, PToV>;
 
     // b -> s
     template class G2026FormFactors<BToK, PToP>;
     template class G2026FormFactors<BToKstar, PToV>;
-    template class G2026FormFactors<BsToPhi, PToV>;
-    //template class G2026FormFactors<BsToEta, PToP>;
-    //template class G2026FormFactors<BsToEtaPrime, PToP>;
+    template class G2026FormFactors<BsToPhi, PToV>;\
 
     // b -> c
     template class G2026FormFactors<BToD, PToP>;

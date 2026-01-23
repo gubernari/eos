@@ -3,6 +3,7 @@
 /*
  * Copyright (c) 2020-2025 Danny van Dyk
  * Copyright (c) 2025      Florian Herren
+ * Copyright (c) 2026      Nico Gubernari
  *
  * This file is part of the EOS project. EOS is free software;
  * you can redistribute it and/or modify it under the terms of the GNU General
@@ -60,6 +61,8 @@ namespace eos
         static constexpr const double mR2_1m = 5.325 * 5.325; // B_{u,d}^*
         static constexpr const double mR2_0p = 5.540 * 5.540; // B_{u,d} scalar: M(B_s scalar) - M(B_s^*) + M(B_{u,d}^*)
         static constexpr const bool uses_tensor_form_factors = true;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 2.0;
     };
 
     struct BToEta {
@@ -397,6 +400,8 @@ namespace eos
         static constexpr double mR2_0m = 5.279 * 5.279;
         static constexpr double mR2_1m = 5.325 * 5.325;
         static constexpr double mR2_1p = 5.723 * 5.723;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 1.0;
     };
 
     /* P -> PP Processes */
