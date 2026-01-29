@@ -616,13 +616,13 @@ groups:
           min:      5.732e-4
           max:      5.732e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->pi::tchi_T1@G2026' :
           central:  4.060e-4
           min:      4.060e-4
           max:      4.060e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->pi inspired by [BSZ:2015A]
       # new updated results based on a combined LQCD&LCSR fit from the GKvD2018 calculation
       'B->pi::alpha^f+_0@BSZ2015' :
@@ -886,13 +886,13 @@ groups:
           min:      6.80e-4
           max:      6.80e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->K::tchi_T1@G2026' :
           central:  4.55e-4
           min:      4.55e-4
           max:      4.55e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->K for [BCL:2008A] parametrization
       'B->K::f_+(0)' :
           alias_of: [ 'B_d->K_d::f_+(0)', 'B_d->Kbar_d::f_+(0)', 'B_d->K_S::f_+(0)', 'B_d->K_u::f_+(0)','B_d->Kbar_u::f_+(0)', 'B_u->K_d::f_+(0)', 'B_u->Kbar_d::f_+(0)', 'B_u->K_S::f_+(0)', 'B_u->K_u::f_+(0)','B_u->Kbar_u::f_+(0)' ]
@@ -1158,13 +1158,13 @@ groups:
           min:      5.732e-4
           max:      5.732e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->K::tchi_T1@G2026' :
           central:  4.060e-4
           min:      4.060e-4
           max:      4.060e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->D from [BIvD2016] for [BCL:2008A] parametrization
       'B->D::f_+(0)@BCL2008' :
           central: +0.66
@@ -1261,13 +1261,13 @@ groups:
           min:      5.131e-4
           max:      5.131e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->D::tchi_T1@G2026' :
           central:  4.857e-4
           min:      4.857e-4
           max:      4.857e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->D inspired by [BSZ:2015A]
       # new updated results based on a combined LQCD&LCSR fit from the GKvD2018 calculation
       'B->D::alpha^f+_0@BSZ2015' :
@@ -1493,13 +1493,13 @@ groups:
           min:      5.131e-4
           max:      5.131e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->D_s::tchi_T1@G2026' :
           central:  4.857e-4
           min:      4.857e-4
           max:      4.857e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
   # }}}
 
   # Parameters in B -> V Form Factor Parametrizations
@@ -1755,25 +1755,25 @@ groups:
           min:      5.732e-4
           max:      5.732e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->K^*::tchi_A1@G2026' :
           central:  5.732e-4
           min:      5.732e-4
           max:      5.732e-4
           latex:    '$\tilde{\chi}_A^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->K^*::tchi_T1@G2026' :
           central:  4.060e-4
           min:      4.060e-4
           max:      4.060e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->K^*::tchi_AT1@G2026' :
           central:  4.060e-4
           min:      4.060e-4
           max:      4.060e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form-factor parameters for B->omega
       # note that no lattice results exists for B->omega FFs yet
       # Use (B.6) of [BSZ:2015A] to replace A_12(0), and T_1(0) = T_2(0) to replace T_2(0).
@@ -2204,25 +2204,25 @@ groups:
           min:      6.80e-4
           max:      6.80e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->K^*::tchi_A1@G2026' :
           central:  6.40e-4
           min:      6.40e-4
           max:      6.40e-4
           latex:    '$\tilde{\chi}_A^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->K^*::tchi_T1@G2026' :
           central:  4.55e-4
           min:      4.55e-4
           max:      4.55e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->K^*::tchi_AT1@G2026' :
           central:  4.24e-4
           min:      4.24e-4
           max:      4.24e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B_s->phi for [G:2026A] parametrization
       'B_s->phi::a^%1%_%2%@G2026' :
           central:  0.
@@ -2271,25 +2271,25 @@ groups:
           min:      6.80e-4
           max:      6.80e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->phi::tchi_A1@G2026' :
           central:  6.40e-4
           min:      6.40e-4
           max:      6.40e-4
           latex:    '$\tilde{\chi}_A^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->phi::tchi_T1@G2026' :
           central:  4.55e-4
           min:      4.55e-4
           max:      4.55e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->phi::tchi_AT1@G2026' :
           central:  4.24e-4
           min:      4.24e-4
           max:      4.24e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
        # form factor parameters for B_s->phi inspired by [BSZ:2015A]
       'B_s->phi::alpha^A0_0@BSZ2015' :
           central:  0.388675
@@ -2599,25 +2599,25 @@ groups:
           min:      5.131e-4
           max:      5.131e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->D^*::tchi_A1@G2026' :
           central:  3.894e-4
           min:      3.894e-4
           max:      3.894e-4
           latex:    '$\tilde{\chi}_A^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->D^*::tchi_T1@G2026' :
           central:  4.857e-4
           min:      4.857e-4
           max:      4.857e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B->D^*::tchi_AT1@G2026' :
           central:  2.4e-4
           min:      2.4e-4
           max:      2.4e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->D^* for [BGL:1997A]
       'B->D^*::t_0@BGL1997' :
           central:  5.6417164
@@ -2956,25 +2956,25 @@ groups:
           min:      5.131e-4
           max:      5.131e-4
           latex:    '$\tilde{\chi}_V^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->D_s^*::tchi_A1@G2026' :
           central:  3.894e-4
           min:      3.894e-4
           max:      3.894e-4
           latex:    '$\tilde{\chi}_A^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->D_s^*::tchi_T1@G2026' :
           central:  4.857e-4
           min:      4.857e-4
           max:      4.857e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       'B_s->D_s^*::tchi_AT1@G2026' :
           central:  2.4e-4
           min:      2.4e-4
           max:      2.4e-4
           latex:    '$\tilde{\chi}_T^1$'
-          unit:     'GeV^{-2}'
+          unit:     'GeV^-2'
       # form factor parameters for B->gamma* according to [KKvDZ2022A], Table 3, p. 10
       # inspired by [BSZ:2015A]
       'B->gamma^*::N^omega_1_0@KKvDZ2022' :
