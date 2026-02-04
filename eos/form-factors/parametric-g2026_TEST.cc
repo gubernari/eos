@@ -217,6 +217,7 @@ class BToPiG2026FormFactorsTest :
                 p["mass::B_d@BSZ2015"]    =  5.279;
                 p["mass::pi^0@BSZ2015"]   =  0.135;
 
+                p["mass::B_d,V^0[1]@G2026"] = 10.0e+10; // very high value to effectively remove fake pole
                 p["mass::B_d,V^1[1]@G2026"] = 5.325;
 
                 p["B->pi::s0@G2026"]      =  20.170454;
@@ -277,6 +278,7 @@ class BsToKG2026FormFactorsTest :
                 p["mass::B_s@BSZ2015"]    =  5.367;
                 p["mass::K_d@BSZ2015"]    =  0.494;
 
+                p["mass::B_u,V^0[1]@G2026"] = 10.0e+10; // very high value to effectively remove fake pole
                 p["mass::B_u,V^1[1]@G2026"] = 5.325;
 
                 p["B_s->K::s0@G2026"]     =  15.264615;
