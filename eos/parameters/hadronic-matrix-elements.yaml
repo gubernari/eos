@@ -369,6 +369,13 @@ groups:
           latex:    '$m_{A,1}^0$'
           unit:     'GeV'
           comments: 'also known as $m_{B_u}$'
+      'mass::B_u,V^0[1]@G2026' :
+          central: +5.642
+          min:     +5.642
+          max:     +5.642
+          latex:    '$m_{V,1}^0$'
+          unit:     'GeV'
+          comments: 'fake pole, see [G:2026A]'
       'mass::B_u,V^1[1]@G2026' :
           central: +5.325
           min:     +5.325
@@ -389,6 +396,13 @@ groups:
           latex:    '$m_{A,1}^0$'
           unit:     'GeV'
           comments: 'also known as $m_{B_d}$'
+      'mass::B_d,V^0[1]@G2026' :
+          central: +5.642
+          min:     +5.642
+          max:     +5.642
+          latex:    '$m_{V,1}^0$'
+          unit:     'GeV'
+          comments: 'fake pole, see [G:2026A]'
       'mass::B_d,V^1[1]@G2026' :
           central: +5.325
           min:     +5.325
