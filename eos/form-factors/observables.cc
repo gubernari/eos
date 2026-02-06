@@ -286,22 +286,22 @@ namespace eos
                 make_observable("B->K::Saturation[1^+_T5]", R"(\textrm{Saturation}[1^+_{T5}])", Unit::None(),
                         &BFW2010FormFactors<BToK, PToP>::saturation_1p_t5),
 
-                make_observable("B->K::Saturation[0^+_V]@G", R"(\textrm{Saturation}[0^+_V])", Unit::None(),
-                        &G2026FormFactors<BToK, PToP>::saturation_V0),
-
-                make_observable("B->K::Saturation[0^-_A]@G", R"(\textrm{Saturation}[0^-_A])", Unit::None(),
+                make_observable("B->K::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
                         &G2026FormFactors<BToK, PToP>::saturation_A0),
 
-                make_observable("B->K::Saturation[1^-_V]@G", R"(\textrm{Saturation}[1^-_V])", Unit::None(),
+                make_observable("B->K::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BToK, PToP>::saturation_V0),
+
+                make_observable("B->K::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
                         &G2026FormFactors<BToK, PToP>::saturation_V1),
 
-                make_observable("B->K::Saturation[1^+_A]@G", R"(\textrm{Saturation}[1^+_A])", Unit::None(),
+                make_observable("B->K::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
                         &G2026FormFactors<BToK, PToP>::saturation_A1),
 
-                make_observable("B->K::Saturation[1^-_T]@G", R"(\textrm{Saturation}[1^-_T])", Unit::None(),
+                make_observable("B->K::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
                         &G2026FormFactors<BToK, PToP>::saturation_T1),
 
-                make_observable("B->K::Saturation[1^+_T5]@G", R"(\textrm{Saturation}[1^+_{T5}])", Unit::None(),
+                make_observable("B->K::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
                         &G2026FormFactors<BToK, PToP>::saturation_AT1),
 
                 // Auxiliary functions for [BFW:2010A]
