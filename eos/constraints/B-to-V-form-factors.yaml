@@ -1948,7 +1948,8 @@ B_s->K^*::FormFactors[parametric,LCSRLattice]@GvDV:2020A:
 B_s->K^*::FormFactorsLCSR@BGMT:2025A:
   type: MultivariateGaussian(Covariance)
   observables:
-    [ 'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',
+    [ 'B_s->K^*::V(q2)',       'B_s->K^*::V(q2)',       'B_s->K^*::V(q2)',       'B_s->K^*::V(q2)',       'B_s->K^*::V(q2)',
+      'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',     'B_s->K^*::A_0(q2)',
       'B_s->K^*::A_1(q2)',     'B_s->K^*::A_1(q2)',     'B_s->K^*::A_1(q2)',     'B_s->K^*::A_1(q2)',     'B_s->K^*::A_1(q2)',
       'B_s->K^*::A_12(q2)',    'B_s->K^*::A_12(q2)',    'B_s->K^*::A_12(q2)',                             'B_s->K^*::A_12(q2)',
       'B_s->K^*::T_1(q2)',     'B_s->K^*::T_1(q2)',     'B_s->K^*::T_1(q2)',                              'B_s->K^*::T_1(q2)',
