@@ -455,6 +455,24 @@ namespace eos
                         Unit::None(),
                         R"( <<B->D::f_T(q2)>> / <<B->D::f_+(q2)>> )"),
 
+                make_observable("B->D::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_A0),
+
+                make_observable("B->D::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_V0),
+
+                make_observable("B->D::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_V1),
+
+                make_observable("B->D::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_A1),
+
+                make_observable("B->D::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_T1),
+
+                make_observable("B->D::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BToD, PToP>::saturation_AT1),
+
                 make_observable("B->D::h_+(q2)", R"(h_+^{B\to \bar{D}}(q^2))",
                         Unit::None(),
                         &HQETFormFactors<BToD, PToP>::h_p,
@@ -762,6 +780,24 @@ namespace eos
                         /
                         <<B_s->D_s::a_0[f_T]@HQE>>
                         )"),
+
+                make_observable("B_s->D_s::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_A0),
+
+                make_observable("B_s->D_s::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_V0),
+
+                make_observable("B_s->D_s::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_V1),
+
+                make_observable("B_s->D_s::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_A1),
+
+                make_observable("B_s->D_s::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_T1),
+
+                make_observable("B_s->D_s::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BsToDs, PToP>::saturation_AT1),
             }
         );
 
@@ -1466,6 +1502,24 @@ namespace eos
                         Unit::None(),
                         &HQETFormFactors<BToDstar, PToV>::h_t3,
                         std::make_tuple("q2")),
+
+                make_observable("B->D^*::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_A0),
+
+                make_observable("B->D^*::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_V0),
+
+                make_observable("B->D^*::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_V1),
+
+                make_observable("B->D^*::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_A1),
+
+                make_observable("B->D^*::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_T1),
+
+                make_observable("B->D^*::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BToDstar, PToV>::saturation_AT1),
             }
         );
 
@@ -2051,6 +2105,24 @@ namespace eos
                         /
                         <<B_s->D_s^*::a_0[T_23]@HQE>>
                         )"),
+
+                make_observable("B_s->D_s^*::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_A0),
+
+                make_observable("B_s->D_s^*::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_V0),
+
+                make_observable("B_s->D_s^*::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_V1),
+
+                make_observable("B_s->D_s^*::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_A1),
+
+                make_observable("B_s->D_s^*::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_T1),
+
+                make_observable("B_s->D_s^*::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BsToDsstar, PToV>::saturation_AT1),
             }
         );
 
