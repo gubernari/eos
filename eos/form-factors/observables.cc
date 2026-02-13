@@ -158,6 +158,24 @@ namespace eos
                         &AnalyticFormFactorBToPseudoscalarDKMMO2008<QuarkFlavor::bottom, QuarkFlavor::up, QuarkFlavor::down>::decay_constant,
                         std::make_tuple(),
                         Options{ { "q"_ok, "d" } }),
+
+                make_observable("B->pi::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_A0),
+
+                make_observable("B->pi::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_V0),
+
+                make_observable("B->pi::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_V1),
+
+                make_observable("B->pi::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_A1),
+
+                make_observable("B->pi::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_T1),
+
+                make_observable("B->pi::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BToPi, PToP>::saturation_AT1),
             }
         );
 
@@ -1619,6 +1637,24 @@ namespace eos
                         Unit::GeV2(),
                         &AnalyticFormFactorBToVLCSR<BsToKstar>::normalized_moment_1_t_23B,
                         std::make_tuple("q2")),
+
+                make_observable("B_s->K^*::Saturation[A0]@G", R"(\textrm{Saturation}[A0])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_A0),
+
+                make_observable("B_s->K^*::Saturation[V0]@G", R"(\textrm{Saturation}[V0])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_V0),
+
+                make_observable("B_s->K^*::Saturation[V1]@G", R"(\textrm{Saturation}[V1])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_V1),
+
+                make_observable("B_s->K^*::Saturation[A1]@G", R"(\textrm{Saturation}[A1])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_A1),
+
+                make_observable("B_s->K^*::Saturation[T1]@G", R"(\textrm{Saturation}[T1])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_T1),
+
+                make_observable("B_s->K^*::Saturation[AT1]@G", R"(\textrm{Saturation}[AT1])", Unit::None(),
+                        &G2026FormFactors<BsToKstar, PToV>::saturation_AT1),
             }
         );
 
