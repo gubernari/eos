@@ -234,15 +234,15 @@ class BToPiG2026FormFactorsTest :
                 TEST_CHECK_NEARLY_EQUAL( ff.f_0(0.0),           ff.f_p(0.0), eps);
 
                 // Test against my Mathematica implementation
-                TEST_CHECK_RELATIVE_ERROR( ff.f_p(-15.0), 0.029939969, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  3.0), 0.087441842, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 2.0171664,   eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_0(-15.0), 0.092383538, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  3.0), 0.066291910, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0),-0.040645072, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_t(-15.0), 0.067617808, eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  3.0), 0.15304549,  eps);
-                TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 3.3333530,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(-15.0), 0.034571698, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p(  3.0), 0.10096914,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_p( 25.0), 2.3292231,   eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(-15.0), 0.10667532,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0(  3.0), 0.076547304, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_0( 25.0),-0.046932887, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(-15.0), 0.078078319, eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t(  3.0), 0.17672171,  eps);
+                TEST_CHECK_RELATIVE_ERROR( ff.f_t( 25.0), 3.8490245,   eps);
 
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_V0(),       0.00250559, eps);
                 TEST_CHECK_NEARLY_EQUAL( ff.saturation_A0(),       0,          eps);

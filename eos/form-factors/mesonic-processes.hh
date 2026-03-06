@@ -62,7 +62,7 @@ namespace eos
         static constexpr const double mR2_0p = 5.540 * 5.540; // B_{u,d} scalar: M(B_s scalar) - M(B_s^*) + M(B_{u,d}^*)
         static constexpr const bool uses_tensor_form_factors = true;
         // Isospin-degeneracy factor
-        static constexpr double eta  = 2.0;
+        static constexpr double eta  = 3.0 / 2.0;
     };
 
     struct BToEta {
@@ -359,6 +359,8 @@ namespace eos
         static constexpr double mR2_0m = 5.279 * 5.279;
         static constexpr double mR2_1m = 5.325 * 5.325;
         static constexpr double mR2_1p = 5.724 * 5.724;
+        // Isospin-degeneracy factor
+        static constexpr double eta  = 3.0 / 2.0;
     };
 
     struct BsToPhi {
