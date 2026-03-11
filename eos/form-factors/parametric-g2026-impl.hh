@@ -227,7 +227,7 @@ namespace eos
             const double Mres2 = power_of<2>(m);
             const bool include_factor_Mres = (Mres2 > sG) && (Mres2 < sp);
             if (include_factor_Mres)
-                factor_Mres *= (Mres2 - s) / power_of<2>(sqrt_sG_s + sqrt_sG);
+                factor_Mres *= (Mres2 - s) / power_of<2>(sqrt_sG_s + sqrt_sG_Q2);
         }
 
         return norm
@@ -857,7 +857,7 @@ namespace eos
             const double Mres2 = power_of<2>(m);
             const bool include_factor_Mres = (Mres2 > sG) && (Mres2 < sp);
             if (include_factor_Mres)
-                factor_Mres *= (Mres2 - s) / power_of<2>(sqrt_sG_s + sqrt_sG);
+                factor_Mres *= (Mres2 - s) / power_of<2>(sqrt_sG_s + sqrt_sG_Q2);
         }
 
         return norm
